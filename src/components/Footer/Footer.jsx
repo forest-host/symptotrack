@@ -77,7 +77,7 @@ const Footer = ({ title, description }) => (
   <SFooter>
     <Container py={25}>
       <Row>
-        <Flex flexDirection={['column', 'row']} mb={30}>
+        <Flex flexDirection={['column', 'column']} mb={30}>
           <Box mb={25}>
             <Heading.H4>{title}</Heading.H4>
             <Text as="span" fontSize={18} fontFamily="heading">

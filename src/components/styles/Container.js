@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { space } from 'styled-system';
+import { bg, space } from 'styled-system';
 import { px2rem } from '../../utils';
 
 const Container = styled.div`

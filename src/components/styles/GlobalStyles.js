@@ -32,6 +32,10 @@ const GlobalStyle = createGlobalStyle`
     line-height: ${px2rem(24)};
   }
 
+  a {
+    color: blue;
+  }
+
   img {
     max-width: 100%;
   }
