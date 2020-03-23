@@ -1,0 +1,23 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+.DS_Store
+.vscode
+*.code-workspace
+
+# dependencies
+node_modules/
+package-lock.json
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+src/.next
+
+# misc
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
