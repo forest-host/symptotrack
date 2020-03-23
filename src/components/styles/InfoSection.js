@@ -18,8 +18,21 @@ const InfoSection = styled(Box)`
         width: ${px2rem(90)};
         height: ${px2rem(90)};
         background: url('/static/icons/circle-orange.svg');
+        animation: float 3s ease-in-out infinite;
       }
     `}
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(3px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 `;
 
 export default InfoSection;
