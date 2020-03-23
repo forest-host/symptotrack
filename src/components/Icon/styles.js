@@ -9,6 +9,12 @@ const StyledIcon = styled.svg`
   }
 
   ${(props) =>
+    props.mr &&
+    css`
+      margin-right: ${props.mr};
+    `}
+
+  ${(props) =>
     props.rotate
       ? css`
           transform: rotate(${props.rotate}deg);

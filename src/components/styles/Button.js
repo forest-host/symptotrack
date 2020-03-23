@@ -1,18 +1,17 @@
 import styled from '@xstyled/styled-components';
+import { px2rem } from '../../utils';
 
 const Button = styled.button`
-  height: 40px;
-  padding: 0 15px;
-  background-color: #4788ff;
-  // color: #fff;
+  padding: ${px2rem(16)};
+  background-color: blue;
+  color: lightGreen;
   font-weight: bold;
+  font-family: heading;
+  line-height: ${px2rem(24)};
   border: 0;
   outline: 0;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  &:hover {
-    background-color: #6199ff;
-  }
 `;
 
 export default Button;

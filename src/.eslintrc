@@ -35,6 +35,7 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "arrow-parens": "off",
+    "object-curly-newline": "off",
     "react/no-find-dom-node": 1,
     "react/no-string-refs": 1,
     "semi": ["error", "always"],

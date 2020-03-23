@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Router from 'next/router';
 import ReactGA from 'react-ga';
 import NProgress from 'nprogress';
@@ -20,14 +20,17 @@ Router.onRouteChangeError = () => {
 };
 
 const Page = ({ children }) => {
+  const title = 'SymptoTrack';
+  const description = 'Tracking Symptoms Worldwide';
+
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <div css={{ overflowX: 'hidden' }}>
         <GlobalStyles />
-        <Head title="SymptoTrack" />
+        <Head title={title} description={description} />
         <Header />
         <main>{children}</main>
-        <Footer />
+        <Footer title={title} description={description} />
       </div>
     </ThemeProvider>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 // Styling
 import SHeader from './styles';
@@ -9,7 +10,11 @@ const Header = () => (
     <Container>
       <Row>
         <Flex py={20} justifyContent="center" alignItems="center">
-          <img src="/static/logo.svg" alt="SymptoTrack" />
+          <Link href="/" passHref>
+            <a href>
+              <img src="/static/logo.svg" alt="SymptoTrack" />
+            </a>
+          </Link>
         </Flex>
       </Row>
     </Container>

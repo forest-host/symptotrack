@@ -1,5 +1,6 @@
 import { createGlobalStyle } from '@xstyled/styled-components';
 import styledNormalize from 'styled-normalize';
+import { px2rem } from '../../utils';
 
 const GlobalStyle = createGlobalStyle`
   ${styledNormalize}
@@ -25,6 +26,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: heading;
   }
+
+  p {
+    font-size: ${px2rem(18)};
+    line-height: ${px2rem(24)};
+  }
+
   img {
     max-width: 100%;
   }

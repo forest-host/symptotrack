@@ -2,7 +2,7 @@ import React from 'react';
 import NextHead from 'next/head';
 import { string } from 'prop-types';
 
-const defaultDescription = 'Tracking symptoms';
+const defaultDescription = 'Tracking Symptoms Worldwide';
 const defaultOGURL = '';
 const defaultOGImage = '';
 
