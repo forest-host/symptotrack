@@ -1,6 +1,13 @@
 import React from 'react';
 import App from 'next/app';
+
+// Utils
+import { appWithTranslation } from '../i18n';
+
+// Components
 import Page from '../components/Page';
+
+// Styling
 import { GlobalStyles } from '../components/styles';
 
 if (process.env.NODE_ENV !== 'production' && process.browser === true) {
@@ -13,10 +20,11 @@ if (process.env.NODE_ENV !== 'production' && process.browser === true) {
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, router } = this.props;
+    const { asPath } = router;
 
     return (
-      <Page>
+      <Page asPath={asPath}>
         <GlobalStyles />
         <Component {...pageProps} />
       </Page>
@@ -24,4 +32,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

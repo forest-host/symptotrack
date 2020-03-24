@@ -10,7 +10,7 @@ import { Heading } from '../../styles';
 
 const Counter = ({ number, lang }) => (
   <SCounter bg="orange">
-    <Heading.H3 color="blue">{formatNumber(number, lang)} mensen</Heading.H3>
+    <Heading.H3 color="black">{formatNumber(number, lang)} mensen</Heading.H3>
   </SCounter>
 );
 

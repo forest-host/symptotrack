@@ -1,5 +1,5 @@
 import styled, { css } from '@xstyled/styled-components';
-import { px2rem } from '../../utils';
+import { px2rem, media } from '../../utils';
 import { Box } from './Flex';
 
 const InfoSection = styled(Box)`
@@ -18,7 +18,16 @@ const InfoSection = styled(Box)`
         width: ${px2rem(90)};
         height: ${px2rem(90)};
         background: url('/static/icons/circle-orange.svg');
+        background-size: contain;
         animation: float 3s ease-in-out infinite;
+        pointer-events: none;
+
+        ${media.small`
+          top: ${px2rem(-80)};
+          left: ${px2rem(-90)};
+          width: ${px2rem(180)};
+          height: ${px2rem(180)};
+        `}
       }
     `}
 
@@ -27,7 +36,7 @@ const InfoSection = styled(Box)`
       transform: translateY(0);
     }
     50% {
-      transform: translateY(3px);
+      transform: translateY(5px);
     }
     100% {
       transform: translateY(0);

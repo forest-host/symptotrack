@@ -1,7 +1,7 @@
 export const breakpoints = [640, 1024, 1440];
 
 export default {
-  gridSize: '1440px',
+  gridSize: '1070px',
   breakpoints: breakpoints.map((i) => i + 'px'),
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   colors: {

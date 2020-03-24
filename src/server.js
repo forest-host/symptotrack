@@ -1,5 +1,9 @@
 const express = require('express');
 const next = require('next');
+const nextI18NextMiddleware = require('next-i18next/middleware').default;
+
+const nextI18next = require('./i18n');
+
 const path = require('path');
 const compression = require('compression');
 
@@ -14,40 +18,42 @@ const ServiceWorker = (app) => (req, res) => {
   app.serveStatic(req, res, filePath);
 };
 
-app
-  .prepare()
-  .then(() => {
-    const server = express();
+(async () => {
+  await app.prepare();
+  const server = express();
 
-    server.use(compression());
+  await nextI18next.initPromise;
+  server.use(nextI18NextMiddleware(nextI18next));
 
-    // Handle robots.txt file
-    const robotsOptions = {
-      root: `${__dirname}/public/static/`,
-      headers: {
-        'Content-Type': 'text/plain;charset=UTF-8',
-      },
-    };
-    server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', robotsOptions));
+  server.use(compression());
 
-    // handle next files
-    server.get('/_next/*', (req, res) => handle(req, res));
+  // Handle robots.txt file
+  const robotsOptions = {
+    root: `${__dirname}/public/static/`,
+    headers: {
+      'Content-Type': 'text/plain;charset=UTF-8',
+    },
+  };
+  server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', robotsOptions));
 
-    // ServiceWorker
-    server.get('/service-worker.js', ServiceWorker(app));
-
-    // Fallback handler
-    server.get('*', (req, res) => handle(req, res));
-
-    // Listen on the default port (3000)
-    server.listen(port, (err) => {
-      if (err) throw err;
-      // eslint-disable-next-line no-console
-      console.log(`> Ready on http://localhost:${port}`);
-    });
-  })
-  .catch((err) => {
-    // eslint-disable-next-line no-console
-    console.error(err.stack);
-    process.exit(1);
+  // Pages
+  server.get('/kaart', (req, res) => {
+    app.render(req, res, '/map');
   });
+
+  // handle next files
+  server.get('/_next/*', (req, res) => handle(req, res));
+
+  // ServiceWorker
+  server.get('/service-worker.js', ServiceWorker(app));
+
+  // Fallback handler
+  server.get('*', (req, res) => handle(req, res));
+
+  // Listen on the default port (3000)
+  server.listen(port, (err) => {
+    if (err) throw err;
+    // eslint-disable-next-line no-console
+    console.log(`> Ready on http://localhost:${port}`);
+  });
+})();

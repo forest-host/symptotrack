@@ -1,6 +1,6 @@
 import { createGlobalStyle } from '@xstyled/styled-components';
 import styledNormalize from 'styled-normalize';
-import { px2rem } from '../../utils';
+import { px2rem, media } from '../../utils';
 
 const GlobalStyle = createGlobalStyle`
   ${styledNormalize}
@@ -59,6 +59,20 @@ const GlobalStyle = createGlobalStyle`
   .accessibly-hidden {
     position: absolute;
     left: -999em;
+  }
+
+  .hide-for-small {
+    ${media.smallOnly`
+      display: none;
+    `}
+  }
+
+  .show-for-small {
+    display: none;
+
+    ${media.smallOnly`
+      display: block;
+    `}
   }
 
   /* Make clicks pass-through */

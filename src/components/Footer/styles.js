@@ -1,21 +1,34 @@
 import styled from '@xstyled/styled-components';
-import { px2rem } from '../../utils';
+import { px2rem, media } from '../../utils';
 
 const SFooter = styled.footer`
-  position: relative;
+  margin-top: auto;
   background-color: black;
   color: lightGreen;
 
-  &:after {
-    content: '';
-    position: absolute;
-    top: ${px2rem(-30)};
-    right: ${px2rem(-30)};
-    width: ${px2rem(90)};
-    height: ${px2rem(90)};
-    background: url('/static/icons/circle-orange.svg');
-    animation: float 3s ease-in-out infinite;
-    animation-delay: 0.5s;
+  > div {
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: ${px2rem(-30)};
+      right: ${px2rem(-30)};
+      width: ${px2rem(90)};
+      height: ${px2rem(90)};
+      background: url('/static/icons/circle-orange.svg');
+      background-size: contain;
+      animation: float 3s ease-in-out infinite;
+      animation-delay: 0.5s;
+      pointer-events: none;
+
+      ${media.small`
+        top: ${px2rem(-120)};
+        right: ${px2rem(-40)};
+        width: ${px2rem(180)};
+        height: ${px2rem(180)};
+      `}
+    }
   }
 
   @keyframes float {
@@ -23,7 +36,7 @@ const SFooter = styled.footer`
       transform: translateY(0);
     }
     50% {
-      transform: translateY(3px);
+      transform: translateY(5px);
     }
     100% {
       transform: translateY(0);

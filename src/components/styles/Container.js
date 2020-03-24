@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { bg, space } from 'styled-system';
-import { px2rem } from '../../utils';
+import { space } from 'styled-system';
+import { px2rem, media } from '../../utils';
 
 const Container = styled.div`
   ${space};
@@ -22,8 +22,17 @@ export const Row = styled.div`
   ${space};
   width: 100%;
   max-width: 1180px;
-  margin-left: auto;
-  margin-right: auto;
+
+  ${({ smallFullWidth }) =>
+    smallFullWidth &&
+    css`
+      ${media.smallOnly`
+      width: calc(100% + 30px);
+    `}
+    `}
 `;
+Row.defaultProps = {
+  mx: 'auto',
+};
 
 export default Container;

@@ -10,8 +10,8 @@ const H1 = styled.h1`
   font-size: ${px2rem(40)};
   line-height: ${px2rem(40)};
   ${media.small`
-    font-size: ${px2rem(60)};
-    line-height: ${px2rem(74)};
+    font-size: ${px2rem(70)};
+    line-height: ${px2rem(70)};
   `}
 `;
 
@@ -23,8 +23,8 @@ const H2 = styled.h2`
   font-size: ${px2rem(32)};
   line-height: ${px2rem(40)};
   ${media.small`
-    font-size: ${px2rem(58)};
-    line-height: ${px2rem(55)};
+    font-size: ${px2rem(40)};
+    line-height: ${px2rem(40)};
   `};
 `;
 
@@ -36,8 +36,8 @@ const H3 = styled.h3`
   font-size: ${px2rem(24)};
   line-height: ${px2rem(24)};
   ${media.small`
-    font-size: ${px2rem(36)};
-    line-height: ${px2rem(40)};
+    font-size: ${px2rem(24)};
+    line-height: ${px2rem(24)};
   `}
 `;
 
@@ -49,8 +49,8 @@ const H4 = styled.h4`
   font-size: ${px2rem(18)};
   line-height: ${px2rem(22)};
   ${media.small`
-    font-size: ${px2rem(30)};
-    line-height: 1;
+    font-size: ${px2rem(18)};
+    line-height: ${px2rem(22)};
   `}
 `;
 

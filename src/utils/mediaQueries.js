@@ -1,7 +1,6 @@
 import { css } from 'styled-components';
-import theme from '../theme';
+import { breakpoints } from '../theme';
 
-const { breakpoints } = theme;
 const labels = ['small', 'medium', 'large'];
 
 const mediaMin = breakpoints.reduce((acc, cur, i) => {
@@ -19,17 +18,18 @@ const mediaMax = breakpoints.reduce((acc, cur, i, sizes) => {
       ${css(...args)};
     }
   `;
-  acc[`${labels[i]}Only`] = (...args) => (i > 0
-    ? css`
+  acc[`${labels[i]}Only`] = (...args) =>
+    i > 0
+      ? css`
           @media screen and (min-width: ${sizes[i - 1]}px) and (max-width: ${cur - 1}px) {
             ${css(...args)};
           }
         `
-    : css`
+      : css`
           @media screen and (max-width: ${cur - 1}px) {
             ${css(...args)};
           }
-        `);
+        `;
 
   return acc;
 }, {});

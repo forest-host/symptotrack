@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "label": "SymptomenKaart",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/map",
+          "as": "/kaart"
+        },
+        "en": {
+          "href": "/map",
+          "as": "/en/map"
+        }
+      }
+    },
+    {
+      "label": "Over SymptoTrack",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/about",
+          "as": "/over-symptotrack"
+        },
+        "en": {
+          "href": "/about",
+          "as": "/en/about-symptotrack"
+        }
+      }
+    },
+    {
+      "label": "Contact",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/contact",
+          "as": "/contact"
+        },
+        "en": {
+          "href": "/contact",
+          "as": "/en/contact"
+        }
+      }
+    },
+    {
+      "label": "Veelgestelde vragen",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/faq",
+          "as": "/veelgestelde-vragen"
+        },
+        "en": {
+          "href": "/faq",
+          "as": "/en/faq"
+        }
+      }
+    }
+  ]
+}

@@ -12,6 +12,11 @@ const Button = styled.button`
   outline: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: black;
+  }
 `;
 
 export default Button;
