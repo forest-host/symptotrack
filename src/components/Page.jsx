@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { ThemeProvider } from 'styled-components';
@@ -20,15 +20,16 @@ Router.onRouteChangeError = () => {
 };
 
 const Page = ({ children, asPath }) => {
+  const [isOpen, setOpen] = useState(false);
   const title = 'SymptoTrack';
   const description = 'Tracking Symptoms Worldwide';
 
   return (
     <ThemeProvider theme={theme}>
       <Flex flexDirection="column" css={{ minHeight: '100vh', overflowX: 'hidden' }}>
-        <GlobalStyles />
+        <GlobalStyles isOpen={isOpen} />
         <Head title={title} description={description} />
-        <Header asPath={asPath} />
+        <Header asPath={asPath} isOpen={isOpen} setOpen={setOpen} />
         <Shapes />
         <main>{children}</main>
         <Footer />

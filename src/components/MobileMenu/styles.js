@@ -1,5 +1,5 @@
 import styled, { css } from '@xstyled/styled-components';
-import { px2rem } from '../../utils';
+import { px2rem, media } from '../../utils';
 
 const SMobileMenu = styled.nav`
   position: fixed;
@@ -14,6 +14,15 @@ const SMobileMenu = styled.nav`
   img {
     display: block;
   }
+
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      ${media.smallOnly`
+        opacity: 1;
+        pointer-events: inherit;
+      `}
+    `}
 `;
 
 export const SMenu = styled.ul`

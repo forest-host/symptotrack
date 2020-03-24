@@ -8,7 +8,7 @@ import Icon from '../../Icon';
 import SHamburger from './styles';
 
 const Hamburger = ({ onClick }) => (
-  <SHamburger noStyle>
+  <SHamburger noStyle onClick={onClick}>
     <Icon icon="HAMBURGER" color="blue" viewBox="0 0 448 512" size={14} />
   </SHamburger>
 );

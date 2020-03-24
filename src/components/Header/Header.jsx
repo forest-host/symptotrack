@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import uuid from 'uuid';
@@ -14,7 +14,7 @@ import MobileMenu from '../MobileMenu';
 import SHeader, { SMenu, SMenuItem } from './styles';
 import { Container, Flex, Row, Text } from '../styles';
 
-const Header = ({ t, i18n, asPath }) => {
+const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
   const { language } = i18n || {};
   const mainMenu = t('navigation:items', { returnObjects: true }) || {};
 
@@ -23,7 +23,7 @@ const Header = ({ t, i18n, asPath }) => {
       <Container>
         <Row>
           <Flex py={15} justifyContent={['center', 'space-between']} alignItems="center">
-            <Hamburger />
+            <Hamburger onClick={() => setOpen(true)} />
             <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
               <a href>
                 <picture>
@@ -55,7 +55,7 @@ const Header = ({ t, i18n, asPath }) => {
           </Flex>
         </Row>
       </Container>
-      <MobileMenu menu={mainMenu} />
+      <MobileMenu isOpen={isOpen} setOpen={setOpen} menu={mainMenu} />
     </SHeader>
   );
 };
@@ -63,6 +63,12 @@ const Header = ({ t, i18n, asPath }) => {
 Header.propTypes = {
   t: PropTypes.func.isRequired,
   asPath: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool,
+  setOpen: PropTypes.func.isRequired,
+};
+
+Header.defaultProps = {
+  isOpen: false,
 };
 
 export default withTranslation('navigation')(Header);

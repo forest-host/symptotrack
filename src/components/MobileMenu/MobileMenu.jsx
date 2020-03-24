@@ -14,11 +14,11 @@ import Icon from '../Icon';
 import SMobileMenu, { SMenu, SMenuItem } from './styles';
 import { Box, Button, Flex, Text } from '../styles';
 
-const MobileMenu = ({ t, i18n, asPath, menu }) => {
+const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
   const { language } = i18n || {};
 
   return (
-    <SMobileMenu>
+    <SMobileMenu isOpen={isOpen}>
       <Div100vh>
         <Flex
           pb={20}
@@ -71,7 +71,7 @@ const MobileMenu = ({ t, i18n, asPath, menu }) => {
             </SMenu>
           )}
           <Box mt="auto">
-            <Button noStyle>
+            <Button noStyle onClick={() => setOpen(false)}>
               <Flex flexDirection="column" alignItems="center">
                 <Icon icon="CLOSE" viewBox="0 0 352 512" color="black" size={17} />
                 <Text as="span" color="black" fontFamily="heading" fontWeight="700">
@@ -90,6 +90,12 @@ MobileMenu.propTypes = {
   t: PropTypes.func.isRequired,
   asPath: PropTypes.string.isRequired,
   menu: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isOpen: PropTypes.bool,
+  setOpen: PropTypes.func.isRequired,
+};
+
+MobileMenu.defaultProps = {
+  isOpen: false,
 };
 
 export default withTranslation('common')(MobileMenu);

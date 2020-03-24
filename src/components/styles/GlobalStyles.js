@@ -1,4 +1,4 @@
-import { createGlobalStyle } from '@xstyled/styled-components';
+import { css, createGlobalStyle } from '@xstyled/styled-components';
 import styledNormalize from 'styled-normalize';
 import { px2rem, media } from '../../utils';
 
@@ -12,6 +12,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: body;
     background-color: beige;
+
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        ${media.mediumDown`
+          overflow: hidden;
+        `}
+      `}
   }
 
   *,
