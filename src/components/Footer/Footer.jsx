@@ -122,6 +122,17 @@ const Footer = ({ t, i18n }) => {
                   rel="noopener noreferrer"
                 >
                   Hike
+                </Text>
+                ,{' '}
+                <Text
+                  as="a"
+                  fontWeight="700"
+                  color="lightGreen"
+                  href="https://www.forest.host"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Forest
                 </Text>{' '}
                 &{' '}
                 <Text
