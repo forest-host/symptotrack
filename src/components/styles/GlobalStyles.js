@@ -34,6 +34,10 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: blue;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   img {
@@ -42,6 +46,14 @@ const GlobalStyle = createGlobalStyle`
 
   select::-ms-expand {
     display: none;
+  }
+
+  .no-underline {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .accessibly-hidden {

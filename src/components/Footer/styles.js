@@ -32,13 +32,13 @@ const SFooter = styled.footer`
 `;
 
 export const SFooterMenu = styled.ul`
-  margin: ${px2rem(0, -12)};
+  margin: ${px2rem(0, -10)};
   padding: 0;
   list-style: none;
 
   li {
     display: inline-block;
-    margin: ${px2rem(6, 12)};
+    margin: ${px2rem(5, 10)};
   }
 `;
 

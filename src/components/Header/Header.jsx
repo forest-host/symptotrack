@@ -9,7 +9,7 @@ const Header = () => (
   <SHeader>
     <Container>
       <Row>
-        <Flex py={20} justifyContent="center" alignItems="center">
+        <Flex py={18} justifyContent="center" alignItems="center">
           <Link href="/" passHref>
             <a href>
               <img src="/static/logo.svg" alt="SymptoTrack" />
