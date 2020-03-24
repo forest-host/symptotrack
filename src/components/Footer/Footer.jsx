@@ -8,6 +8,7 @@ import { withTranslation } from '../../i18n';
 
 // Components
 import Socials from '../General/Socials';
+import FeaturedBy from './FeaturedBy';
 
 // Styling
 import SFooter, { SFooterMenu } from './styles';
@@ -58,30 +59,7 @@ const Footer = ({ t, i18n }) => {
                   <Socials items={socials} />
                 </Flex>
                 <Box width={[1, 4 / 12]} className="hide-for-small">
-                  <Text as="span">
-                    Door{' '}
-                    <Text
-                      as="a"
-                      fontWeight="700"
-                      color="lightGreen"
-                      href="https://www.gohike.nl"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Hike
-                    </Text>{' '}
-                    &{' '}
-                    <Text
-                      as="a"
-                      fontWeight="700"
-                      color="lightGreen"
-                      href="https://www.greenberry.nl"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Greenberry
-                    </Text>
-                  </Text>
+                  <FeaturedBy />
                 </Box>
               </Flex>
             )}
@@ -111,41 +89,7 @@ const Footer = ({ t, i18n }) => {
               <Text as="span">Ontwikkeld in samenwerking met ...</Text>
             </Box>
             <Box key={uuid()} mt={25} width={1} className="show-for-small">
-              <Text as="span">
-                Door{' '}
-                <Text
-                  as="a"
-                  fontWeight="700"
-                  color="lightGreen"
-                  href="https://www.gohike.nl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Hike
-                </Text>
-                ,{' '}
-                <Text
-                  as="a"
-                  fontWeight="700"
-                  color="lightGreen"
-                  href="https://www.forest.host"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Forest
-                </Text>{' '}
-                &{' '}
-                <Text
-                  as="a"
-                  fontWeight="700"
-                  color="lightGreen"
-                  href="https://www.greenberry.nl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Greenberry
-                </Text>
-              </Text>
+              <FeaturedBy />
             </Box>
           </Flex>
         </Row>
