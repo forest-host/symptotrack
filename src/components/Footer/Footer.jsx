@@ -107,7 +107,7 @@ const Footer = ({ t, i18n }) => {
                 </SFooterMenu>
               </Box>
             )}
-            <Box mt={35} width={[1, 4 / 12]} className="show-for-small">
+            <Box mt={35} width={1} className="show-for-small">
               <Text as="span">Ontwikkeld in samenwerking met ...</Text>
             </Box>
             <Box mt={25} width={1} className="show-for-small">
