@@ -25,7 +25,7 @@ const Header = ({ t, i18n, asPath }) => {
               </a>
             </Link>
             {mainMenu && Array.isArray(mainMenu) && (
-              <SMenu as="ul">
+              <SMenu>
                 {mainMenu.map(({ label, link }) => (
                   <SMenuItem key={uuid()} isActive={asPath === link[language].as}>
                     <Link href={link[language].href} as={link[language].as} passHref>

@@ -1,6 +1,5 @@
 import styled, { css } from '@xstyled/styled-components';
 import { px2rem } from '../../utils';
-import { Flex } from '../styles';
 
 const SHeader = styled.header`
   border-bottom: 2px solid blue;
@@ -11,7 +10,8 @@ const SHeader = styled.header`
   }
 `;
 
-export const SMenu = styled(Flex)`
+export const SMenu = styled.ul`
+  display: flex;
   padding: 0;
   list-style: none;
 
