@@ -1,4 +1,4 @@
-import styled from '@xstyled/styled-components';
+import styled, { css } from '@xstyled/styled-components';
 import { px2rem } from '../../utils';
 
 const Button = styled.button`
@@ -12,11 +12,28 @@ const Button = styled.button`
   outline: 0;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: black;
   }
+
+  &:active {
+    background-color: orange;
+    color: black;
+  }
+
+  ${({ noStyle }) =>
+    noStyle &&
+    css`
+      padding: 0;
+      background: 0;
+
+      &:hover,
+      &:active {
+        background-color: inherit;
+      }
+    `}
 `;
 
 export default Button;

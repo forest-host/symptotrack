@@ -1,7 +1,8 @@
 import styled, { css } from '@xstyled/styled-components';
-import { px2rem } from '../../utils';
+import { px2rem, media } from '../../utils';
 
 const SHeader = styled.header`
+  position: relative;
   border-bottom: 2px solid blue;
   background-color: beige;
 
@@ -22,6 +23,10 @@ export const SMenu = styled.ul`
       text-decoration: none;
     }
   }
+
+  ${media.smallOnly`
+    display: none;
+  `}
 `;
 
 export const SMenuItem = styled.li`

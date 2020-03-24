@@ -6,6 +6,10 @@ import uuid from 'uuid';
 // Utils
 import { withTranslation } from '../../i18n';
 
+// Components
+import Hamburger from '../General/Hamburger';
+import MobileMenu from '../MobileMenu';
+
 // Styling
 import SHeader, { SMenu, SMenuItem } from './styles';
 import { Container, Flex, Row, Text } from '../styles';
@@ -18,10 +22,15 @@ const Header = ({ t, i18n, asPath }) => {
     <SHeader>
       <Container>
         <Row>
-          <Flex py={15} justifyContent="space-between" alignItems="center">
+          <Flex py={15} justifyContent={['center', 'space-between']} alignItems="center">
+            <Hamburger />
             <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
               <a href>
-                <img src="/static/logo-big.svg" alt="SymptoTrack" />
+                <picture>
+                  <source media="(min-width: 641px)" srcSet="/static/logo-big.svg" />
+                  <source media="(max-width: 640px)" srcSet="/static/logo.svg" />
+                  <img src="/static/logo-big.svg" alt="SymptoTrack" />
+                </picture>
               </a>
             </Link>
             {mainMenu && Array.isArray(mainMenu) && (
@@ -46,12 +55,14 @@ const Header = ({ t, i18n, asPath }) => {
           </Flex>
         </Row>
       </Container>
+      <MobileMenu menu={mainMenu} />
     </SHeader>
   );
 };
 
 Header.propTypes = {
   t: PropTypes.func.isRequired,
+  asPath: PropTypes.string.isRequired,
 };
 
 export default withTranslation('navigation')(Header);

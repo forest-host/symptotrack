@@ -7,12 +7,18 @@ const SButtonArrow = styled(Button)`
 
   svg {
     margin-left: ${px2rem(10)};
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, fill 0.3s ease;
   }
 
   &:hover {
     svg {
       transform: translateX(3px);
+    }
+  }
+
+  &:active {
+    svg {
+      fill: black;
     }
   }
 `;
