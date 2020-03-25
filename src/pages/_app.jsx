@@ -21,10 +21,10 @@ if (process.env.NODE_ENV !== 'production' && process.browser === true) {
 class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props;
-    const { asPath } = router;
+    const { asPath, route } = router;
 
     return (
-      <Page asPath={asPath}>
+      <Page asPath={asPath} route={route}>
         <GlobalStyles />
         <Component {...pageProps} />
       </Page>

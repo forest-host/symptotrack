@@ -28,6 +28,7 @@
     ]
   },
   "dependencies": {
+    "@symptotrack/questions": "^0.6.4",
     "@xstyled/styled-components": "^1.16.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",

@@ -4,8 +4,8 @@
   "button": {
     "label": "Meld symptomen",
     "target": "_self",
-    "href": "/",
-    "as": "/"
+    "href": "/questionnaire",
+    "as": "/vragenlijst"
   },
   "counter": {
     "string": "mensen",

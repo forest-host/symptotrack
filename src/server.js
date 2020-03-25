@@ -36,6 +36,11 @@ const ServiceWorker = (app) => (req, res) => {
   };
   server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', robotsOptions));
 
+  server.get('(*/)?:slug([a-zA-Z0-9-_]+)', (req, res) => {
+    app.render(req, res, '/');
+  });
+
+  /*
   // Map
   server.get('/kaart', (req, res) => {
     app.render(req, res, '/map');
@@ -50,6 +55,12 @@ const ServiceWorker = (app) => (req, res) => {
   server.get('/veelgestelde-vragen', (req, res) => {
     app.render(req, res, '/faq');
   });
+
+  // Questionnaire
+  server.get('/vragenlijst', (req, res) => {
+    app.render(req, res, '/questionnaire');
+  });
+  */
 
   // handle next files
   server.get('/_next/*', (req, res) => handle(req, res));
