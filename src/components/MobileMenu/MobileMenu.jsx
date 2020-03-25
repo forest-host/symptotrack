@@ -46,6 +46,7 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
                     fontSize={24}
                     color="black"
                     target="_self"
+                    onClick={() => setOpen(false)}
                   >
                     Home
                   </Text>
@@ -62,6 +63,7 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
                       fontSize={24}
                       color="black"
                       target={link.target}
+                      onClick={() => setOpen(false)}
                     >
                       {label}
                     </Text>
@@ -88,13 +90,14 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
 
 MobileMenu.propTypes = {
   t: PropTypes.func.isRequired,
-  asPath: PropTypes.string.isRequired,
+  asPath: PropTypes.string,
   menu: PropTypes.arrayOf(PropTypes.object).isRequired,
   isOpen: PropTypes.bool,
   setOpen: PropTypes.func.isRequired,
 };
 
 MobileMenu.defaultProps = {
+  asPath: null,
   isOpen: false,
 };
 

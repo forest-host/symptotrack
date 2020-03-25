@@ -22,6 +22,10 @@ export const SMenu = styled.ul`
     a {
       text-decoration: none;
     }
+
+    ${media.mediumOnly`
+      margin: ${px2rem(0, 10)};
+    `}
   }
 
   ${media.smallOnly`

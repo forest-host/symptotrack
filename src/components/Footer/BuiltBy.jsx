@@ -7,9 +7,9 @@ import { withTranslation } from '../../i18n';
 // Styling
 import { Text } from '../styles';
 
-const FeaturedBy = ({ t }) => (
+const BuiltBy = ({ by }) => (
   <Text as="span">
-    {t('by')}{' '}
+    {by}{' '}
     <Text
       as="a"
       fontWeight="700"
@@ -45,8 +45,12 @@ const FeaturedBy = ({ t }) => (
   </Text>
 );
 
-FeaturedBy.propTypes = {
-  t: PropTypes.func.isRequired,
+BuiltBy.propTypes = {
+  by: PropTypes.string,
 };
 
-export default withTranslation('common')(FeaturedBy);
+BuiltBy.defaultProps = {
+  by: 'Door',
+};
+
+export default withTranslation('common')(BuiltBy);

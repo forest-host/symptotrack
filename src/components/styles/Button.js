@@ -28,6 +28,8 @@ const Button = styled.button`
     css`
       padding: 0;
       background: 0;
+      text-align: inherit;
+      color: inherit;
 
       &:hover,
       &:active {

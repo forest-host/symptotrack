@@ -8,7 +8,7 @@ import { withTranslation } from '../../i18n';
 
 // Components
 import Socials from '../General/Socials';
-import FeaturedBy from './FeaturedBy';
+import BuiltBy from './BuiltBy';
 
 // Styling
 import SFooter, { SFooterMenu } from './styles';
@@ -59,7 +59,7 @@ const Footer = ({ t, i18n }) => {
                   <Socials items={socials} />
                 </Flex>
                 <Box width={[1, 4 / 12]} className="hide-for-small">
-                  <FeaturedBy />
+                  <BuiltBy by={t('by')} />
                 </Box>
               </Flex>
             )}
@@ -89,7 +89,7 @@ const Footer = ({ t, i18n }) => {
               <Text as="span">Ontwikkeld in samenwerking met ...</Text>
             </Box>
             <Box key={uuid()} mt={25} width={1} className="show-for-small">
-              <FeaturedBy />
+              <BuiltBy by={t('by')} />
             </Box>
           </Flex>
         </Row>
