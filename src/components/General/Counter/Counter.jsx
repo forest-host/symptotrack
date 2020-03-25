@@ -8,19 +8,23 @@ import { formatNumber } from '../../../utils';
 import SCounter from './styles';
 import { Heading } from '../../styles';
 
-const Counter = ({ number, lang }) => (
+const Counter = ({ number, lang, string }) => (
   <SCounter bg="orange">
-    <Heading.H3 color="black">{formatNumber(number, lang)} mensen</Heading.H3>
+    <Heading.H3 color="black">
+      {formatNumber(number, lang)} {string}
+    </Heading.H3>
   </SCounter>
 );
 
 Counter.propTypes = {
   number: PropTypes.number.isRequired,
   lang: PropTypes.string,
+  string: PropTypes.string,
 };
 
 Counter.defaultProps = {
   lang: 'nl',
+  string: 'mensen',
 };
 
 export default Counter;

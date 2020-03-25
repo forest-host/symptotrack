@@ -1,0 +1,29 @@
+{
+  "title": "COVID-19 SymptoTrack",
+  "content": "Helaas kan niet iedereen getest worden op het nieuwe coronavirus (COVID-19). Daardoor weten we niet hoeveel mensen in Nederland besmet zijn. Help ons daarom de symptoom gevallen in kaart te brengen, zodat we beter weten hoe het virus zich verspreidt.",
+  "button": {
+    "label": "Meld symptomen",
+    "target": "_self",
+    "href": "/",
+    "as": "/"
+  },
+  "counter": {
+    "string": "mensen",
+    "content": "hebben hun symptomen al gemeld",
+    "link": {
+      "label": "Kijk hier hoe de kaart van Nederland er uit ziet",
+      "target": "_self",
+      "href": "/map",
+      "as": "/kaart"
+    }
+  },
+  "layouts": [
+    {
+      "name": "card",
+      "layout": {
+        "title": "Ik wil mij beter melden",
+        "content": "Voel je je beter en heb je al 24 uur geen symptomen meer? Na het invullen van de vragenlijst heb je via e-mail een link ontvangen waarmee je je beter kunt melden."
+      }
+    }
+  ]
+}
