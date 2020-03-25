@@ -36,11 +36,17 @@ const ServiceWorker = (app) => (req, res) => {
   };
   server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', robotsOptions));
 
-  // Pages
+  // Map
   server.get('/kaart', (req, res) => {
     app.render(req, res, '/map');
   });
 
+  // About
+  server.get('/over-symptotrack', (req, res) => {
+    app.render(req, res, '/about');
+  });
+
+  // Faq
   server.get('/veelgestelde-vragen', (req, res) => {
     app.render(req, res, '/faq');
   });
