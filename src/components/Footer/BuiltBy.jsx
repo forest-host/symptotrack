@@ -25,7 +25,7 @@ const BuiltBy = ({ by }) => (
       as="a"
       fontWeight="700"
       color="lightGreen"
-      href="https://www.forest.host"
+      href="https://forest.host"
       target="_blank"
       rel="noopener noreferrer"
     >

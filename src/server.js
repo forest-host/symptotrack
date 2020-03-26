@@ -51,6 +51,11 @@ const ServiceWorker = (app) => (req, res) => {
     app.render(req, res, '/faq');
   });
 
+  // Questionnaire
+  server.get('/vragenlijst', (req, res) => {
+    app.render(req, res, '/questionnaire');
+  });
+
   // handle next files
   server.get('/_next/*', (req, res) => handle(req, res));
 

@@ -2,6 +2,8 @@ import React from 'react';
 import App from 'next/app';
 
 // Utils
+import withData from '../containers/withData';
+import AppProvider from '../contexts/AppProvider';
 import { appWithTranslation } from '../i18n';
 
 // Components
@@ -20,16 +22,18 @@ if (process.env.NODE_ENV !== 'production' && process.browser === true) {
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, router } = this.props;
+    const { Component, pageProps, appData, router } = this.props;
     const { asPath } = router;
 
     return (
-      <Page asPath={asPath}>
-        <GlobalStyles />
-        <Component {...pageProps} />
-      </Page>
+      <AppProvider {...appData}>
+        <Page asPath={asPath}>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </Page>
+      </AppProvider>
     );
   }
 }
 
-export default appWithTranslation(MyApp);
+export default appWithTranslation(withData(MyApp));
