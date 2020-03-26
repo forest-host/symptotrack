@@ -11,92 +11,123 @@ const Fields = ({
   register,
   control,
   errors,
+  watchFields,
   questions,
   question,
   translations,
   translatedErrors,
 }) => {
+  let show = true;
+
+  questions[question]?.conditions?.map(({ question, answer }) => {
+    const watchValue = watchFields?.[question];
+
+    if (
+      (watchValue === 'true' && answer === true) ||
+      (watchValue === 'false' && answer === false)
+    ) {
+      show = true;
+    } else {
+      show = watchFields?.[question] == answer;
+    }
+  });
+
   switch (questions[question]?.type) {
     case 'text':
-      return (
-        <Box mb={100}>
-          <TextInput
-            translation={translations?.questions?.[question]}
-            name={question}
-            error={errors?.[question]}
-            ref={register({
-              required: questions[question]?.required && translatedErrors?.required,
-            })}
-            {...questions[question]}
-          />
-        </Box>
-      );
+      if (show) {
+        return (
+          <Box mb={100}>
+            <TextInput
+              translation={translations?.questions?.[question]}
+              name={question}
+              error={errors?.[question]}
+              ref={register({
+                required: questions[question]?.required && translatedErrors?.required,
+              })}
+              {...questions[question]}
+            />
+          </Box>
+        );
+      }
+      return false;
     case 'select':
     case 'boolean':
-      return (
-        <Box mb={100}>
-          <RadioButtons
-            translation={translations?.questions?.[question]}
-            name={question}
-            error={errors?.[question]}
-            ref={register({
-              required: questions[question]?.required && translatedErrors?.required,
-            })}
-            {...questions[question]}
-          />
-        </Box>
-      );
+      if (show) {
+        return (
+          <Box mb={100}>
+            <RadioButtons
+              translation={translations?.questions?.[question]}
+              name={question}
+              error={errors?.[question]}
+              ref={register({
+                required: questions[question]?.required && translatedErrors?.required,
+              })}
+              {...questions[question]}
+            />
+          </Box>
+        );
+      }
+      return false;
     case 'integer':
     case 'float':
       switch (questions[question]?.variant) {
         case 'year':
-          return (
-            <Box mb={100}>
-              <TextInput
-                width={[1 / 2, 1 / 4]}
-                translation={translations?.questions?.[question]}
-                name={question}
-                error={errors?.[question]}
-                ref={register({
-                  required: questions[question]?.required && translatedErrors?.required,
-                  pattern: {
-                    max: questions[question]?.max,
-                    min: questions[question]?.min,
-                    value: /^[0-9]{4}$/i,
-                    message: translatedErrors?.invalid_integer,
-                  },
-                })}
-                {...questions[question]}
-              />
-            </Box>
-          );
+          if (show) {
+            return (
+              <Box mb={100}>
+                <TextInput
+                  width={[1 / 2, 1 / 4]}
+                  translation={translations?.questions?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                    pattern: {
+                      max: questions[question]?.max,
+                      min: questions[question]?.min,
+                      value: /^[0-9]{4}$/i,
+                      message: translatedErrors?.invalid_integer,
+                    },
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
         case 'temperature':
-          return (
-            <Box mb={100}>
-              <RangeSlider
-                name={question}
-                ref={register({
-                  required: questions[question]?.required && translatedErrors?.required,
-                })}
-                translation={translations?.questions?.[question]}
-                step={0.1}
-                {...questions[question]}
-              />
-            </Box>
-          );
+          if (show) {
+            return (
+              <Box mb={100}>
+                <RangeSlider
+                  name={question}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  translation={translations?.questions?.[question]}
+                  step={0.1}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
         default:
-          return (
-            <Box mb={100}>
-              <RangeSlider
-                name={question}
-                ref={register({
-                  required: questions[question]?.required && translatedErrors?.required,
-                })}
-                translation={translations?.questions?.[question]}
-                {...questions[question]}
-              />
-            </Box>
-          );
+          if (show) {
+            return (
+              <Box mb={100}>
+                <RangeSlider
+                  name={question}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  translation={translations?.questions?.[question]}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
       }
     case 'multiselect':
       const translatedOptions = [];
@@ -108,22 +139,25 @@ const Fields = ({
           });
         });
 
-      return (
-        <Box mb={100}>
-          <Select
-            translation={translations?.questions?.[question]}
-            name={question}
-            control={control}
-            error={errors?.[question]}
-            translatedOptions={translatedOptions}
-            ref={register({
-              required: questions[question]?.required && translatedErrors?.required,
-            })}
-            isMulti
-            {...questions[question]}
-          />
-        </Box>
-      );
+      if (show) {
+        return (
+          <Box mb={100}>
+            <Select
+              translation={translations?.questions?.[question]}
+              name={question}
+              control={control}
+              error={errors?.[question]}
+              translatedOptions={translatedOptions}
+              ref={register({
+                required: questions[question]?.required && translatedErrors?.required,
+              })}
+              isMulti
+              {...questions[question]}
+            />
+          </Box>
+        );
+      }
+      return false;
     default:
       return false;
   }

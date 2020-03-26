@@ -9,7 +9,7 @@ import FormPage from './FormPage';
 import SForm from './styles';
 
 const Form = ({ form, translations, translatedErrors, onSubmit }) => {
-  const { handleSubmit, register, control, errors } = useForm();
+  const { handleSubmit, register, control, errors, watch } = useForm();
   const { groups } = form || {};
 
   return (
@@ -23,6 +23,7 @@ const Form = ({ form, translations, translatedErrors, onSubmit }) => {
             errors={errors}
             translations={translations}
             translatedErrors={translatedErrors}
+            watch={watch}
           />
         ))}
       <button type="submit">Submit</button>

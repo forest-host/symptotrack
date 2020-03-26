@@ -48,7 +48,11 @@ const RangeSlider = forwardRef(
             step={(variant === 'temperature' && type === 'fahrenheit' && 0.01) || step}
             tooltip={false}
             handleLabel={
-              type === 'celsius' ? `${value}°C` : `${numberToFixed((value * 9) / 5 + 32, 2)}°F`
+              variant === 'temperature'
+                ? type === 'celsius'
+                  ? `${value}°C`
+                  : `${numberToFixed((value * 9) / 5 + 32, 2)}°F`
+                : value
             }
             onChange={(val) => setValue(val)}
           />

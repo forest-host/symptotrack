@@ -71,6 +71,7 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error }, r
               id={`skip-${name}`}
               value={`skip-${name}`}
               name={name}
+              ref={ref}
               onClick={() => setOther(false)}
             />
             <Text as="label" fontSize={18} htmlFor={`skip-${name}`}>

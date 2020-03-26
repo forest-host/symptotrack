@@ -7,10 +7,28 @@ import Fields from './Fields';
 // Styling
 import { Box } from '../styles';
 
-const FormPage = ({ register, control, errors, questions, translations, translatedErrors }) => {
-  console.log(translations);
-  console.log(questions);
+const FormPage = ({
+  register,
+  control,
+  errors,
+  watch,
+  questions,
+  translations,
+  translatedErrors,
+}) => {
+  // console.log(translations);
+  // console.log(questions);
   // console.log(errors);
+
+  const watchArray = [];
+  questions &&
+    Object.keys(questions).map((question) => {
+      questions[question]?.conditions?.map((q) => {
+        watchArray.push(q.question);
+      });
+    });
+
+  const watchFields = watch(watchArray);
 
   return (
     <Box>
@@ -19,11 +37,12 @@ const FormPage = ({ register, control, errors, questions, translations, translat
           <Fields
             register={register}
             control={control}
+            watchFields={watchFields}
             question={question}
             questions={questions}
             translations={translations}
-            errors={errors}
             translatedErrors={translatedErrors}
+            errors={errors}
           />
         ))}
     </Box>
