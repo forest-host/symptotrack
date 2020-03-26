@@ -20,6 +20,16 @@ if (process.env.NODE_ENV !== 'production' && process.browser === true) {
   /* eslint-enable global-require */
 }
 
+Object.size = (obj) => {
+  let size = 0;
+  let key;
+
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) size++;
+  }
+  return size;
+};
+
 class MyApp extends App {
   render() {
     const { Component, pageProps, appData, router } = this.props;

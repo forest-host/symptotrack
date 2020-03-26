@@ -16,12 +16,17 @@ import { Box, Container, Row, Flex } from '../components/styles';
 const Questionnaire = ({ t }) => {
   const { basicQuestionnaire, translatedQuestionnaire, translatedErrors } = useApp();
   const onSubmit = (data) => console.log(data);
+  const [count, setCount] = useState({ currentPage: 1, total: 1 });
   const [percentage, setPercentage] = useState(0);
 
   return (
     <Container pb={70}>
       <Progress percentage={percentage} string={t('rounded')} />
-      <Hero pt={[20, 40]} title={t('questionnaire:title')} content={t('questionnaire:content')} />
+      <Hero
+        pt={[20, 40]}
+        title={`${t('questionnaire:title')} ${count?.currentPage}/${count?.total}`}
+        content={t('questionnaire:content')}
+      />
       <Row>
         <Flex justifyContent="center">
           <Box width={[1, 7 / 12]}>
@@ -31,6 +36,7 @@ const Questionnaire = ({ t }) => {
               translatedErrors={translatedErrors}
               onSubmit={onSubmit}
               setPercentage={setPercentage}
+              setCount={setCount}
             />
           </Box>
         </Flex>

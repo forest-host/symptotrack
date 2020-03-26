@@ -56,6 +56,14 @@ const ServiceWorker = (app) => (req, res) => {
     app.render(req, res, '/questionnaire');
   });
 
+  server.get('/vragenlijst/:name', (req, res) => {
+    const queryParams = {
+      name: req.query.name,
+    };
+
+    app.render(req, res, '/questionnaire', queryParams);
+  });
+
   // handle next files
   server.get('/_next/*', (req, res) => handle(req, res));
 

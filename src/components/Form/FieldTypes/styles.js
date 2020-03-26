@@ -200,4 +200,58 @@ export const SButtonGroup = styled(Flex)`
   }
 `;
 
+export const SCheckbox = styled(Flex)`
+  display: block;
+  position: relative;
+  padding-left: ${px2rem(40)};
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:focus + span {
+      border-color: orange;
+    }
+
+    &:checked ~ span {
+      background-color: blue;
+    }
+
+    &:checked ~ span:after {
+      display: block;
+    }
+  }
+
+  span {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: ${px2rem(24)};
+    width: ${px2rem(24)};
+    background-color: white;
+    border: 2px solid;
+    border-radius: 6px;
+    border-color: blue;
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 0px;
+      width: 8px;
+      height: 16px;
+      border: solid;
+      border-color: white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+  }
+`;
+
 export default STextInput;

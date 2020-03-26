@@ -2,5 +2,6 @@ import TextInput from './TextInput';
 import RadioButtons from './RadioButtons';
 import Select from './Select';
 import RangeSlider from './RangeSlider';
+import Checkbox from './Checkbox';
 
-export { TextInput, RadioButtons, Select, RangeSlider };
+export { TextInput, RadioButtons, Select, RangeSlider, Checkbox };

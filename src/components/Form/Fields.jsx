@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { TextInput, RadioButtons, Select, RangeSlider } from './FieldTypes';
+import { TextInput, RadioButtons, Select, RangeSlider, Checkbox } from './FieldTypes';
 
 // Styling
 import { Box } from '../styles';
@@ -19,7 +19,7 @@ const Fields = ({
 }) => {
   let show = true;
 
-  questions[question]?.conditions?.map(({ question, answer }) => {
+  questions[question]?.conditions?.map(({ question, answer, not_answer }) => {
     const watchValue = watchFields?.[question];
 
     if (
@@ -28,7 +28,11 @@ const Fields = ({
     ) {
       show = true;
     } else {
-      show = watchFields?.[question] == answer;
+      show = watchFields?.[question] === answer;
+    }
+
+    if (not_answer && watchFields?.[question] && not_answer !== watchFields?.[question]) {
+      show = true;
     }
   });
 
@@ -52,20 +56,40 @@ const Fields = ({
       return false;
     case 'select':
     case 'boolean':
-      if (show) {
-        return (
-          <Box mb={100}>
-            <RadioButtons
-              translation={translations?.[question]}
-              name={question}
-              error={errors?.[question]}
-              ref={register({
-                required: questions[question]?.required && translatedErrors?.required,
-              })}
-              {...questions[question]}
-            />
-          </Box>
-        );
+      switch (questions[question]?.variant) {
+        case 'checkbox':
+          if (show) {
+            return (
+              <Box mb={100}>
+                <Checkbox
+                  translation={translations?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
+        default:
+          if (show) {
+            return (
+              <Box mb={100}>
+                <RadioButtons
+                  translation={translations?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
       }
       return false;
     case 'integer':

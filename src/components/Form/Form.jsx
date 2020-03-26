@@ -11,20 +11,16 @@ import FormPage from './FormPage';
 // Styling
 import SForm from './styles';
 
-const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage }) => {
+const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, setCount }) => {
   const { handleSubmit, register, control, errors, watch, formState } = useForm();
   const { groups } = form || {};
   const watchAllFields = watch();
   const [activePage, setActivePage] = useState(1);
 
-  Object.size = (obj) => {
-    let size = 0,
-      key;
-    for (key in obj) {
-      if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-  };
+  useEffect(() => {
+    const pageAmount = Object.size(groups);
+    setCount({ currentPage: activePage, total: pageAmount });
+  }, [activePage]);
 
   useEffect(() => {
     const fieldAmount = Object.size(watchAllFields);
@@ -70,6 +66,7 @@ Form.propTypes = {
   form: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   setPercentage: PropTypes.func.isRequired,
+  setCount: PropTypes.func.isRequired,
 };
 
 export default Form;
