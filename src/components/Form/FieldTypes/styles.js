@@ -1,7 +1,7 @@
 import styled from '@xstyled/styled-components';
 import Slider from 'react-rangeslider';
 import { px2rem } from '../../../utils';
-import { Box, Heading } from '../../styles';
+import { Box, Flex, Heading } from '../../styles';
 import theme from '../../../theme';
 
 const STextInput = styled.input`
@@ -41,6 +41,7 @@ export const SRadioButton = styled(Box)`
 
     &:checked ~ label {
       background-color: orange;
+      color: black;
     }
   }
 
@@ -163,13 +164,38 @@ export const SRangeSlider = styled(Slider)`
     .rangeslider__handle-label {
       position: absolute;
       top: ${px2rem(-30)};
-      left: 0;
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%);
       color: blue;
       font-size: ${px2rem(18)};
       font-family: heading;
       font-weight: 900;
-      text-align: center;
+    }
+  }
+`;
+
+export const SButtonGroup = styled(Flex)`
+  button {
+    padding: ${px2rem(8, 5)};
+    background-color: white;
+    border: 2px solid;
+    border-color: blue;
+    color: blue;
+    cursor: pointer;
+
+    &.active {
+      background-color: blue;
+      color: white;
+    }
+
+    &:first-of-type {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
   }
 `;
