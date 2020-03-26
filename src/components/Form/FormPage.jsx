@@ -8,6 +8,7 @@ import Fields from './Fields';
 import { SFormPage } from './styles';
 
 const FormPage = ({
+  index,
   register,
   control,
   errors,
@@ -17,6 +18,9 @@ const FormPage = ({
   translatedGroup,
   translatedErrors,
   isActive,
+  isLast,
+  nextPage,
+  prevPage,
 }) => {
   const watchArray = [];
   questions &&
@@ -44,17 +48,48 @@ const FormPage = ({
             errors={errors}
           />
         ))}
+      {index !== 0 && (
+        <button
+          type="button"
+          onClick={() => {
+            prevPage();
+            window.scrollTo(0, 0);
+          }}
+        >
+          Prev page
+        </button>
+      )}
+      {!isLast && (
+        <button
+          type="button"
+          onClick={() => {
+            nextPage();
+            window.scrollTo(0, 0);
+          }}
+        >
+          Next page
+        </button>
+      )}
+      {isLast && <button type="submit">Submit</button>}
     </SFormPage>
   );
 };
 
 FormPage.propTypes = {
+  index: PropTypes.number.isRequired,
   register: PropTypes.func.isRequired,
+  watch: PropTypes.func.isRequired,
   translatedQuestions: PropTypes.objectOf(PropTypes.object),
+  isActive: PropTypes.bool,
+  isLast: PropTypes.bool,
+  nextPage: PropTypes.func.isRequired,
+  prevPage: PropTypes.func.isRequired,
 };
 
 FormPage.defaultProps = {
   translatedQuestions: {},
+  isActive: false,
+  isLast: false,
 };
 
 export default FormPage;

@@ -106,9 +106,9 @@ const Fields = ({
                   error={errors?.[question]}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
+                    max: questions[question]?.max,
+                    min: questions[question]?.min,
                     pattern: {
-                      max: questions[question]?.max,
-                      min: questions[question]?.min,
                       value: /^[0-9]{4}$/i,
                       message: translatedErrors?.invalid_integer,
                     },

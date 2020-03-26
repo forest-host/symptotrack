@@ -15,10 +15,10 @@ const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, s
   const { handleSubmit, register, control, errors, watch, formState } = useForm();
   const { groups } = form || {};
   const watchAllFields = watch();
+  const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
-    const pageAmount = Object.size(groups);
     setCount({ currentPage: activePage, total: pageAmount });
   }, [activePage]);
 
@@ -44,6 +44,7 @@ const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, s
       {groups &&
         Object.keys(groups).map((group, i) => (
           <FormPage
+            index={i}
             key={group}
             register={register}
             control={control}
@@ -54,10 +55,12 @@ const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, s
             translatedErrors={translatedErrors}
             watch={watch}
             isActive={activePage === i + 1}
+            isLast={i + 1 === pageAmount}
+            nextPage={nextPage}
+            prevPage={prevPage}
             {...groups[group]}
           />
         ))}
-      <button type="submit">Submit</button>
     </SForm>
   );
 };
