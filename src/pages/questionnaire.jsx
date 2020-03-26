@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -8,6 +8,7 @@ import { useApp } from '../contexts/AppProvider';
 // Components
 import Hero from '../components/Hero';
 import Form from '../components/Form';
+import Progress from '../components/General/Progress';
 
 // Styling
 import { Box, Container, Row, Flex } from '../components/styles';
@@ -15,10 +16,12 @@ import { Box, Container, Row, Flex } from '../components/styles';
 const Questionnaire = ({ t }) => {
   const { basicQuestionnaire, translatedQuestionnaire, translatedErrors } = useApp();
   const onSubmit = (data) => console.log(data);
+  const [percentage, setPercentage] = useState(0);
 
   return (
-    <Container pt={[20, 40]} pb={70}>
-      <Hero title={t('questionnaire:title')} content={t('questionnaire:content')} />
+    <Container pb={70}>
+      <Progress percentage={percentage} string={t('rounded')} />
+      <Hero pt={[20, 40]} title={t('questionnaire:title')} content={t('questionnaire:content')} />
       <Row>
         <Flex justifyContent="center">
           <Box width={[1, 7 / 12]}>
@@ -27,6 +30,7 @@ const Questionnaire = ({ t }) => {
               translations={translatedQuestionnaire}
               translatedErrors={translatedErrors}
               onSubmit={onSubmit}
+              setPercentage={setPercentage}
             />
           </Box>
         </Flex>
@@ -43,4 +47,4 @@ Questionnaire.getInitialProps = async () => ({
   namespacesRequired: ['common', 'questionnaire', 'socials'],
 });
 
-export default withTranslation('questionnaire')(Questionnaire);
+export default withTranslation(['common', 'questionnaire'])(Questionnaire);

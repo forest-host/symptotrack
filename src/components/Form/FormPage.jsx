@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Fields from './Fields';
 
 // Styling
-import { Box } from '../styles';
+import { SFormPage } from './styles';
 
 const FormPage = ({
   register,
@@ -16,6 +16,7 @@ const FormPage = ({
   translatedQuestions,
   translatedGroup,
   translatedErrors,
+  isActive,
 }) => {
   const watchArray = [];
   questions &&
@@ -28,7 +29,7 @@ const FormPage = ({
   const watchFields = watch(watchArray);
 
   return (
-    <Box>
+    <SFormPage isActive={isActive}>
       {questions &&
         Object.keys(questions).map((question) => (
           <Fields
@@ -43,7 +44,7 @@ const FormPage = ({
             errors={errors}
           />
         ))}
-    </Box>
+    </SFormPage>
   );
 };
 

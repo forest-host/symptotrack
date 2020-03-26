@@ -34,9 +34,9 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error }, r
       {translation?.tooltip && (
         <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
       )}
-      <Flex mx={-12} mb={10}>
+      <Flex mx={-12} mb={10} flexWrap="wrap">
         {radioOptions?.map((option) => (
-          <SRadioButton key={option} mx={12}>
+          <SRadioButton key={option} mx={12} mb={24}>
             <Box
               as="input"
               type="radio"
@@ -52,7 +52,7 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error }, r
           </SRadioButton>
         ))}
         {other && (
-          <SRadioButton mx={12}>
+          <SRadioButton mx={12} mb={24}>
             <Box
               as="input"
               type="radio"
@@ -68,7 +68,7 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error }, r
           </SRadioButton>
         )}
         {translation?.skip && (
-          <SRadioButton mx={12}>
+          <SRadioButton mx={12} mb={24}>
             <Box
               as="input"
               type="radio"
