@@ -254,4 +254,39 @@ export const SCheckbox = styled(Flex)`
   }
 `;
 
+export const SLocation = styled(Box)`
+  position: relative;
+
+  input {
+    padding: ${px2rem(10, 15)};
+    width: 100%;
+    border: 2px solid;
+    border-color: blue;
+    border-radius: 4px;
+    background: 0;
+    outline: none;
+    color: blue;
+
+    &::placeholder {
+      color: blue;
+    }
+
+    &:not(:placeholder-shown) {
+      background-color: white;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: ${px2rem(32)};
+    height: ${px2rem(32)};
+  }
+`;
+
 export default STextInput;

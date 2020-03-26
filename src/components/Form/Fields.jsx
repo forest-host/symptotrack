@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { TextInput, RadioButtons, Select, RangeSlider, Checkbox } from './FieldTypes';
+import { TextInput, RadioButtons, Select, RangeSlider, Checkbox, Location } from './FieldTypes';
 
 // Styling
 import { Box } from '../styles';
@@ -176,6 +176,23 @@ const Fields = ({
                 required: questions[question]?.required && translatedErrors?.required,
               })}
               isMulti
+              {...questions[question]}
+            />
+          </Box>
+        );
+      }
+      return false;
+    case 'coordinates':
+      if (show) {
+        return (
+          <Box mb={100}>
+            <Location
+              translation={translations?.[question]}
+              name={question}
+              error={errors?.[question]}
+              ref={register({
+                required: questions[question]?.required && translatedErrors?.required,
+              })}
               {...questions[question]}
             />
           </Box>
