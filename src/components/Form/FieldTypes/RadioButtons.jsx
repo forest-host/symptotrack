@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import TextInput from './TextInput';
+import Tooltip from '../../General/Tooltip';
 
 // Styling
 import { Box, Flex, Text } from '../../styles';
@@ -30,9 +31,12 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error }, r
           </SLabel>
         </Box>
       )}
+      {translation?.tooltip && (
+        <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
+      )}
       <Flex mx={-12} mb={10}>
         {radioOptions?.map((option) => (
-          <SRadioButton mx={12}>
+          <SRadioButton key={option} mx={12}>
             <Box
               as="input"
               type="radio"

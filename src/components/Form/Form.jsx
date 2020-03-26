@@ -17,13 +17,16 @@ const Form = ({ form, translations, translatedErrors, onSubmit }) => {
       {groups &&
         Object.keys(groups).map((group) => (
           <FormPage
-            {...groups[group]}
+            key={group}
             register={register}
             control={control}
             errors={errors}
             translations={translations}
+            translatedQuestions={translations?.questions}
+            translatedGroup={translations?.[group]}
             translatedErrors={translatedErrors}
             watch={watch}
+            {...groups[group]}
           />
         ))}
       <button type="submit">Submit</button>

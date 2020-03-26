@@ -13,13 +13,10 @@ const FormPage = ({
   errors,
   watch,
   questions,
-  translations,
+  translatedQuestions,
+  translatedGroup,
   translatedErrors,
 }) => {
-  // console.log(translations);
-  // console.log(questions);
-  // console.log(errors);
-
   const watchArray = [];
   questions &&
     Object.keys(questions).map((question) => {
@@ -35,12 +32,13 @@ const FormPage = ({
       {questions &&
         Object.keys(questions).map((question) => (
           <Fields
+            key={question}
             register={register}
             control={control}
             watchFields={watchFields}
             question={question}
             questions={questions}
-            translations={translations}
+            translations={translatedQuestions}
             translatedErrors={translatedErrors}
             errors={errors}
           />
@@ -51,6 +49,11 @@ const FormPage = ({
 
 FormPage.propTypes = {
   register: PropTypes.func.isRequired,
+  translatedQuestions: PropTypes.objectOf(PropTypes.object),
+};
+
+FormPage.defaultProps = {
+  translatedQuestions: {},
 };
 
 export default FormPage;

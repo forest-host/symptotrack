@@ -1,6 +1,9 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
+// Components
+import Tooltip from '../../General/Tooltip';
+
 // Styling
 import { Box, Flex, Text } from '../../styles';
 import STextInput, { SLabel } from './styles';
@@ -13,6 +16,9 @@ const TextInput = forwardRef(({ name, translation, error, width, placeholder }, 
           {translation.question}
         </SLabel>
       </Box>
+    )}
+    {translation?.tooltip && (
+      <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
     )}
     <Box width={width}>
       <STextInput

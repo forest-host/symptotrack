@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 // Utils
 import { numberToFixed } from '../../../utils';
 
+// Components
+import Tooltip from '../../General/Tooltip';
+
 // Styling
 import { Box, Flex, Text } from '../../styles';
 import { SLabel, SRangeSlider, SButtonGroup } from './styles';
@@ -21,6 +24,9 @@ const RangeSlider = forwardRef(
               {translation.question}
             </SLabel>
           </Box>
+        )}
+        {translation?.tooltip && (
+          <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
         )}
         {variant === 'temperature' && (
           <SButtonGroup mb={60}>
@@ -52,7 +58,7 @@ const RangeSlider = forwardRef(
                 ? type === 'celsius'
                   ? `${value}°C`
                   : `${numberToFixed((value * 9) / 5 + 32, 2)}°F`
-                : value
+                : value.toString()
             }
             onChange={(val) => setValue(val)}
           />

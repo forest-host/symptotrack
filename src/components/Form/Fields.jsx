@@ -38,7 +38,7 @@ const Fields = ({
         return (
           <Box mb={100}>
             <TextInput
-              translation={translations?.questions?.[question]}
+              translation={translations?.[question]}
               name={question}
               error={errors?.[question]}
               ref={register({
@@ -56,7 +56,7 @@ const Fields = ({
         return (
           <Box mb={100}>
             <RadioButtons
-              translation={translations?.questions?.[question]}
+              translation={translations?.[question]}
               name={question}
               error={errors?.[question]}
               ref={register({
@@ -77,7 +77,7 @@ const Fields = ({
               <Box mb={100}>
                 <TextInput
                   width={[1 / 2, 1 / 4]}
-                  translation={translations?.questions?.[question]}
+                  translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
                   ref={register({
@@ -104,7 +104,7 @@ const Fields = ({
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
-                  translation={translations?.questions?.[question]}
+                  translation={translations?.[question]}
                   step={0.1}
                   {...questions[question]}
                 />
@@ -121,7 +121,7 @@ const Fields = ({
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
-                  translation={translations?.questions?.[question]}
+                  translation={translations?.[question]}
                   {...questions[question]}
                 />
               </Box>
@@ -131,11 +131,11 @@ const Fields = ({
       }
     case 'multiselect':
       const translatedOptions = [];
-      translations?.questions?.[question]?.options &&
-        Object.keys(translations?.questions?.[question]?.options).map((option) => {
+      translations?.[question]?.options &&
+        Object.keys(translations?.[question]?.options).map((option) => {
           translatedOptions.push({
             value: option,
-            label: translations.questions[question].options[option],
+            label: translations[question].options[option],
           });
         });
 
@@ -143,7 +143,7 @@ const Fields = ({
         return (
           <Box mb={100}>
             <Select
-              translation={translations?.questions?.[question]}
+              translation={translations?.[question]}
               name={question}
               control={control}
               error={errors?.[question]}

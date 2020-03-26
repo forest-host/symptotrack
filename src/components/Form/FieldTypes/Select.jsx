@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
 import ReactSelect from 'react-select';
 
+// Components
+import Tooltip from '../../General/Tooltip';
+
 // Styling
 import { Box, Flex, Text } from '../../styles';
 import { SLabel, SSelect } from './styles';
@@ -16,6 +19,9 @@ const Select = forwardRef(
             {translation.question}
           </SLabel>
         </Box>
+      )}
+      {translation?.tooltip && (
+        <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
       )}
       <Box width={width}>
         <Controller
