@@ -32,6 +32,8 @@ const FormPage = ({
 
   const watchFields = watch(watchArray);
 
+  console.log(questions);
+
   return (
     <SFormPage isActive={isActive}>
       {questions &&

@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { TextInput, RadioButtons, Select, RangeSlider, Checkbox, Location } from './FieldTypes';
+import {
+  TextInput,
+  TextArea,
+  RadioButtons,
+  Select,
+  RangeSlider,
+  Checkbox,
+  Location,
+} from './FieldTypes';
 
 // Styling
 import { Box } from '../styles';
@@ -38,22 +46,42 @@ const Fields = ({
 
   switch (questions[question]?.type) {
     case 'text':
-      if (show) {
-        return (
-          <Box mb={100}>
-            <TextInput
-              translation={translations?.[question]}
-              name={question}
-              error={errors?.[question]}
-              ref={register({
-                required: questions[question]?.required && translatedErrors?.required,
-              })}
-              {...questions[question]}
-            />
-          </Box>
-        );
+      switch (questions[question]?.variant) {
+        case 'textarea':
+          if (show) {
+            return (
+              <Box mb={100}>
+                <TextArea
+                  translation={translations?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
+        default:
+          if (show) {
+            return (
+              <Box mb={100}>
+                <TextInput
+                  translation={translations?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
       }
-      return false;
     case 'select':
     case 'boolean':
       switch (questions[question]?.variant) {

@@ -1,4 +1,4 @@
-import styled from '@xstyled/styled-components';
+import styled, { css } from '@xstyled/styled-components';
 import Slider from 'react-rangeslider';
 import { px2rem } from '../../../utils';
 import { Box, Flex, Heading } from '../../styles';
@@ -7,6 +7,26 @@ import theme from '../../../theme';
 const STextInput = styled.input`
   padding: ${px2rem(10, 15)};
   width: 100%;
+  border: 2px solid;
+  border-color: blue;
+  border-radius: 4px;
+  background: 0;
+  outline: none;
+  color: blue;
+
+  &::placeholder {
+    color: blue;
+  }
+
+  &:not(:placeholder-shown) {
+    background-color: white;
+  }
+`;
+
+export const STextArea = styled.textarea`
+  padding: ${px2rem(10, 15)};
+  width: 100%;
+  min-height: ${px2rem(275)};
   border: 2px solid;
   border-color: blue;
   border-radius: 4px;
