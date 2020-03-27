@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   TextInput,
   TextArea,
+  Radio,
   RadioButtons,
   Select,
   RangeSlider,
@@ -90,6 +91,23 @@ const Fields = ({
             return (
               <Box mb={100}>
                 <Checkbox
+                  translation={translations?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
+        case 'radio':
+          if (show) {
+            return (
+              <Box mb={100}>
+                <Radio
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}

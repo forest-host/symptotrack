@@ -93,6 +93,57 @@ export const SRadioButton = styled(Box)`
   }
 `;
 
+export const SRadio = styled(Box)`
+  display: block;
+  position: relative;
+  padding-left: ${px2rem(35)};
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:focus ~ span {
+      border-color: orange;
+    }
+
+    &:checked ~ span {
+      &:after {
+        transform: scale(1);
+      }
+    }
+  }
+
+  span {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: ${px2rem(24)};
+    width: ${px2rem(24)};
+    background-color: white;
+    border: 2px solid;
+    border-color: blue;
+    border-radius: 50%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: ${px2rem(12)};
+      height: ${px2rem(12)};
+      border-radius: 50%;
+      background-color: blue;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+  }
+`;
+
 export const SSelect = {
   control: (provided, { hasValue }) => ({
     display: 'flex',
