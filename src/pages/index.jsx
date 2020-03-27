@@ -9,14 +9,14 @@ import { formatTags } from '../utils';
 // Components
 import Layouts from '../components/Layouts';
 import ButtonArrow from '../components/General/ButtonArrow';
-import Counter from '../components/General/Counter';
+// import Counter from '../components/General/Counter';
 
 // Styling
 import { Box, Container, Flex, Row, Heading, Text, HR } from '../components/styles';
 
 const Home = ({ t }) => {
   const button = t('home:button', { returnObjects: true });
-  const counter = t('home:counter', { returnObjects: true });
+  // const counter = t('home:counter', { returnObjects: true });
   const layouts = t('home:layouts', { returnObjects: true });
 
   return (
@@ -37,7 +37,7 @@ const Home = ({ t }) => {
             )}
           </Box>
           <HR color="blue" smallOnly />
-          {counter && (
+          {/* counter && (
             <Box mt={[70, 0]} width={[1, 4 / 12]}>
               <Counter number={13111121} string={counter.string} />
               <Text as="p" mt={10}>
@@ -51,7 +51,7 @@ const Home = ({ t }) => {
                 </Link>
               )}
             </Box>
-          )}
+          ) */}
         </Flex>
       </Row>
       {layouts && <Layouts layouts={layouts} />}

@@ -4,7 +4,7 @@ import { px2rem } from '../../utils';
 const Button = styled.button`
   padding: ${px2rem(16)};
   background-color: blue;
-  color: lightGreen;
+  color: white;
   font-weight: bold;
   font-family: heading;
   line-height: ${px2rem(24)};

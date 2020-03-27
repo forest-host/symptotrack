@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import Content from './Layouts/Content';
 import Partners from './Layouts/Partners';
 import Card from './Layouts/Card';
+import Share from './Layouts/Share';
 
 const Layouts = ({ layouts }) => (
   <>
@@ -16,6 +17,8 @@ const Layouts = ({ layouts }) => (
             return <Partners key={uuid()} {...layout.layout} />;
           case 'card':
             return <Card key={uuid()} {...layout.layout} />;
+          case 'share':
+            return <Share key={uuid()} {...layout.layout} />;
           default:
             console.warn('missing layout for', layout.name);
             return null;
