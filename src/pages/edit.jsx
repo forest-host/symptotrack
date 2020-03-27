@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
-import { get } from '../api/callers';
+import { get, post } from '../api/callers';
 import { withTranslation } from '../i18n';
 import { useApp } from '../contexts/AppProvider';
 import { parseValues } from '../utils';
@@ -30,14 +30,25 @@ const Edit = ({ t, type, token }) => {
     }
   }, []);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formData = {};
 
     Object.keys(data).map((answer) => {
       formData[answer] = parseValues(data[answer]);
     });
 
-    console.log(formData);
+    formData.respondent_uuid = token;
+
+    await post({}, 'responses/basic', formData).then((resp) => {
+      const { status, respondent_uuid } = resp || {};
+
+      if (status === 400 || status === 504) {
+        const { error } = resp?.data || {};
+        console.log(error);
+      } else {
+        Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
+      }
+    });
   };
 
   return (

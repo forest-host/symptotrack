@@ -260,6 +260,7 @@ export const SRangeSlider = styled(Slider)`
       font-size: ${px2rem(18)};
       font-family: heading;
       font-weight: 900;
+      white-space: nowrap;
     }
   }
 `;
