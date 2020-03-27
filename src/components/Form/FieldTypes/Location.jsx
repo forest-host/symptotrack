@@ -7,13 +7,14 @@ import ReactSelect from 'react-select';
 import { useDebounce } from '../../../utils';
 
 // Components
+import FieldHeader from './FieldHeader';
 import Icon from '../../Icon';
 import Tooltip from '../../General/Tooltip';
 import { MyLocation } from '../../Map';
 
 // Styling
 import { Box, Button, Flex, Text } from '../../styles';
-import { SLabel, SLocation, SSelect } from './styles';
+import { SLocation, SSelect } from './styles';
 
 const Location = forwardRef(({ name, translation, error, width, placeholder }, ref) => {
   const [isLoading, setLoading] = useState(false);
@@ -41,12 +42,12 @@ const Location = forwardRef(({ name, translation, error, width, placeholder }, r
 
   return (
     <Flex mb={30} mt={[15, 0]} width={[1, 1 / 2]} flexDirection="column">
-      {translation?.question && (
-        <Box mb={24} width={[7 / 12, 1]}>
-          <SLabel as="span" htmlFor={name}>
-            {translation.question}
-          </SLabel>
-        </Box>
+      {(translation?.question || translation?.description) && (
+        <FieldHeader
+          name={name}
+          question={translation?.question}
+          description={translation?.description}
+        />
       )}
       {translation?.tooltip && (
         <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />

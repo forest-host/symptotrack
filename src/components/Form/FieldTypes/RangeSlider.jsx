@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import { numberToFixed } from '../../../utils';
 
 // Components
+import FieldHeader from './FieldHeader';
 import Tooltip from '../../General/Tooltip';
 
 // Styling
 import { Box, Flex, Text } from '../../styles';
-import { SLabel, SRangeSlider, SButtonGroup } from './styles';
+import { SRangeSlider, SButtonGroup } from './styles';
 
 const RangeSlider = forwardRef(
   ({ name, variant, translation, min, max, error, width, step }, ref) => {
@@ -18,12 +19,12 @@ const RangeSlider = forwardRef(
 
     return (
       <Flex mb={30} mt={[15, 0]} flexDirection="column">
-        {translation?.question && (
-          <Box mb={24} width={7 / 12}>
-            <SLabel as="span" htmlFor={name}>
-              {translation.question}
-            </SLabel>
-          </Box>
+        {(translation?.question || translation?.description) && (
+          <FieldHeader
+            name={name}
+            question={translation?.question}
+            description={translation?.description}
+          />
         )}
         {translation?.tooltip && (
           <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />

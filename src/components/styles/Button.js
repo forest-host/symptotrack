@@ -23,6 +23,19 @@ const Button = styled.button`
     color: black;
   }
 
+  ${({ transparent }) =>
+    transparent &&
+    css`
+      background-color: transparent;
+      border: 2px solid;
+      border-color: blue;
+      color: blue;
+
+      &:hover {
+        background-color: transparent;
+      }
+    `}
+
   ${({ noStyle }) =>
     noStyle &&
     css`

@@ -1,4 +1,4 @@
-import styled from '@xstyled/styled-components';
+import styled, { css } from '@xstyled/styled-components';
 import { Button } from '../../styles';
 import { px2rem } from '../../../utils';
 
@@ -21,6 +21,23 @@ const SButtonArrow = styled(Button)`
       fill: black;
     }
   }
+
+  ${({ reversed }) =>
+    reversed &&
+    css`
+      padding-right: ${px2rem(15)};
+
+      svg {
+        margin-left: ${px2rem(0)};
+        margin-right: ${px2rem(10)};
+      }
+
+      &:hover {
+        svg {
+          transform: translateX(-3px) rotate(180deg);
+        }
+      }
+    `}
 `;
 
 export default SButtonArrow;

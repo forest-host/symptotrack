@@ -2,20 +2,21 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
+import FieldHeader from './FieldHeader';
 import Tooltip from '../../General/Tooltip';
 
 // Styling
-import { Box, Flex, Text } from '../../styles';
-import { SCheckbox, SLabel } from './styles';
+import { Flex, Text } from '../../styles';
+import { SCheckbox } from './styles';
 
 const Checkbox = forwardRef(({ name, translation, error, width }, ref) => (
   <Flex as="fieldset" mb={30} mt={[15, 0]} flexDirection="column">
-    {translation?.question && (
-      <Box mb={24} width={7 / 12}>
-        <SLabel as="legend" htmlFor={name}>
-          {translation.question}
-        </SLabel>
-      </Box>
+    {(translation?.question || translation?.description) && (
+      <FieldHeader
+        name={name}
+        question={translation?.question}
+        description={translation?.description}
+      />
     )}
     {translation?.tooltip && (
       <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />

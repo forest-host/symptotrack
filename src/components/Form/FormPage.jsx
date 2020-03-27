@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 // Components
 import Fields from './Fields';
+import ButtonArrow from '../General/ButtonArrow';
 
 // Styling
 import { SFormPage } from './styles';
+import { Box, Flex } from '../styles';
 
 const FormPage = ({
   index,
@@ -32,8 +34,6 @@ const FormPage = ({
 
   const watchFields = watch(watchArray);
 
-  console.log(questions);
-
   return (
     <SFormPage isActive={isActive}>
       {questions &&
@@ -50,29 +50,39 @@ const FormPage = ({
             errors={errors}
           />
         ))}
-      {index !== 0 && (
-        <button
-          type="button"
-          onClick={() => {
-            prevPage();
-            window.scrollTo(0, 0);
-          }}
-        >
-          Prev page
-        </button>
-      )}
-      {!isLast && (
-        <button
-          type="button"
-          onClick={() => {
-            nextPage();
-            window.scrollTo(0, 0);
-          }}
-        >
-          Next page
-        </button>
-      )}
-      {isLast && <button type="submit">Submit</button>}
+      <Flex justifyContent="space-between" flexWrap="wrap">
+        {index !== 0 && (
+          <Box mb={24} order={[1, 0]}>
+            <ButtonArrow
+              type="button"
+              text="Vorige vragen"
+              reversed
+              transparent
+              onClick={() => {
+                prevPage();
+                window.scrollTo(0, 0);
+              }}
+            />
+          </Box>
+        )}
+        {!isLast && (
+          <Box mb={24} order={[0, 1]}>
+            <ButtonArrow
+              type="button"
+              text="Volgende vragen"
+              onClick={() => {
+                nextPage();
+                window.scrollTo(0, 0);
+              }}
+            />
+          </Box>
+        )}
+        {isLast && (
+          <Box mb={24} order={[0, 1]}>
+            <ButtonArrow type="submit" text="Vragenlijst afronden" />
+          </Box>
+        )}
+      </Flex>
     </SFormPage>
   );
 };

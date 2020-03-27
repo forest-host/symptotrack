@@ -4,21 +4,22 @@ import { Controller } from 'react-hook-form';
 import ReactSelect from 'react-select';
 
 // Components
+import FieldHeader from './FieldHeader';
 import Tooltip from '../../General/Tooltip';
 
 // Styling
 import { Box, Flex, Text } from '../../styles';
-import { SLabel, SSelect } from './styles';
+import { SSelect } from './styles';
 
 const Select = forwardRef(
   ({ name, control, translation, error, width, placeholder, translatedOptions, isMulti }, ref) => (
     <Flex mb={30} mt={[15, 0]} flexDirection="column">
-      {translation?.question && (
-        <Box mb={24} width={7 / 12}>
-          <SLabel as="span" htmlFor={name}>
-            {translation.question}
-          </SLabel>
-        </Box>
+      {(translation?.question || translation?.description) && (
+        <FieldHeader
+          name={name}
+          question={translation?.question}
+          description={translation?.description}
+        />
       )}
       {translation?.tooltip && (
         <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />

@@ -2,12 +2,13 @@ import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
+import FieldHeader from './FieldHeader';
 import TextInput from './TextInput';
 import Tooltip from '../../General/Tooltip';
 
 // Styling
 import { Box, Flex, Text } from '../../styles';
-import { SLabel, SRadioButton } from './styles';
+import { SRadioButton } from './styles';
 
 const RadioButtons = forwardRef(({ name, options, other, translation, error }, ref) => {
   const [showOther, setOther] = useState(false);
@@ -24,12 +25,12 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error }, r
 
   return (
     <Flex as="fieldset" mb={30} mt={[15, 0]} flexDirection="column">
-      {translation?.question && (
-        <Box mb={24} width={7 / 12}>
-          <SLabel as="legend" htmlFor={name}>
-            {translation.question}
-          </SLabel>
-        </Box>
+      {(translation?.question || translation?.description) && (
+        <FieldHeader
+          name={name}
+          question={translation?.question}
+          description={translation?.description}
+        />
       )}
       {translation?.tooltip && (
         <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />

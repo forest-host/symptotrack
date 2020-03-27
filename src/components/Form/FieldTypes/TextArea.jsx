@@ -2,20 +2,21 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
+import FieldHeader from './FieldHeader';
 import Tooltip from '../../General/Tooltip';
 
 // Styling
 import { Box, Flex, Text } from '../../styles';
-import { STextArea, SLabel } from './styles';
+import { STextArea } from './styles';
 
 const TextArea = forwardRef(({ name, translation, error, width, placeholder }, ref) => (
   <Flex mb={30} mt={[15, 0]} flexDirection="column">
-    {translation?.question && (
-      <Box mb={24} width={7 / 12}>
-        <SLabel as="span" htmlFor={name}>
-          {translation.question}
-        </SLabel>
-      </Box>
+    {(translation?.question || translation?.description) && (
+      <FieldHeader
+        name={name}
+        question={translation?.question}
+        description={translation?.description}
+      />
     )}
     {translation?.tooltip && (
       <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
