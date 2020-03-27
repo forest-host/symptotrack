@@ -1,4 +1,4 @@
-import styled, { css } from '@xstyled/styled-components';
+import styled from '@xstyled/styled-components';
 import Slider from 'react-rangeslider';
 import { px2rem } from '../../../utils';
 import { Box, Flex, Heading } from '../../styles';
@@ -13,6 +13,10 @@ const STextInput = styled.input`
   background: 0;
   outline: none;
   color: blue;
+
+  &:focus {
+    border-color: orange;
+  }
 
   &::placeholder {
     color: blue;
@@ -33,6 +37,10 @@ export const STextArea = styled.textarea`
   background: 0;
   outline: none;
   color: blue;
+
+  &:focus {
+    border-color: orange;
+  }
 
   &::placeholder {
     color: blue;
@@ -58,6 +66,11 @@ export const SRadioButton = styled(Box)`
     cursor: pointer;
     height: 0;
     width: 0;
+
+    &:focus ~ label {
+      background-color: black;
+      color: white;
+    }
 
     &:checked ~ label {
       background-color: orange;

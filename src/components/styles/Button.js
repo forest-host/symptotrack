@@ -14,7 +14,8 @@ const Button = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: black;
   }
 
@@ -31,7 +32,8 @@ const Button = styled.button`
       border-color: blue;
       color: blue;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: transparent;
       }
     `}

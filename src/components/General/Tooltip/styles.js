@@ -9,6 +9,10 @@ const STooltip = styled(Box)`
   span {
     text-decoration: underline;
     cursor: pointer;
+
+    &:focus {
+      color: orange;
+    }
   }
 
   > div {

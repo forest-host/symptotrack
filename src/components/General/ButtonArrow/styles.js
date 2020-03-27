@@ -10,7 +10,8 @@ const SButtonArrow = styled(Button)`
     transition: transform 0.3s ease, fill 0.3s ease;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     svg {
       transform: translateX(3px);
     }
@@ -32,7 +33,8 @@ const SButtonArrow = styled(Button)`
         margin-right: ${px2rem(10)};
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         svg {
           transform: translateX(-3px) rotate(180deg);
         }
