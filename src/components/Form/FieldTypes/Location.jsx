@@ -75,9 +75,9 @@ const Location = forwardRef(({ name, translation, error, width, placeholder }, r
           <MyLocation id={`map-${name}`} position={location} newLocation={setLocation} />
         )}
       </Box>
-      {error && (
+      {error?.[0] && (
         <Text mt={10} fontSize={12}>
-          {error.message}
+          {error[0].message}
         </Text>
       )}
     </Flex>

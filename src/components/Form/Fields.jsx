@@ -191,23 +191,45 @@ const Fields = ({
           });
         });
 
-      if (show) {
-        return (
-          <Box mb={100}>
-            <Select
-              translation={translations?.[question]}
-              name={question}
-              control={control}
-              error={errors?.[question]}
-              translatedOptions={translatedOptions}
-              ref={register({
-                required: questions[question]?.required && translatedErrors?.required,
-              })}
-              isMulti
-              {...questions[question]}
-            />
-          </Box>
-        );
+      switch (questions[question]?.variant) {
+        case 'checkbox':
+          if (show) {
+            return (
+              <Box mb={100}>
+                <Checkbox
+                  translation={translations?.[question]}
+                  name={question}
+                  error={errors?.[question]}
+                  isMulti
+                  translatedOptions={translatedOptions}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
+          return false;
+        default:
+          if (show) {
+            return (
+              <Box mb={100}>
+                <Select
+                  translation={translations?.[question]}
+                  name={question}
+                  control={control}
+                  error={errors?.[question]}
+                  translatedOptions={translatedOptions}
+                  ref={register({
+                    required: questions[question]?.required && translatedErrors?.required,
+                  })}
+                  isMulti
+                  {...questions[question]}
+                />
+              </Box>
+            );
+          }
       }
       return false;
     case 'coordinates':
