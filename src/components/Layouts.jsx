@@ -6,7 +6,7 @@ import Partners from './Layouts/Partners';
 import Card from './Layouts/Card';
 import Share from './Layouts/Share';
 
-const Layouts = ({ layouts }) => (
+const Layouts = ({ layouts, token }) => (
   <>
     {Array.isArray(layouts) &&
       layouts?.map((layout) => {
@@ -16,7 +16,7 @@ const Layouts = ({ layouts }) => (
           case 'partners':
             return <Partners key={uuid()} {...layout.layout} />;
           case 'card':
-            return <Card key={uuid()} {...layout.layout} />;
+            return <Card key={uuid()} token={token} {...layout.layout} />;
           case 'share':
             return <Share key={uuid()} {...layout.layout} />;
           default:

@@ -68,8 +68,13 @@ const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, s
 Form.propTypes = {
   form: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  setPercentage: PropTypes.func.isRequired,
-  setCount: PropTypes.func.isRequired,
+  setPercentage: PropTypes.func,
+  setCount: PropTypes.func,
+};
+
+Form.defaultProps = {
+  setCount: () => {},
+  setPercentage: () => {},
 };
 
 export default Form;

@@ -23,6 +23,9 @@ class AppProvider extends Component {
     if (props.translatedErrors) {
       update.translatedErrors = props.translatedErrors;
     }
+    if (props.basicQuestionnaireRecurring) {
+      update.basicQuestionnaireRecurring = props.basicQuestionnaireRecurring;
+    }
     return update;
   }
 

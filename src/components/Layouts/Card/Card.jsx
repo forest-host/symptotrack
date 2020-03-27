@@ -11,7 +11,7 @@ import Copy from '../../General/Copy';
 // Styling
 import { Box, Flex, Row, Heading, Text, InfoSection } from '../../styles';
 
-const Card = ({ title, content, shapePosition, includeLink }) => (
+const Card = ({ title, content, shapePosition, includeLink, token }) => (
   <Row mb={[30, 70]} mx={[-15, 0]} smallFullWidth>
     <InfoSection
       width={[1, 8 / 12]}
@@ -37,7 +37,7 @@ const Card = ({ title, content, shapePosition, includeLink }) => (
       </Flex>
       {includeLink && (
         <Box mt={20} width={[1, 1 / 2]}>
-          <Copy value="https://symptotrack.org?edit=" />
+          <Copy value={`https://symptotrack.org/edit?type=basic&token=${token}`} />
           <Text as="span">{i18n.t('copyLink')}</Text>
         </Box>
       )}

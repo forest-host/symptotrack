@@ -6,11 +6,37 @@ const clientStore = isServer ? null : {};
 
 async function fetchGlobalData(lang, name = 'basic') {
   const symptotrack = require('@symptotrack/questions');
+  // const questionnaires = [];
+  // const types = symptotrack.get_questionaires();
+
+  /*
+  types?.map((type) => {
+    const questionnaire = symptotrack.get_questionaire(type) || {};
+    const questionnaireTranslation =
+      symptotrack.get_questionaire_translations(type, getLocale(lang)) || {};
+    const questionnaireRecurring = symptotrack.get_questionaire(type, true) || {};
+    const translatedErrors = symptotrack.get_error_translations(getLocale(lang)) || {};
+
+    questionnaires[type] = {
+      questionnaire,
+      questionnaireTranslation,
+      questionnaireRecurring,
+      translatedErrors,
+    };
+  });
+  */
+
   const basicQuestionnaire = symptotrack.get_questionaire(name);
   const translatedQuestionnaire = symptotrack.get_questionaire_translations(name, getLocale(lang));
+  const basicQuestionnaireRecurring = symptotrack.get_questionaire(name, true);
   const translatedErrors = symptotrack.get_error_translations(getLocale(lang));
 
-  return { basicQuestionnaire, translatedQuestionnaire, translatedErrors };
+  return {
+    basicQuestionnaire,
+    translatedQuestionnaire,
+    basicQuestionnaireRecurring,
+    translatedErrors,
+  };
 }
 
 const withData = (Page) => {
