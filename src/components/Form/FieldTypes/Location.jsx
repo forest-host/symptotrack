@@ -18,7 +18,7 @@ import { SLocation, SSelect } from './styles';
 
 const Location = forwardRef(({ name, translation, error, width, placeholder }, ref) => {
   const [isLoading, setLoading] = useState(false);
-  const [location, setLocation] = useState(false);
+  const [location, setLocation] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -64,7 +64,8 @@ const Location = forwardRef(({ name, translation, error, width, placeholder }, r
               placeholder={translation?.placeholder || placeholder}
               isLoading={isLoading}
             />
-            <input type="hidden" name={name} ref={ref} value={location} />
+            <input type="hidden" name={`${name}[0]`} ref={ref} value={location?.[0]} />
+            <input type="hidden" name={`${name}[1]`} ref={ref} value={location?.[1]} />
             <Button type="button">
               <Icon icon="SEARCH" viewBox="0 0 512 512" color="white" size={15} />
             </Button>

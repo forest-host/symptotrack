@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // Utils
 import { withTranslation } from '../i18n';
 import { useApp } from '../contexts/AppProvider';
+import { parseValues } from '../utils';
 
 // Components
 import Hero from '../components/Hero';
@@ -15,9 +16,18 @@ import { Box, Container, Row, Flex } from '../components/styles';
 
 const Questionnaire = ({ t }) => {
   const { basicQuestionnaire, translatedQuestionnaire, translatedErrors } = useApp();
-  const onSubmit = (data) => console.log(data);
   const [count, setCount] = useState({ currentPage: 1, total: 1 });
   const [percentage, setPercentage] = useState(0);
+
+  const onSubmit = (data) => {
+    const formData = {};
+
+    Object.keys(data).map((answer) => {
+      formData[answer] = parseValues(data[answer]);
+    });
+
+    console.log(formData);
+  };
 
   return (
     <Container pb={70}>

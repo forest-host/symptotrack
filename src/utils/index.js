@@ -6,5 +6,16 @@ import formatTags from './formatTags';
 import getLocale from './getLocale';
 import numberToFixed from './numberToFixed';
 import useDebounce from './useDebounce';
+import parseValues from './parseValues';
 
-export { px2rem, hex2rgba, media, formatNumber, formatTags, getLocale, numberToFixed, useDebounce };
+export {
+  px2rem,
+  hex2rgba,
+  media,
+  formatNumber,
+  formatTags,
+  getLocale,
+  numberToFixed,
+  useDebounce,
+  parseValues,
+};

@@ -94,13 +94,14 @@ export const SRadioButton = styled(Box)`
 `;
 
 export const SSelect = {
-  control: () => ({
+  control: (provided, { hasValue }) => ({
     display: 'flex',
     padding: '5px 0',
     border: '2px solid',
     borderColor: theme.colors.blue,
+    color: theme.colors.blue,
     borderRadius: 4,
-    background: 0,
+    background: hasValue ? theme.colors.white : 0,
   }),
   indicatorSeparator: () => ({
     display: 'none',
@@ -153,6 +154,7 @@ export const SSelect = {
   }),
   placeholder: (provided) => ({
     ...provided,
+    color: theme.colors.blue,
   }),
   multiValue: (provided) => ({
     ...provided,
@@ -163,6 +165,10 @@ export const SSelect = {
     '> div': {
       color: theme.colors.white,
     },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: theme.colors.blue,
   }),
 };
 
@@ -289,25 +295,6 @@ export const SCheckbox = styled(Flex)`
 
 export const SLocation = styled(Box)`
   position: relative;
-
-  input {
-    padding: ${px2rem(10, 15)};
-    width: 100%;
-    border: 2px solid;
-    border-color: blue;
-    border-radius: 4px;
-    background: 0;
-    outline: none;
-    color: blue;
-
-    &::placeholder {
-      color: blue;
-    }
-
-    &:not(:placeholder-shown) {
-      background-color: white;
-    }
-  }
 
   button {
     position: absolute;
