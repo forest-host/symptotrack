@@ -188,11 +188,12 @@ export const SSelect = {
       borderRadius: 5,
     },
   }),
-  option: (provided) => ({
-    ...provided,
+  option: () => ({
+    padding: '10px 15px',
     fontFamily: theme.fonts.heading,
     fontWeight: '700',
     color: theme.colors.blue,
+    cursor: 'pointer',
     ':hover': {
       background: theme.colors.lightGreen,
     },

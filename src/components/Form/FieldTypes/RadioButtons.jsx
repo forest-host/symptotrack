@@ -10,107 +10,111 @@ import Tooltip from '../../General/Tooltip';
 import { Box, Flex, Text } from '../../styles';
 import { SRadioButton } from './styles';
 
-const RadioButtons = forwardRef(({ name, options, other, translation, error, prefill }, ref) => {
-  const [showOther, setOther] = useState(false);
-  const [checked, setChecked] = useState(prefill);
-  let radioOptions = options;
+const RadioButtons = forwardRef(
+  ({ name, options, other, translation, error, prefill, skip }, ref) => {
+    const [showOther, setOther] = useState(false);
+    const [checked, setChecked] = useState(prefill);
+    let radioOptions = options;
 
-  if (translation?.options) {
-    radioOptions = Object.keys(translation?.options);
-  }
+    if (translation?.options) {
+      radioOptions = Object.keys(translation?.options);
+    }
 
-  const setOtherValue = (value) => {
-    const otherInput = document.querySelector(`#${`other-${name}`}`);
-    otherInput.value = value;
-  };
+    const setOtherValue = (value) => {
+      const otherInput = document.querySelector(`#${`other-${name}`}`);
+      otherInput.value = value;
+    };
 
-  return (
-    <Flex as="fieldset" mb={30} mt={[15, 0]} flexDirection="column">
-      {(translation?.question || translation?.description) && (
-        <FieldHeader
-          name={name}
-          question={translation?.question}
-          description={translation?.description}
-        />
-      )}
-      {translation?.tooltip && (
-        <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
-      )}
-      <Flex mx={-12} mb={10} flexWrap="wrap">
-        {radioOptions?.map((option) => (
-          <SRadioButton key={option} mx={12} mb={24}>
-            <Box
-              as="input"
-              type="radio"
-              id={`${option}-${name}`}
-              value={option}
-              name={name}
-              ref={ref}
-              checked={checked === option}
-              onClick={() => {
-                setOther(false);
-                setChecked(option);
-              }}
-            />
-            <Text as="label" fontSize={18} htmlFor={`${option}-${name}`}>
-              {translation?.options?.[option]}
-            </Text>
-          </SRadioButton>
-        ))}
-        {other && (
-          <SRadioButton mx={12} mb={24}>
-            <Box
-              as="input"
-              type="radio"
-              id={`other-${name}`}
-              value="other"
-              name={name}
-              ref={ref}
-              onClick={() => {
-                setOther(true);
-                setChecked('other');
-              }}
-            />
-            <Text as="label" fontSize={18} htmlFor={`other-${name}`}>
-              {translation?.other}
-            </Text>
-          </SRadioButton>
+    return (
+      <Flex as="fieldset" mb={30} mt={[15, 0]} flexDirection="column">
+        {(translation?.question || translation?.description) && (
+          <FieldHeader
+            name={name}
+            question={translation?.question}
+            description={translation?.description}
+          />
         )}
-        {translation?.skip && (
-          <SRadioButton mx={12} mb={24}>
-            <Box
-              as="input"
-              type="radio"
-              id={`skip-${name}`}
-              value={`skip-${name}`}
-              name={name}
-              ref={ref}
-              onClick={() => {
-                setOther(false);
-                setChecked(`skip-${name}`);
-              }}
-            />
-            <Text as="label" fontSize={18} htmlFor={`skip-${name}`}>
-              {translation?.skip}
-            </Text>
-          </SRadioButton>
+        {translation?.tooltip && (
+          <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
+        )}
+        <Flex mx={-12} mb={10} flexWrap="wrap">
+          {radioOptions?.map((option) => (
+            <SRadioButton key={option} mx={12} mb={24}>
+              <Box
+                as="input"
+                type="radio"
+                id={`${option}-${name}`}
+                value={option}
+                name={name}
+                ref={ref}
+                checked={checked === option}
+                onClick={() => {
+                  setOther(false);
+                  setChecked(option);
+                }}
+              />
+              <Text as="label" fontSize={18} htmlFor={`${option}-${name}`}>
+                {translation?.options?.[option]}
+              </Text>
+            </SRadioButton>
+          ))}
+          {other && (
+            <SRadioButton mx={12} mb={24}>
+              <Box
+                as="input"
+                type="radio"
+                id={`other-${name}`}
+                value="other"
+                name={name}
+                ref={ref}
+                checked={checked === 'other'}
+                onClick={() => {
+                  setOther(true);
+                  setChecked('other');
+                }}
+              />
+              <Text as="label" fontSize={18} htmlFor={`other-${name}`}>
+                {translation?.other}
+              </Text>
+            </SRadioButton>
+          )}
+          {skip && translation?.skip && (
+            <SRadioButton mx={12} mb={24}>
+              <Box
+                as="input"
+                type="radio"
+                id={`skip-${name}`}
+                value="skip"
+                name={name}
+                ref={ref}
+                checked={checked === 'skip'}
+                onClick={() => {
+                  setOther(false);
+                  setChecked('skip');
+                }}
+              />
+              <Text as="label" fontSize={18} htmlFor={`skip-${name}`}>
+                {translation?.skip}
+              </Text>
+            </SRadioButton>
+          )}
+        </Flex>
+        {showOther && (
+          <TextInput
+            onChange={(e) => setOtherValue(e.target.value)}
+            placeholder={translation?.other}
+            required
+          />
+        )}
+        {error && (
+          <Text mt="5px" fontSize={12}>
+            {error.message}
+          </Text>
         )}
       </Flex>
-      {showOther && (
-        <TextInput
-          onChange={(e) => setOtherValue(e.target.value)}
-          placeholder={translation?.other}
-          required
-        />
-      )}
-      {error && (
-        <Text mt="5px" fontSize={12}>
-          {error.message}
-        </Text>
-      )}
-    </Flex>
-  );
-});
+    );
+  }
+);
 
 RadioButtons.propTypes = {
   name: PropTypes.string.isRequired,
@@ -119,6 +123,7 @@ RadioButtons.propTypes = {
   translation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   prefill: PropTypes.string,
+  skip: PropTypes.bool,
 };
 
 RadioButtons.defaultProps = {
@@ -127,6 +132,7 @@ RadioButtons.defaultProps = {
   translation: null,
   error: false,
   prefill: null,
+  skip: false,
 };
 
 export default RadioButtons;

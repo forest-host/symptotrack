@@ -41,7 +41,7 @@ const Location = forwardRef(({ name, translation, error, width, placeholder }, r
   }, [debouncedSearchTerm]);
 
   return (
-    <Flex mb={30} mt={[15, 0]} width={[1, 1 / 2]} flexDirection="column">
+    <Flex mb={30} mt={[15, 0]} width={[1, 2 / 3]} flexDirection="column">
       {(translation?.question || translation?.description) && (
         <FieldHeader
           name={name}
@@ -71,9 +71,7 @@ const Location = forwardRef(({ name, translation, error, width, placeholder }, r
             </Button>
           </SLocation>
         </Box>
-        {location && (
-          <MyLocation id={`map-${name}`} position={location} newLocation={setLocation} />
-        )}
+        {location && <MyLocation position={location} newLocation={setLocation} />}
       </Box>
       {error?.[0] && (
         <Text mt={10} fontSize={12}>
