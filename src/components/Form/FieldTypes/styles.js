@@ -188,20 +188,25 @@ export const SSelect = {
       borderRadius: 5,
     },
   }),
-  option: () => ({
+  option: (provided, state) => ({
     padding: '10px 15px',
     fontFamily: theme.fonts.heading,
     fontWeight: '700',
     color: theme.colors.blue,
     cursor: 'pointer',
+    backgroundColor: state.getValue('label')[0]
+      ? state.getValue('label')[0].label === state.children
+        ? theme.colors.lightGreen
+        : 0
+      : 0,
     ':hover': {
-      background: theme.colors.lightGreen,
+      backgroundColor: theme.colors.lightGreen,
     },
     ':active': {
-      background: theme.colors.lightGreen,
+      backgroundColor: theme.colors.lightGreen,
     },
     ':focus': {
-      background: theme.colors.lightGreen,
+      backgroundColor: theme.colors.lightGreen,
     },
   }),
   placeholder: (provided) => ({

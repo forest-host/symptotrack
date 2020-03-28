@@ -8,5 +8,9 @@
   "rounded": "afgerond",
   "copyLink": "Kopieer de link door erop te klikken.",
   "copied": "Gekopieerd!",
-  "emailError": "E-mailadressen komen niet overeen"
+  "emailError": "E-mailadressen komen niet overeen",
+  "prevQuestions": "Vorige vragen",
+  "nextQuestions": "Volgende vragen",
+  "finishQuestionnaire": "Vragenlijst afronden",
+  "invalidForm": "Je bent een vraag vergeten!"
 }

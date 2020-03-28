@@ -20,7 +20,15 @@ const Form = ({
   setPercentage,
   setCount,
 }) => {
-  const { handleSubmit, register, control, errors, watch, formState } = useForm();
+  const {
+    handleSubmit,
+    register,
+    control,
+    errors,
+    watch,
+    formState,
+    triggerValidation,
+  } = useForm();
   const { groups } = form || {};
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
@@ -62,6 +70,7 @@ const Form = ({
             translatedGroup={translations?.[group]}
             translatedErrors={translatedErrors}
             watch={watch}
+            triggerValidation={triggerValidation}
             isActive={activePage === i + 1}
             isLast={i + 1 === pageAmount}
             nextPage={nextPage}

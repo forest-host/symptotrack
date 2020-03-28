@@ -40,7 +40,6 @@ const MyLocation = ({ position, newLocation }) => {
 };
 
 MyLocation.propTypes = {
-  id: PropTypes.string.isRequired,
   position: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   newLocation: PropTypes.func.isRequired,
 };
