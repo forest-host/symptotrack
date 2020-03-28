@@ -10,8 +10,9 @@ import Tooltip from '../../General/Tooltip';
 import { Box, Flex, Text } from '../../styles';
 import { SRadio } from './styles';
 
-const Radio = forwardRef(({ name, options, other, translation, error }, ref) => {
+const Radio = forwardRef(({ name, options, other, translation, error, prefill }, ref) => {
   const [showOther, setOther] = useState(false);
+  const [checked, setChecked] = useState(prefill);
   let radioOptions = options;
 
   if (translation?.options) {
@@ -44,8 +45,12 @@ const Radio = forwardRef(({ name, options, other, translation, error }, ref) => 
               id={`${option}-${name}`}
               value={option}
               name={name}
+              checked={checked === option}
               ref={ref}
-              onClick={() => setOther(false)}
+              onClick={() => {
+                setOther(false);
+                setChecked(option);
+              }}
             />
             <Text as="span" fontSize={18} />
             {translation?.options?.[option]}
@@ -59,8 +64,12 @@ const Radio = forwardRef(({ name, options, other, translation, error }, ref) => 
               id={`other-${name}`}
               value="other"
               name={name}
+              checked={checked === 'other'}
               ref={ref}
-              onClick={() => setOther(true)}
+              onClick={() => {
+                setOther(true);
+                setChecked('other');
+              }}
             />
             <Text as="span" fontSize={18} />
             {translation?.other}
@@ -72,10 +81,14 @@ const Radio = forwardRef(({ name, options, other, translation, error }, ref) => 
               as="input"
               type="radio"
               id={`skip-${name}`}
-              value={`skip-${name}`}
+              value="skip"
               name={name}
+              checked={checked === 'skip'}
               ref={ref}
-              onClick={() => setOther(false)}
+              onClick={() => {
+                setOther(false);
+                setChecked('skip');
+              }}
             />
             <Text as="span" fontSize={18} />
             {translation?.skip}
@@ -104,6 +117,7 @@ Radio.propTypes = {
   other: PropTypes.bool,
   translation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  prefill: PropTypes.string,
 };
 
 Radio.defaultProps = {
@@ -111,6 +125,7 @@ Radio.defaultProps = {
   other: false,
   translation: null,
   error: false,
+  prefill: null,
 };
 
 export default Radio;

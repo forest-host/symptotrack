@@ -1,9 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-// Utils
-import { parseValues } from '../../../utils';
-
 // Components
 import FieldHeader from './FieldHeader';
 import TextInput from './TextInput';
@@ -15,6 +12,7 @@ import { SRadioButton } from './styles';
 
 const RadioButtons = forwardRef(({ name, options, other, translation, error, prefill }, ref) => {
   const [showOther, setOther] = useState(false);
+  const [checked, setChecked] = useState(prefill);
   let radioOptions = options;
 
   if (translation?.options) {
@@ -48,9 +46,11 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error, pre
               value={option}
               name={name}
               ref={ref}
-              // t={console.log(parseValues(option, true) === prefill)}
-              checked={prefill && parseValues(option, true) === prefill}
-              onClick={() => setOther(false)}
+              checked={checked === option}
+              onClick={() => {
+                setOther(false);
+                setChecked(option);
+              }}
             />
             <Text as="label" fontSize={18} htmlFor={`${option}-${name}`}>
               {translation?.options?.[option]}
@@ -66,7 +66,10 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error, pre
               value="other"
               name={name}
               ref={ref}
-              onClick={() => setOther(true)}
+              onClick={() => {
+                setOther(true);
+                setChecked('other');
+              }}
             />
             <Text as="label" fontSize={18} htmlFor={`other-${name}`}>
               {translation?.other}
@@ -82,7 +85,10 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error, pre
               value={`skip-${name}`}
               name={name}
               ref={ref}
-              onClick={() => setOther(false)}
+              onClick={() => {
+                setOther(false);
+                setChecked(`skip-${name}`);
+              }}
             />
             <Text as="label" fontSize={18} htmlFor={`skip-${name}`}>
               {translation?.skip}
@@ -112,6 +118,7 @@ RadioButtons.propTypes = {
   other: PropTypes.bool,
   translation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  prefill: PropTypes.string,
 };
 
 RadioButtons.defaultProps = {
@@ -119,6 +126,7 @@ RadioButtons.defaultProps = {
   other: false,
   translation: null,
   error: false,
+  prefill: null,
 };
 
 export default RadioButtons;
