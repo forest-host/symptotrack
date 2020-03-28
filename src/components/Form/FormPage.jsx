@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Utils
+import { i18n } from '../../i18n';
+
 // Components
 import Fields from './Fields';
 import ButtonArrow from '../General/ButtonArrow';
@@ -35,6 +38,11 @@ const FormPage = ({
 
   const watchFields = watch(watchArray);
 
+  const validateNextPage = () => {
+    nextPage();
+    window.scrollTo(0, 0);
+  };
+
   return (
     <SFormPage isActive={isActive}>
       {questions &&
@@ -57,7 +65,7 @@ const FormPage = ({
           <Box mb={24} order={[1, 0]}>
             <ButtonArrow
               type="button"
-              text="Vorige vragen"
+              text={i18n.t('prevQuestions')}
               reversed
               transparent
               onClick={() => {
@@ -71,17 +79,14 @@ const FormPage = ({
           <Box mb={24} order={[0, 1]}>
             <ButtonArrow
               type="button"
-              text="Volgende vragen"
-              onClick={() => {
-                nextPage();
-                window.scrollTo(0, 0);
-              }}
+              text={i18n.t('nextQuestions')}
+              onClick={() => validateNextPage()}
             />
           </Box>
         )}
         {isLast && (
           <Box mb={24} order={[0, 1]}>
-            <ButtonArrow type="submit" text="Vragenlijst afronden" />
+            <ButtonArrow type="submit" text={i18n.t('finishQuestionnaire')} />
           </Box>
         )}
       </Flex>
