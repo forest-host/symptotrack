@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { render } from 'react-dom';
 
 // Styling
 import SMyLocation from './styles';
 
-const MyLocation = ({ id, position, newLocation }) => {
+const MyLocation = ({ position, newLocation }) => {
+  const [renderMap, setMap] = useState(null);
+
   const getMap = async () => {
     const { Map, Marker, TileLayer } = require('react-leaflet');
 
@@ -26,16 +27,16 @@ const MyLocation = ({ id, position, newLocation }) => {
       </Map>
     );
 
-    render(map, document.getElementById(id));
+    setMap(map);
   };
 
   useEffect(() => {
     if (position) {
       getMap();
     }
-  }, []);
+  }, [position]);
 
-  return <SMyLocation id={id} />;
+  return <SMyLocation>{renderMap}</SMyLocation>;
 };
 
 MyLocation.propTypes = {
