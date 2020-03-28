@@ -13,7 +13,7 @@ const Social = ({ name, color, size }) => {
     case 'twitter':
       return <Icon icon="TWITTER" color={color} viewBox="0 0 512 416" size={size} />;
     default:
-      break;
+      return null;
   }
 };
 

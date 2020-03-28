@@ -16,7 +16,7 @@ import Form from '../components/Form';
 import { Box, Container, Row, Flex } from '../components/styles';
 
 const Edit = ({ i18n, t, type, token }) => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(undefined);
   const { language } = i18n || {};
   const { translatedQuestionnaire, translatedErrors, basicQuestionnaireRecurring } = useApp();
 
