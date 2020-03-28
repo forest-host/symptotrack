@@ -1,0 +1,24 @@
+{
+  "title": "Gelukt!",
+  "content": "Fijn dat je de vragenlijst hebt ingevuld. Je kan ons meer helpen door nog wat extra vragen te beantwoorden.",
+  "layouts": [
+    {
+      "name": "share",
+      "layout": {
+        "title": "Verspreid de vragenlijst, niet het virus",
+        "content": "Help ons meer symptomen in kaart te brengen door de vragenlijst te delen. Heb je zelf symptomen van het virus? Dan is dit extra belangrijk. Het kan namelijk zijn dat je het virus hebt overgedragen. Stuur de vragenlijst door naar alle mensen die je de afgelopen twee weken hebt gezien.",
+        "shareTitle": "Vragenlijst SymptoTrack",
+        "shareUrl": "https://www.symptotrack.org/vragenlijst"
+      }
+    },
+    {
+      "name": "card",
+      "layout": {
+        "title": "Symptomen aanpassen of beter melden",
+        "content": "Gebruik de onderstaande link om je antwoorden aan te passen of je beter te melden.",
+        "includeLink": true,
+        "shapePosition": "topRight"
+      }
+    }
+  ]
+}
