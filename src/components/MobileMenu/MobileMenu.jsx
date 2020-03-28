@@ -29,7 +29,7 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
         >
           <Flex py={25} width={1} justifyContent="center" bg="lightGreen">
             <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
-              <a href>
+              <a href onClick={() => setOpen(false)}>
                 <img src="/static/logo-big.svg" alt="SymptoTrack" />
               </a>
             </Link>
