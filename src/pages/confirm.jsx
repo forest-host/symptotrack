@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 // Utils
 import { withTranslation } from '../i18n';
@@ -14,10 +15,13 @@ import Layouts from '../components/Layouts';
 import { Box, Container, HR } from '../components/styles';
 
 const Confirm = ({ t, token, locale, email }) => {
+  const { trackEvent } = useMatomo();
   const layouts = t('confirm:layouts', { returnObjects: true });
 
   const confirmEmail = async (token, locale, email) => {
-    await post(`confirm/${token}`, { locale, email });
+    await post(`confirm/${token}`, { locale, email }).then(() => {
+      trackEvent({ category: 'email', action: 'confirm', name: email });
+    });
   };
 
   useEffect(() => {

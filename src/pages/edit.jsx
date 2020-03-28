@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 // Utils
 import { get, post } from '../api/callers';
@@ -16,6 +17,7 @@ import Form from '../components/Form';
 import { Box, Button, Container, Row, Flex, HR } from '../components/styles';
 
 const Edit = ({ i18n, t, type, token }) => {
+  const { trackEvent } = useMatomo();
   const [data, setData] = useState(undefined);
   const [recovered, setRecovered] = useState(false);
   const { language } = i18n || {};
@@ -56,6 +58,7 @@ const Edit = ({ i18n, t, type, token }) => {
         const { error } = resp?.data || {};
         console.log(error);
       } else {
+        trackEvent({ category: 'vragenlijst', action: 'edit', name: token });
         Router.push(`/thankyou?token=${token}`, '/bedankt');
       }
     });
