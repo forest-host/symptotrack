@@ -12,12 +12,6 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const ServiceWorker = (app) => (req, res) => {
-  const filePath = path.join(__dirname, '.next', 'service-worker.js');
-
-  app.serveStatic(req, res, filePath);
-};
-
 app.prepare().then(() => {
   const server = express();
 
@@ -70,7 +64,9 @@ app.prepare().then(() => {
   });
 
   // ServiceWorker
-  server.get('/service-worker.js', ServiceWorker(app));
+  server.get('/service-worker.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '.next', 'service-worker.js'));
+  });
 
   // Fallback handler
   server.get('*', (req, res) => handle(req, res));
