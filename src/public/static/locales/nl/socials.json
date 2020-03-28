@@ -4,17 +4,22 @@
     {
       "label": "Facebook",
       "name": "facebook",
-      "url": "https://www.facebook.com"
+      "url": "https://www.facebook.com/SymptoTrack"
     },
     {
       "label": "Instagram",
       "name": "instagram",
-      "url": "https://www.instagram.com"
+      "url": "https://www.instagram.com/symptotrack/"
     },
     {
       "label": "Twitter",
       "name": "twitter",
-      "url": "https://www.twitter.com"
-    }
+      "url": "https://twitter.com/SymptoTrack"
+    },
+    {
+      "label": "Linkedin",
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/company/symptotrack"
   ]
 }
+

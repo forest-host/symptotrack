@@ -12,19 +12,23 @@
         },
         {
           "question": "Hoe werkt SymptoTrack?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "answer": "Met jouw hulp en die van heel veel andere, registreert SymptoTrack hoeveel Nederlanders symptomen ervaren van corona COVID-19. Die symptomen zeggen niet veel over één persoon, maar voor een grote groep kan het de verspreiding van het virus wel in kaart brengen."
         },
         {
-          "question": "Wat gebeurd er met mijn data?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "question": "Ik heb symptomen, heb ik nu ook corona COVID-19?",
+          "answer": "Met alleen de symptomen kan over een persoon, zoals jij, niet met zekerheid worden vastgesteld of je nu het virus hebt of niet. Wanneer we de data van heel veel Nederlanders verzamelen, kunnen we hiermee wel met grote zekerheid zeggen waar en hoe groot de uitbraak in een bepaald gebied is.  Zorg er wel voor dat wanneer jij symptomen hebt, je geen andere mensen kan besmetten. Bij koorts blijf thuis, en houd ten alle tijden de richtlijnen van het <a href='https://www.rivm.nl/'>RIVM</a> en de <a href='https://www.rijksoverheid.nl/ministeries/ministerie-van-volksgezondheid-welzijn-en-sport'>overheid</a> in de gaten. Verergeren jouw symptomen, neem dan telefonisch contact op met jouw huisarts."
         },
         {
-          "question": "Waarom worden juist deze symptomen gemeten?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "question": "Waarom wordt er niet méér getest op het coronavirus (COVID-19)?",
+          "answer": "De Nederlandse Overheid, onder leiding van het RIVM, werkt met man en macht om de verspreiding van het coronavirus (COVID-19) in kaart te brengen. Echter zijn er in deze pandemie tekorten ontstaan voor bepaalde grondstoffen die noodzakelijk zijn om deze tests uit te voeren. Grondstoffen waar vrijwel alle landen in de wereld op dit moment vraag naar hebben. Ook aan dit probleem wordt door de overheid hard gewerkt en de testcapaciteit neemt nog elke dag toe. Toch zal het vrijwel onmogelijk zijn om regelmatig grote delen van de bevolking te testen. Daarom biedt SymptoTrack de mogelijkheid om zelf symptomen te melden, en daarmee de gegevens van het RIVM aan te vullen."
         },
         {
-          "question": "Waarom wordt er niet meer getest op COVID-19?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "question": "Welke symptomen worden geregistreerd? En waarom deze?",
+          "answer": "SymptoTrack vraagt jou om jouw symptomen te registreren, maar hoe maken wij de keuze welke symptomen er worden opgeslagen? Dat doen wij niet op basis van onze eigen kennis, maar we kijken naar het meest recente onderzoek dat door de WHO wordt gepubliceerd. De lijst met symptomen die wij op dit moment registreren zijn gebaseerd op onderzoek onder grofweg 55.000 mensen die positief getest met COVID-19. Voor de vragenlijst richten wij ons op de 10 meest voorkomende symptomen. Wanneer nieuw onderzoek uitwijst dat er nog andere symptomen zijn, wordt de vragenlijst geupdate."
+        },
+        {
+          "question": "Welke partijen werken er aan SymptoTrack?",
+          "answer": "SymptoTrack is opgezet door vrijwilligers bij Hike, Greenberry en Forrest. Met onze kennis van programmeren, ontwerp en hosting hebben wij keihard gewerkt om in korte tijd SymptoTrack online te krijgen. Inmiddels ondersteunen verschillende instanties ons werk. Kijk op <a href='/over-symptotrack' as='/over-symptotrack'>deze pagina</a> voor meer informatie over onze partners."
         }
       ]
     },
@@ -33,17 +37,17 @@
       "items": [
         {
           "question": "Wat gebeurd er met mijn data?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "answer": "De informatie die jij deelt is de sleutel tot het in kaart brengen van de verspreiding van het coronavirus (COVID-19). SymptoTrack verwerkt jouw data voor de symptoom kaart. Met deze kaart kunnen alle Nederlanders zien hoe het virus zich verspreidt bij hen in de buurt. SymptoTrack is open-source, dat wil zeggen dat de data voor iedereen toegankelijk is. Op die manier hebben artsen, journalisten en epidemiologen direct toegang tot de nieuwste inzichten om de effecten van corona COVID-19 zo veel mogelijk beperken. Om te voorkomen dat anderen kunnen achterhalen welke informatie jij hebt ingevuld is de gehele vragenlijst zo ingericht dat wij geen persoonsgegevens van jou verzamelen. Persoonsgegevens zijn informatie waarmee iemand in staat is te achterhalen van wie de data is. Denk hierbij aan je telefoonnummer, naam of geboortedatum."
         },
         {
-          "question": "Waarom moet ik mijn e-mail delen?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "question": "Waarom moet ik mijn e-mailadres invullen?",
+          "answer": "Om in kaart te brengen hoe jou infectie verloop, of je symptomen verergeren en wanneer je weer hersteld bent, willen we jou de mogelijkheid terug te keren naar SymptoTrack. Om het aanmaken van een gebruikersaccount te voorkomen versturen wij jou na het voltooien van de vragenlijst een e-mail met daarin een link. Jou email adres wordt gebruikt om deze mail te versturen en wordt automatisch door het systeem verwijderd voordat het kan worden opgeslagen in de database. Daarmee heb jij wel toegang tot jou vragenlijst, maar wij geen toegang tot jou email. Wil je weten hoe dit in detail werkt, kijk op Github naar onze code. SymptoTrack is open-source, dus jij kan controleren hoe wij jouw data verzamelen en verwerken."
         },
         {
-          "question": "Is mijn data op mij te herleiden?",
-          "answer": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de vragenlijst te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen."
+          "question": "Waarom moet ik mijn GPS locatie delen?",
+          "answer": "Om in kaart te brengen waar in Nederland de mensen met symptomen zitten moet informatie worden verzameld over waar jij je bevindt. Maar deze informatie hoeft niet exact te zijn. Je GPS coördinaten worden daarom alleen op 2 cijfers achter de komma geregistreerd. Dat betekend dat je locatie op 1km nauwkeurig is en daarmee niet op jou of je huis te herleiden is."
         }
       ]
     }
-  ]
+      ]
 }
