@@ -44,6 +44,18 @@ const parseValues = (value, reverse) => {
 
       return valueArray;
     }
+    if (typeof value === 'object') {
+      const valueArray = [];
+
+      Object.keys(value).map((val) => {
+        if (value[val]) {
+          return valueArray.push(val);
+        }
+        return undefined;
+      });
+
+      return valueArray;
+    }
     if (parseFloat(value)) {
       return parseFloat(value);
     }

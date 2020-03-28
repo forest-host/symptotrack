@@ -38,7 +38,7 @@ const Questionnaire = ({ i18n, t }) => {
       if (resp) {
         if (status === 400 || status === 504) {
           const { error } = resp?.data || {};
-          console.log(error);
+          console.error(error);
         } else {
           Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
         }

@@ -39,10 +39,33 @@ const Form = ({
   }, [activePage]);
 
   useEffect(() => {
-    const fieldAmount = Object.size(watchAllFields);
-    const dirtyField = formState?.dirtyFields?.size;
+    const fieldAmount = [];
+    const requiredFields = [];
 
-    setPercentage(numberToFixed((100 * dirtyField) / fieldAmount));
+    groups &&
+      Object.keys(groups).map((group) => {
+        groups[group]?.questions &&
+          Object.keys(groups[group]?.questions)?.map((question) => {
+            groups[group]?.questions[question].required && requiredFields.push(question);
+          });
+      });
+
+    requiredFields.map((question) => {
+      const watchKeys = Object.keys(watchAllFields);
+      watchKeys.map((s) => {
+        if (s.startsWith(`${question}[`)) {
+          requiredFields.push(s);
+        }
+      });
+    });
+
+    requiredFields?.map((field) => {
+      if (formState.dirtyFields.has(field)) {
+        fieldAmount.push(field);
+      }
+    });
+
+    setPercentage(numberToFixed((100 * fieldAmount.length) / requiredFields.length));
   }, [formState]);
 
   // Navigate to next page
