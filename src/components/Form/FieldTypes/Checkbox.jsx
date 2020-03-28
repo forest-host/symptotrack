@@ -33,7 +33,7 @@ const Checkbox = forwardRef(
               name={name}
               ref={ref}
               checked={checked === 'true' || checked}
-              onClick={() => setChecked(!checked)}
+              onChange={() => setChecked(!checked)}
             />
             <Text as="span" />
             {translation?.options?.true}
@@ -42,6 +42,7 @@ const Checkbox = forwardRef(
           <Flex flexWrap="wrap">
             {translatedOptions?.map(({ value, label }) => (
               <SCheckbox
+                key={`${name}-${value}`}
                 as="label"
                 htmlFor={`${name}-${value}`}
                 alignItems="center"
@@ -54,7 +55,7 @@ const Checkbox = forwardRef(
                   name={`${name}[${value}]`}
                   ref={ref}
                   checked={checked?.includes(value)}
-                  onClick={() =>
+                  onChange={() =>
                     setChecked(
                       !checked?.includes(value)
                         ? [...checked, value]
