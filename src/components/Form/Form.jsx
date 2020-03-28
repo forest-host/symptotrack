@@ -11,7 +11,15 @@ import FormPage from './FormPage';
 // Styling
 import SForm from './styles';
 
-const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, setCount }) => {
+const Form = ({
+  form,
+  prefill,
+  translations,
+  translatedErrors,
+  onSubmit,
+  setPercentage,
+  setCount,
+}) => {
   const { handleSubmit, register, control, errors, watch, formState } = useForm();
   const { groups } = form || {};
   const watchAllFields = watch();
@@ -58,6 +66,7 @@ const Form = ({ form, translations, translatedErrors, onSubmit, setPercentage, s
             isLast={i + 1 === pageAmount}
             nextPage={nextPage}
             prevPage={prevPage}
+            prefill={prefill}
             {...groups[group]}
           />
         ))}

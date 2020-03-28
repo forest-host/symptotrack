@@ -19,21 +19,20 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Page = ({ children, asPath, route }) => {
+const Page = ({ children, asPath }) => {
   const [isOpen, setOpen] = useState(false);
   const title = 'SymptoTrack';
   const description = 'Tracking Symptoms Worldwide';
-  const comingSoon = route === '/';
 
   return (
     <ThemeProvider theme={theme}>
       <Flex flexDirection="column" css={{ minHeight: '100vh', overflowX: 'hidden' }}>
         <GlobalStyles isOpen={isOpen} />
         <Head title={title} description={description} />
-        {!comingSoon && <Header asPath={asPath} isOpen={isOpen} setOpen={setOpen} />}
+        <Header asPath={asPath} isOpen={isOpen} setOpen={setOpen} />
         <Shapes />
         <main>{children}</main>
-        {!comingSoon && <Footer />}
+        <Footer />
       </Flex>
     </ThemeProvider>
   );

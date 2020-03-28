@@ -10,7 +10,7 @@ import Tooltip from '../../General/Tooltip';
 import { Box, Flex, Text } from '../../styles';
 import { SRadioButton } from './styles';
 
-const RadioButtons = forwardRef(({ name, options, other, translation, error }, ref) => {
+const RadioButtons = forwardRef(({ name, options, other, translation, error, prefill }, ref) => {
   const [showOther, setOther] = useState(false);
   let radioOptions = options;
 

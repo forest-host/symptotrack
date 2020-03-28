@@ -23,6 +23,7 @@ const FormPage = ({
   isLast,
   nextPage,
   prevPage,
+  prefill,
 }) => {
   const watchArray = [];
   questions &&
@@ -47,6 +48,7 @@ const FormPage = ({
             questions={questions}
             translations={translatedQuestions}
             translatedErrors={translatedErrors}
+            prefill={prefill?.[question]}
             errors={errors}
           />
         ))}

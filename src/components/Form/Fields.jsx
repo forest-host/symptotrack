@@ -26,6 +26,7 @@ const Fields = ({
   question,
   translations,
   translatedErrors,
+  prefill,
 }) => {
   let show = true;
 
@@ -57,6 +58,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -74,6 +76,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -95,6 +98,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -112,6 +116,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -129,6 +134,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -151,6 +157,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                     max: questions[question]?.max,
@@ -172,6 +179,8 @@ const Fields = ({
               <Box mb={100}>
                 <RangeSlider
                   name={question}
+                  error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -189,6 +198,8 @@ const Fields = ({
               <Box mb={100}>
                 <RangeSlider
                   name={question}
+                  error={errors?.[question]}
+                  prefill={prefill}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
                   })}
@@ -219,6 +230,7 @@ const Fields = ({
                   translation={translations?.[question]}
                   name={question}
                   error={errors?.[question]}
+                  prefill={prefill}
                   isMulti
                   translatedOptions={translatedOptions}
                   ref={register({
@@ -239,6 +251,7 @@ const Fields = ({
                   name={question}
                   control={control}
                   error={errors?.[question]}
+                  prefill={prefill}
                   translatedOptions={translatedOptions}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,
@@ -259,6 +272,7 @@ const Fields = ({
               translation={translations?.[question]}
               name={question}
               error={errors?.[question]}
+              prefill={prefill}
               ref={register({
                 required: questions[question]?.required && translatedErrors?.required,
               })}
@@ -276,6 +290,7 @@ const Fields = ({
               translation={translations?.[question]}
               name={question}
               error={errors?.[question]}
+              prefill={prefill}
               ref={register({
                 required: questions[question]?.required && translatedErrors?.required,
                 pattern: {

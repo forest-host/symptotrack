@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 
 // Utils
 import { get, post } from '../api/callers';
@@ -30,6 +31,33 @@ const Edit = ({ i18n, t, type, token }) => {
       getData(type, token);
     }
   }, []);
+
+  const testPrefill = {
+    location: [51.92, 4.46],
+    responding_for: 'self',
+    year_of_birth: 1995,
+    fever: true,
+    sex: 'male',
+    fever_degrees: 38.4,
+    dry_cough: true,
+    cough_slime: true,
+    short_breath: true,
+    muscle_ache: false,
+    sore_throat: true,
+    headache: false,
+    chills: true,
+    nauseous: true,
+    other_symptoms: 'nee',
+    start_symptoms: 3,
+    fatigue: false,
+    first_symptom: ['cough_slime', 'sore_throat'],
+    contact_with_positively_tested_person: true,
+    quarantined: false,
+    social_distancing: 'yes',
+    home_leaves: 4,
+    travel_last_weeks: ['AGO'],
+    terms_and_conditions: true,
+  };
 
   const onSubmit = async (data) => {
     const formData = {};
@@ -64,6 +92,7 @@ const Edit = ({ i18n, t, type, token }) => {
               translations={translatedQuestionnaire}
               translatedErrors={translatedErrors}
               onSubmit={onSubmit}
+              prefill={testPrefill}
             />
           </Box>
         </Flex>
