@@ -58,7 +58,7 @@ const Edit = ({ i18n, t, type, token }) => {
         const { error } = resp?.data || {};
         console.log(error);
       } else {
-        trackEvent({ category: 'vragenlijst', action: 'edit', name: token });
+        trackEvent({ category: 'vragenlijst', action: 'edit' });
         Router.push(`/thankyou?token=${token}`, '/bedankt');
       }
     });
