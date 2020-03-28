@@ -6,7 +6,7 @@ import Router from 'next/router';
 import { post } from '../api/callers';
 import { withTranslation } from '../i18n';
 import { useApp } from '../contexts/AppProvider';
-import { parseValues } from '../utils';
+import { parseValues, getLocale } from '../utils';
 
 // Components
 import Hero from '../components/Hero';
@@ -16,8 +16,9 @@ import Progress from '../components/General/Progress';
 // Styling
 import { Box, Container, Row, Flex } from '../components/styles';
 
-const Questionnaire = ({ t }) => {
+const Questionnaire = ({ i18n, t }) => {
   const { basicQuestionnaire, translatedQuestionnaire, translatedErrors } = useApp();
+  const { language } = i18n || {};
   const [count, setCount] = useState({ currentPage: 1, total: 1 });
   const [percentage, setPercentage] = useState(0);
 
@@ -27,6 +28,8 @@ const Questionnaire = ({ t }) => {
     Object.keys(data).map((answer) => {
       formData[answer] = parseValues(data[answer]);
     });
+
+    formData.locale = getLocale(language);
 
     await post('responses/basic', formData).then((resp) => {
       const { status, respondent_uuid } = resp || {};
