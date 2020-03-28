@@ -13,9 +13,9 @@ import { Box, Flex, Text } from '../../styles';
 import { SRangeSlider, SButtonGroup } from './styles';
 
 const RangeSlider = forwardRef(
-  ({ name, variant, translation, min, max, error, width, step }, ref) => {
+  ({ name, variant, translation, min, max, error, width, step, prefill }, ref) => {
     const [type, setType] = useState('celsius');
-    const [value, setValue] = useState(min);
+    const [value, setValue] = useState(prefill || min);
 
     return (
       <Flex mb={30} mt={[15, 0]} flexDirection="column">
@@ -86,6 +86,7 @@ RangeSlider.propTypes = {
   variant: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
+  prefill: PropTypes.number,
 };
 
 RangeSlider.defaultProps = {
@@ -96,6 +97,7 @@ RangeSlider.defaultProps = {
   variant: null,
   min: null,
   max: null,
+  prefill: null,
 };
 
 export default RangeSlider;
