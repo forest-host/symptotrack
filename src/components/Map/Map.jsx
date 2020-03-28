@@ -38,7 +38,7 @@ const SymptoMap = () => {
   }, [position]);
 
   return (
-    <Box as={SMyLocation} id="map" width={1} css={{ height: '500px' }}>
+    <Box px={[15, 0]} mb={[15, 0]} as={SMyLocation} id="map" width={1}>
       {renderMap}
     </Box>
   );

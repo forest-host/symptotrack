@@ -9,15 +9,15 @@ import Hero from '../components/Hero';
 import SymptoMap from '../components/Map';
 
 // Styling
-import { Container, Row } from '../components/styles';
+import { Container } from '../components/styles';
 
 const Map = ({ t }) => (
-  <Container pt={[20, 40]} pb={70}>
-    <Hero title={t('map:title')} content={t('map:content')} />
-    <Row>
-      <SymptoMap />
-    </Row>
-  </Container>
+  <React.Fragment>
+    <Container className="view" pt={[20, 40]} pb={70}>
+      <Hero title={t('map:title')} content={t('map:content')} />
+    </Container>
+    <SymptoMap />
+  </React.Fragment>
 );
 
 Map.propTypes = {

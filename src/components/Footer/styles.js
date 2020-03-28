@@ -5,6 +5,8 @@ const SFooter = styled.footer`
   margin-top: auto;
   background-color: black;
   color: lightGreen;
+  z-index: 100;
+  position: relative;
 
   > div {
     position: relative;
