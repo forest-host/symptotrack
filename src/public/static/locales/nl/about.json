@@ -1,12 +1,12 @@
 {
   "title": "Over SymptoTrack",
-  "content": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de <a href='/' as='/vragenlijst'>vragenlijst</a> te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen.",
+  "content": "SymptoTrack is een tool met het doel om iedereen met symptomen van het coronavirus in kaart te brengen. Door de <a href='/vragenlijst' as='/vragenlijst'>vragenlijst</a> te beantwoorden, kun je je eigen symptomen of die van iemand anders vastleggen. Op deze manier worden alle gegevens verzameld en kunnen we de verspreiding van het virus volgen.",
   "layouts": [
     {
       "name": "content",
       "layout": {
         "title": "Waarom doen we dit?",
-        "content": "Het coronavirus (COVID-19) verspreid zich steeds verder over de wereld. Met het toenemende aantal zieken loopt de druk op de nationale gezondheidszorg hoog op. Om die druk te verlagen, moeten we allemaal ons best doen om de verspreiding van het virus tegen te gaan. Dit kunnen we doen door de verspreiding van het virus zo goed mogelijk in kaart te brengen. Dit kan door zoveel mogelijk mensen te testen op het virus. In veel landen is het niet mogelijk om iedereen te testen en worden de tests gereserveerd voor hulpverleners in de zorg, risicogroepen en patiënten met ernstige symptomen. Als je milde symptomen hebt, word je vaak niet getest. Dit geeft een vertekend beeld van het aantal mensen dat besmet is met het virus. SymptoTrack is ontwikkelt door HIKE en Greenberry, om de zorg een handje te helpen in hun strijd tegen het coronavirus."
+        "content": "Het coronavirus (COVID-19) verspreid zich steeds verder over de wereld. Met het toenemende aantal zieken loopt de druk op de nationale gezondheidszorg hoog op. Om die druk te verlagen, moeten we allemaal ons best doen om de verspreiding van het virus tegen te gaan. Dit kunnen we doen door de verspreiding van het virus zo goed mogelijk in kaart te brengen. Dit kan door zoveel mogelijk mensen te testen op het virus. In veel landen is het niet mogelijk om iedereen te testen en worden de tests gereserveerd voor hulpverleners in de zorg, risicogroepen en patiënten met ernstige symptomen. Als je milde symptomen hebt, word je vaak niet getest. Dit geeft een vertekend beeld van het aantal mensen dat besmet is met het virus. SymptoTrack is ontwikkeld door HIKE, Greenberry en Forest, om de zorg een handje te helpen in hun strijd tegen het coronavirus."
       }
     },
     {
