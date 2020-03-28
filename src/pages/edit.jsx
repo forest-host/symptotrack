@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { get, post } from '../api/callers';
 import { withTranslation } from '../i18n';
 import { useApp } from '../contexts/AppProvider';
-import { parseValues } from '../utils';
+import { getLocale, parseValues } from '../utils';
 
 // Components
 import Hero from '../components/Hero';
@@ -14,8 +14,9 @@ import Form from '../components/Form';
 // Styling
 import { Box, Container, Row, Flex } from '../components/styles';
 
-const Edit = ({ t, type, token }) => {
+const Edit = ({ i18n, t, type, token }) => {
   const [data, setData] = useState({});
+  const { language } = i18n || {};
   const { translatedQuestionnaire, translatedErrors, basicQuestionnaireRecurring } = useApp();
 
   const getData = async (type, token) => {
@@ -38,6 +39,7 @@ const Edit = ({ t, type, token }) => {
     });
 
     formData.respondent_uuid = token;
+    formData.locale = getLocale(language);
 
     await post('responses/basic', formData).then((resp) => {
       const { status, respondent_uuid } = resp || {};
