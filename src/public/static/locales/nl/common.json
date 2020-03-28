@@ -7,5 +7,6 @@
   "by": "Door",
   "rounded": "afgerond",
   "copyLink": "Kopieer de link door erop te klikken.",
-  "copied": "Gekopieerd!"
+  "copied": "Gekopieerd!",
+  "emailError": "E-mailadressen komen niet overeen"
 }

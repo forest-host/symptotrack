@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "@symptotrack/questions": "^0.6.20",
+    "@symptotrack/questions": "^0.6.24",
     "@xstyled/styled-components": "^1.16.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
@@ -52,6 +52,7 @@
     "react-leaflet": "^2.6.3",
     "react-rangeslider": "^2.2.0",
     "react-select": "^3.1.0",
+    "react-sticky": "^6.0.3",
     "styled-components": "^4.3.2",
     "styled-normalize": "^8.0.6",
     "styled-system": "^5.0.15",

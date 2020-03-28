@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { StickyContainer } from 'react-sticky';
 
 // Utils
 import { post } from '../api/callers';
@@ -46,28 +47,30 @@ const Questionnaire = ({ i18n, t }) => {
   };
 
   return (
-    <Container pb={70}>
-      <Progress percentage={percentage} string={t('rounded')} />
-      <Hero
-        pt={[20, 40]}
-        title={`${t('questionnaire:title')} ${count?.currentPage}/${count?.total}`}
-        content={t('questionnaire:content')}
-      />
-      <Row>
-        <Flex justifyContent="center">
-          <Box width={[1, 7 / 12]}>
-            <Form
-              form={basicQuestionnaire}
-              translations={translatedQuestionnaire}
-              translatedErrors={translatedErrors}
-              onSubmit={onSubmit}
-              setPercentage={setPercentage}
-              setCount={setCount}
-            />
-          </Box>
-        </Flex>
-      </Row>
-    </Container>
+    <StickyContainer>
+      <Container pb={70}>
+        <Progress percentage={percentage} string={t('rounded')} />
+        <Hero
+          pt={[20, 40]}
+          title={`${t('questionnaire:title')} ${count?.currentPage}/${count?.total}`}
+          content={t('questionnaire:content')}
+        />
+        <Row>
+          <Flex justifyContent="center">
+            <Box width={[1, 7 / 12]}>
+              <Form
+                form={basicQuestionnaire}
+                translations={translatedQuestionnaire}
+                translatedErrors={translatedErrors}
+                onSubmit={onSubmit}
+                setPercentage={setPercentage}
+                setCount={setCount}
+              />
+            </Box>
+          </Flex>
+        </Row>
+      </Container>
+    </StickyContainer>
   );
 };
 
