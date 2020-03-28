@@ -47,7 +47,7 @@ const RangeSlider = forwardRef(
             </button>
           </SButtonGroup>
         )}
-        <Box width={width} mt={variant !== 'temperature' ? 40 : 0}>
+        <Box width={['95%', 1]} mt={variant !== 'temperature' ? 40 : 0} mx="auto">
           <SRangeSlider
             value={value}
             min={min}

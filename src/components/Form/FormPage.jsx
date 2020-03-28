@@ -109,7 +109,7 @@ const FormPage = ({
             setValue={setValue}
           />
         ))}
-      <Flex justifyContent="space-between" flexWrap="wrap">
+      <Flex justifyContent="space-between" flexWrap="wrap" flexDirection={['column', 'row']}>
         {index !== 0 && (
           <Box mb={24} order={[1, 0]}>
             <ButtonArrow
