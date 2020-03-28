@@ -10,7 +10,7 @@ import { Flex, Text } from '../../styles';
 import { SCheckbox } from './styles';
 
 const Checkbox = forwardRef(
-  ({ name, translation, error, width, isMulti, translatedOptions, prefill }, ref) => {
+  ({ name, translation, error, width, isMulti, translatedOptions, prefill, max_options }, ref) => {
     const [checked, setChecked] = useState(prefill || isMulti ? [] : null);
 
     return (
@@ -55,13 +55,19 @@ const Checkbox = forwardRef(
                   name={`${name}[${value}]`}
                   ref={ref}
                   checked={checked?.includes(value)}
-                  onChange={() =>
-                    setChecked(
-                      !checked?.includes(value)
-                        ? checked?.length < 2 && [...checked, value]
-                        : checked.filter((s) => s !== value)
-                    )
-                  }
+                  onChange={() => {
+                    if (!checked?.includes(value)) {
+                      setChecked(
+                        max_options
+                          ? checked?.length < max_options
+                            ? [...checked, value]
+                            : checked
+                          : [...checked, value]
+                      );
+                    } else {
+                      setChecked(checked.filter((s) => s !== value));
+                    }
+                  }}
                 />
                 <Text as="span" />
                 {label}
@@ -87,6 +93,7 @@ Checkbox.propTypes = {
   isMulti: PropTypes.bool,
   translatedOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   prefill: PropTypes.string,
+  max_options: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
@@ -96,6 +103,7 @@ Checkbox.defaultProps = {
   isMulti: false,
   translatedOptions: null,
   prefill: null,
+  max_options: null,
 };
 
 export default Checkbox;
