@@ -7,7 +7,7 @@ import { withTranslation } from '../i18n';
 // Components
 import Hero from '../components/Hero';
 import Layouts from '../components/Layouts';
-import ButtonArrow from '../components/General/ButtonArrow';
+// import ButtonArrow from '../components/General/ButtonArrow';
 
 // Styling
 import { Box, Container, HR } from '../components/styles';
@@ -18,7 +18,7 @@ const Thankyou = ({ t, token }) => {
   return (
     <Container pt={[20, 40]} pb={70}>
       <Hero title={t('thankyou:title')} content={t('thankyou:content')} />
-      <ButtonArrow text="Vul meer vragen in" />
+      {/* <ButtonArrow text="Vul meer vragen in" /> */}
       <Box my={70}>
         <HR color="blue" />
       </Box>

@@ -74,50 +74,6 @@
           }
         }
       }
-    ],
-    "subMenu": [
-      {
-        "label": "Gebruiksvoorwaarden",
-        "link": {
-          "target": "_self",
-          "nl": {
-            "href": "/terms",
-            "as": "/gebruiksvoorwaarden"
-          },
-          "en": {
-            "href": "/terms",
-            "as": "/en/terms-of-use"
-          }
-        }
-      },
-      {
-        "label": "Copyright",
-        "link": {
-          "target": "_self",
-          "nl": {
-            "href": "/copyright",
-            "as": "/copyright"
-          },
-          "en": {
-            "href": "/copyright",
-            "as": "/en/copyright"
-          }
-        }
-      },
-      {
-        "label": "Privacyvoorwaarden",
-        "link": {
-          "target": "_self",
-          "nl": {
-            "href": "/privacy",
-            "as": "/privacyvoorwaarden"
-          },
-          "en": {
-            "href": "/privacy",
-            "as": "/en/privacy-conditions"
-          }
-        }
-      }
     ]
   }
 }

@@ -56,6 +56,9 @@ const parseValues = (value, reverse) => {
 
       return valueArray;
     }
+    if (value === '0') {
+      return 0;
+    }
     if (parseFloat(value)) {
       return parseFloat(value);
     }

@@ -8,7 +8,7 @@ import { post } from '../api/callers';
 // Components
 import Hero from '../components/Hero';
 import Layouts from '../components/Layouts';
-import ButtonArrow from '../components/General/ButtonArrow';
+// import ButtonArrow from '../components/General/ButtonArrow';
 
 // Styling
 import { Box, Container, HR } from '../components/styles';
@@ -29,7 +29,7 @@ const Confirm = ({ t, token, locale, email }) => {
   return (
     <Container pt={[20, 40]} pb={70}>
       <Hero title={t('confirm:title')} content={t('confirm:content')} />
-      <ButtonArrow text="Vul meer vragen in" />
+      {/* <ButtonArrow text="Vul meer vragen in" /> */}
       <Box my={70}>
         <HR color="blue" />
       </Box>
