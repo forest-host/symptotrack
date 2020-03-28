@@ -27,6 +27,7 @@ const FormPage = ({
   nextPage,
   prevPage,
   prefill,
+  setValue,
 }) => {
   const [hasError, setError] = useState(false);
   const watchArray = [];
@@ -105,6 +106,7 @@ const FormPage = ({
             translatedErrors={translatedErrors}
             prefill={prefill?.[question]}
             errors={errors}
+            setValue={setValue}
           />
         ))}
       <Flex justifyContent="space-between" flexWrap="wrap">

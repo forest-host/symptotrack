@@ -19,7 +19,6 @@ import { Box } from '../styles';
 
 const Fields = ({
   register,
-  control,
   errors,
   watchFields,
   questions,
@@ -27,6 +26,7 @@ const Fields = ({
   translations,
   translatedErrors,
   prefill,
+  setValue,
 }) => {
   let show = true;
 
@@ -259,7 +259,6 @@ const Fields = ({
                 <Select
                   translation={translations?.[question]}
                   name={question}
-                  control={control}
                   error={errors?.[question]}
                   prefill={translatedPrefill?.length > 0 && translatedPrefill}
                   translatedOptions={translatedOptions}
@@ -283,6 +282,7 @@ const Fields = ({
               name={question}
               error={errors?.[question]}
               prefill={prefill}
+              setValue={setValue}
               ref={register({
                 required: questions[question]?.required && translatedErrors?.required,
               })}
@@ -301,6 +301,7 @@ const Fields = ({
               name={question}
               error={errors?.[question]}
               prefill={prefill}
+              setValue={setValue}
               ref={register({
                 required: questions[question]?.required && translatedErrors?.required,
                 pattern: {

@@ -23,11 +23,11 @@ const Form = ({
   const {
     handleSubmit,
     register,
-    control,
     errors,
     watch,
     formState,
     triggerValidation,
+    setValue,
   } = useForm();
   const { groups } = form || {};
   const watchAllFields = watch();
@@ -43,16 +43,32 @@ const Form = ({
     const requiredFields = [];
 
     groups &&
+      requiredFields?.length === 0 &&
       Object.keys(groups).map((group) => {
         groups[group]?.questions &&
           Object.keys(groups[group]?.questions)?.map((question) => {
-            groups[group]?.questions[question].required && requiredFields.push(question);
+            if (groups[group]?.questions[question].required) {
+              if (groups[group]?.questions[question]?.conditions) {
+                groups[group]?.questions[question]?.conditions?.map((q) => {
+                  const watchQuestion = watch(q.question);
+
+                  if (watchQuestion && q.answer && q.answer === watchQuestion) {
+                    requiredFields.push(question);
+                  }
+                  if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+                    requiredFields.push(question);
+                  }
+                });
+              } else {
+                requiredFields.push(question);
+              }
+            }
           });
       });
 
     requiredFields.map((question) => {
       const watchKeys = Object.keys(watchAllFields);
-      watchKeys.map((s) => {
+      watchKeys.some((s) => {
         if (s.startsWith(`${question}[`)) {
           requiredFields.push(s);
         }
@@ -65,7 +81,7 @@ const Form = ({
       }
     });
 
-    setPercentage(numberToFixed((100 * fieldAmount.length) / requiredFields.length));
+    setPercentage(numberToFixed((100 * fieldAmount.length) / (requiredFields.length - 1)));
   }, [formState]);
 
   // Navigate to next page
@@ -86,7 +102,6 @@ const Form = ({
             index={i}
             key={group}
             register={register}
-            control={control}
             errors={errors}
             translations={translations}
             translatedQuestions={translations?.questions}
@@ -99,6 +114,7 @@ const Form = ({
             nextPage={nextPage}
             prevPage={prevPage}
             prefill={prefill}
+            setValue={setValue}
             {...groups[group]}
           />
         ))}

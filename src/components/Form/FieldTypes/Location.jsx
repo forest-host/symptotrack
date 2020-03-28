@@ -16,7 +16,7 @@ import { MyLocation } from '../../Map';
 import { Box, Button, Flex, Text } from '../../styles';
 import { SLocation, SSelect } from './styles';
 
-const Location = forwardRef(({ name, translation, error, width, placeholder }, ref) => {
+const Location = forwardRef(({ name, translation, error, width, placeholder, setValue }, ref) => {
   const [isLoading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
@@ -59,7 +59,10 @@ const Location = forwardRef(({ name, translation, error, width, placeholder }, r
               isSearchable
               options={suggestions}
               onInputChange={(e) => setSearchTerm(e)}
-              onChange={({ x, y }) => setLocation([y, x])}
+              onChange={({ x, y }) => {
+                setLocation([y, x]);
+                setValue(name, [y, x]);
+              }}
               styles={SSelect}
               placeholder={translation?.placeholder || placeholder}
               isLoading={isLoading}
