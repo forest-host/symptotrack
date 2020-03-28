@@ -48,8 +48,8 @@ const RadioButtons = forwardRef(({ name, options, other, translation, error, pre
               value={option}
               name={name}
               ref={ref}
-              t={console.log(parseValues(option) === prefill)}
-              checked={prefill && parseValues(option) === prefill}
+              // t={console.log(parseValues(option, true) === prefill)}
+              checked={prefill && parseValues(option, true) === prefill}
               onClick={() => setOther(false)}
             />
             <Text as="label" fontSize={18} htmlFor={`${option}-${name}`}>
