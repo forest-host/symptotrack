@@ -1,7 +1,7 @@
 {
   "name": "symptotrack",
   "version": "1.0.0",
-  "description": "Glamrock is the new and improved awesome Development Kit for React powered WorPress sites and applications",
+  "description": "Frontend for symptotrack.org",
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",

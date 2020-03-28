@@ -278,6 +278,10 @@ const Fields = ({
               error={errors?.[question]}
               ref={register({
                 required: questions[question]?.required && translatedErrors?.required,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: translatedErrors?.invalid_text,
+                },
               })}
               {...questions[question]}
             />
