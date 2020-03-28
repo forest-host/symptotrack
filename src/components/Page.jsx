@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { ThemeProvider } from 'styled-components';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 // Components
 import Head from './head';
@@ -24,9 +25,21 @@ Router.onRouteChangeError = () => {
 };
 
 const Page = ({ children, asPath }) => {
+  const { trackPageView } = useMatomo();
   const [isOpen, setOpen] = useState(false);
   const title = 'SymptoTrack';
   const description = 'Tracking Symptoms Worldwide';
+
+  const handleRouteChange = () => {
+    trackPageView();
+  };
+
+  useEffect(() => {
+    Router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

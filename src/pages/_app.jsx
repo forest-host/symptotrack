@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
 
 // Utils
 import withData from '../containers/withData';
@@ -30,18 +31,29 @@ Object.size = (obj) => {
   return size;
 };
 
+const isClient = process.browser;
+let instance;
+
+if (isClient) {
+  instance = createInstance({
+    urlBase: 'https://symptotrack.matomo.cloud/',
+  });
+}
+
 class MyApp extends App {
   render() {
     const { Component, pageProps, appData, router } = this.props;
     const { asPath } = router;
 
     return (
-      <AppProvider {...appData}>
-        <Page asPath={asPath}>
-          <GlobalStyles />
-          <Component {...pageProps} />
-        </Page>
-      </AppProvider>
+      <MatomoProvider value={instance}>
+        <AppProvider {...appData}>
+          <Page asPath={asPath}>
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </Page>
+        </AppProvider>
+      </MatomoProvider>
     );
   }
 }

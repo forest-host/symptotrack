@@ -28,6 +28,7 @@
     ]
   },
   "dependencies": {
+    "@datapunt/matomo-tracker-react": "^0.1.1",
     "@symptotrack/questions": "^0.6.25",
     "@xstyled/styled-components": "^1.16.0",
     "axios": "^0.19.2",
@@ -39,7 +40,7 @@
     "leaflet-geosearch": "^2.7.0",
     "next": "^9.3.1",
     "next-i18next": "^4.2.1",
-    "next-offline": "^4.0.5",
+    "next-offline": "^5.0.0",
     "next-optimized-images": "^2.5.3",
     "nookies": "^2.0.8",
     "nprogress": "^0.2.0",
