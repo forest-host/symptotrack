@@ -11,7 +11,7 @@ import { SCheckbox } from './styles';
 
 const Checkbox = forwardRef(
   ({ name, translation, error, width, isMulti, translatedOptions, prefill }, ref) => {
-    const [checked, setChecked] = useState(prefill);
+    const [checked, setChecked] = useState(prefill || isMulti ? [] : null);
 
     return (
       <Flex as="fieldset" mb={30} mt={[15, 0]} flexDirection="column">
