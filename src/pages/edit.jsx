@@ -13,10 +13,11 @@ import Hero from '../components/Hero';
 import Form from '../components/Form';
 
 // Styling
-import { Box, Container, Row, Flex } from '../components/styles';
+import { Box, Button, Container, Row, Flex, HR } from '../components/styles';
 
 const Edit = ({ i18n, t, type, token }) => {
   const [data, setData] = useState(undefined);
+  const [recovered, setRecovered] = useState(false);
   const { language } = i18n || {};
   const { translatedQuestionnaire, translatedErrors, basicQuestionnaireRecurring } = useApp();
 
@@ -49,13 +50,26 @@ const Edit = ({ i18n, t, type, token }) => {
     formData.locale = getLocale(language);
 
     await post('responses/basic', formData).then((resp) => {
-      const { status, respondent_uuid } = resp || {};
+      const { status } = resp || {};
 
       if (status === 400 || status === 504) {
         const { error } = resp?.data || {};
         console.log(error);
       } else {
-        Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
+        Router.push(`/thankyou?token=${token}`, '/bedankt');
+      }
+    });
+  };
+
+  const recover = async () => {
+    await post(`recoveries/${token}`).then((resp) => {
+      const { status } = resp || {};
+
+      if (status === 400 || status === 504) {
+        const { error } = resp?.data || {};
+        console.log(error);
+      } else {
+        setRecovered(true);
       }
     });
   };
@@ -63,10 +77,14 @@ const Edit = ({ i18n, t, type, token }) => {
   return (
     <Container pb={70}>
       <Hero pt={[20, 40]} title={t('edit:title')} content={t('edit:content')} />
+      {data && !recovered && <Button onClick={() => recover()}>{t('edit:recover')}</Button>}
+      <Box my={70}>
+        <HR color="blue" />
+      </Box>
       <Row>
         <Flex justifyContent="center">
           <Box width={[1, 7 / 12]}>
-            {data && (
+            {data && !recovered && (
               <Form
                 form={basicQuestionnaireRecurring}
                 translations={translatedQuestionnaire}
