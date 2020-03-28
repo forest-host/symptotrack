@@ -36,6 +36,10 @@ const ServiceWorker = (app) => (req, res) => {
   };
   server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', robotsOptions));
 
+  server.get('(*/)?:slug([a-zA-Z0-9-_]+)', (req, res) => {
+    app.render(req, res, '/');
+  });
+
   // Map
   server.get('/kaart', (req, res) => {
     app.render(req, res, '/map');

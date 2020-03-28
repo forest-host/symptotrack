@@ -7,6 +7,7 @@ const H1 = styled.h1`
   ${textAlign};
   ${space};
   font-weight: 900;
+  ${fontWeight};
   font-size: ${px2rem(40)};
   line-height: ${px2rem(40)};
   ${media.small`
