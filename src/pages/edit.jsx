@@ -19,7 +19,7 @@ const Edit = ({ t, type, token }) => {
   const { translatedQuestionnaire, translatedErrors, basicQuestionnaireRecurring } = useApp();
 
   const getData = async (type, token) => {
-    await get({}, `responses/${type}/${token}`).then((resp) => {
+    await get(`responses/${type}/${token}`).then((resp) => {
       setData(resp);
     });
   };
@@ -39,7 +39,7 @@ const Edit = ({ t, type, token }) => {
 
     formData.respondent_uuid = token;
 
-    await post({}, 'responses/basic', formData).then((resp) => {
+    await post('responses/basic', formData).then((resp) => {
       const { status, respondent_uuid } = resp || {};
 
       if (status === 400 || status === 504) {

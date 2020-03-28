@@ -11,6 +11,7 @@ import {
   RangeSlider,
   Checkbox,
   Location,
+  Email,
 } from './FieldTypes';
 
 // Styling
@@ -255,6 +256,23 @@ const Fields = ({
         return (
           <Box mb={100}>
             <Location
+              translation={translations?.[question]}
+              name={question}
+              error={errors?.[question]}
+              ref={register({
+                required: questions[question]?.required && translatedErrors?.required,
+              })}
+              {...questions[question]}
+            />
+          </Box>
+        );
+      }
+      return false;
+    case 'email':
+      if (show) {
+        return (
+          <Box mb={100}>
+            <Email
               translation={translations?.[question]}
               name={question}
               error={errors?.[question]}

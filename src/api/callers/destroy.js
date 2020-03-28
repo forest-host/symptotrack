@@ -9,8 +9,8 @@ import Api from '../api';
  * @param {*} conf
  * @returns
  */
-export default function destroy(ctx, url, conf) {
-  return Api(ctx)
+export default function destroy(url, conf) {
+  return Api()
     .delete(url, conf)
     .then(({ status, data }) => {
       if (status < 200 || status >= 300) throw Error(data);

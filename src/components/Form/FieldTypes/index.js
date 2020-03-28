@@ -6,5 +6,6 @@ import Select from './Select';
 import RangeSlider from './RangeSlider';
 import Checkbox from './Checkbox';
 import Location from './Location';
+import Email from './Email';
 
-export { TextInput, TextArea, Radio, RadioButtons, Select, RangeSlider, Checkbox, Location };
+export { TextInput, TextArea, Radio, RadioButtons, Select, RangeSlider, Checkbox, Location, Email };

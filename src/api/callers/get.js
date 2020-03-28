@@ -10,8 +10,8 @@ import Api from '../api';
  * @param {boolean} [getHeaders=false]
  * @returns
  */
-export default function get(ctx, url, args, conf, getHeaders = false) {
-  return Api(ctx)
+export default function get(url, args, conf, getHeaders = false) {
+  return Api()
     .get(url, args, conf)
     .then(({ status, data, headers }) => {
       if (status < 200 || status >= 300) throw Error(data);

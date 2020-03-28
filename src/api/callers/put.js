@@ -10,8 +10,8 @@ import Api from '../api';
  * @param {*} conf
  * @returns
  */
-export default function put(ctx, url, args, conf) {
-  return Api(ctx)
+export default function put(url, args, conf) {
+  return Api()
     .put(url, args, conf)
     .then(({ status, data }) => {
       if (status < 200 || status >= 300) throw Error(data);

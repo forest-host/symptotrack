@@ -28,14 +28,16 @@ const Questionnaire = ({ t }) => {
       formData[answer] = parseValues(data[answer]);
     });
 
-    await post({}, 'responses/basic', formData).then((resp) => {
+    await post('responses/basic', formData).then((resp) => {
       const { status, respondent_uuid } = resp || {};
 
-      if (status === 400 || status === 504) {
-        const { error } = resp?.data || {};
-        console.log(error);
-      } else {
-        Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
+      if (resp) {
+        if (status === 400 || status === 504) {
+          const { error } = resp?.data || {};
+          console.log(error);
+        } else {
+          Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
+        }
       }
     });
   };
