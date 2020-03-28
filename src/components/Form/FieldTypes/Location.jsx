@@ -53,7 +53,7 @@ const Location = forwardRef(({ name, translation, error, width, placeholder, set
         <Tooltip question={translation.tooltip.question} answer={translation.tooltip.answer} />
       )}
       <Box width={width}>
-        <Box mb={40}>
+        <Box mb={!error?.[0] ? 40 : 0}>
           <SLocation>
             <ReactSelect
               isSearchable
@@ -74,13 +74,15 @@ const Location = forwardRef(({ name, translation, error, width, placeholder, set
             </Button>
           </SLocation>
         </Box>
-        {location && <MyLocation position={location} newLocation={setLocation} />}
       </Box>
       {error?.[0] && (
-        <Text mt={10} fontSize={12}>
+        <Text mt={10} mb={10} fontSize={12}>
           {error[0].message}
         </Text>
       )}
+      <Box width={width}>
+        {location && <MyLocation position={location} newLocation={setLocation} />}
+      </Box>
     </Flex>
   );
 });
