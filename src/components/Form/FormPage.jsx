@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -10,7 +10,7 @@ import ButtonArrow from '../General/ButtonArrow';
 
 // Styling
 import { SFormPage } from './styles';
-import { Box, Flex } from '../styles';
+import { Box, Flex, Text } from '../styles';
 
 const FormPage = ({
   index,
@@ -18,9 +18,9 @@ const FormPage = ({
   control,
   errors,
   watch,
+  triggerValidation,
   questions,
   translatedQuestions,
-  translatedGroup,
   translatedErrors,
   isActive,
   isLast,
@@ -28,19 +28,66 @@ const FormPage = ({
   prevPage,
   prefill,
 }) => {
+  const [hasError, setError] = useState(false);
   const watchArray = [];
   questions &&
     Object.keys(questions).map((question) => {
-      questions[question]?.conditions?.map((q) => {
-        watchArray.push(q.question);
+      questions[question]?.conditions?.map(({ question }) => {
+        !watchArray.includes(question) && watchArray.push(question);
       });
     });
 
   const watchFields = watch(watchArray);
 
-  const validateNextPage = () => {
-    nextPage();
-    window.scrollTo(0, 0);
+  const validateNextPage = async () => {
+    const watchAll = watch();
+    const questionArray = [];
+    const validateArray = [];
+    let valid = false;
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        const watchKeys = Object.keys(watchAll);
+        if (watchKeys.includes(question)) {
+          questionArray.push(question);
+        } else {
+          watchKeys.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    questionArray?.map((question) => {
+      if (questions[question]?.conditions) {
+        questions[question]?.conditions?.map((q) => {
+          const watchQuestion = watch(q.question);
+
+          if (watchQuestion && q.answer && q.answer === watchQuestion) {
+            validateArray.push(question);
+          }
+          if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+            validateArray.push(question);
+          }
+        });
+      } else {
+        validateArray.push(question);
+      }
+    });
+
+    await triggerValidation(validateArray).then((resp) => {
+      if (resp) {
+        valid = true;
+        return setError(false);
+      }
+      return setError(true);
+    });
+
+    if (valid) {
+      nextPage();
+      window.scrollTo(0, 0);
+    }
   };
 
   return (
@@ -82,11 +129,21 @@ const FormPage = ({
               text={i18n.t('nextQuestions')}
               onClick={() => validateNextPage()}
             />
+            {hasError && (
+              <Text mt={10} fontSize={12}>
+                {i18n.t('invalidForm')}
+              </Text>
+            )}
           </Box>
         )}
         {isLast && (
           <Box mb={24} order={[0, 1]}>
             <ButtonArrow type="submit" text={i18n.t('finishQuestionnaire')} />
+            {hasError && (
+              <Text mt={10} fontSize={12}>
+                {i18n.t('invalidForm')}
+              </Text>
+            )}
           </Box>
         )}
       </Flex>

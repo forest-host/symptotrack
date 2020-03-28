@@ -11,5 +11,6 @@
   "emailError": "E-mailadressen komen niet overeen",
   "prevQuestions": "Vorige vragen",
   "nextQuestions": "Volgende vragen",
-  "finishQuestionnaire": "Vragenlijst afronden"
+  "finishQuestionnaire": "Vragenlijst afronden",
+  "invalidForm": "Je bent een vraag vergeten!"
 }
