@@ -5,7 +5,7 @@ const SMyLocation = styled.div`
   position: relative;
 
   .leaflet-container {
-    height: ${px2rem(250)};
+    height: ${px2rem(500)};
   }
 `;
 
