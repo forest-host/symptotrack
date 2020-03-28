@@ -1,6 +1,6 @@
 # SymptoTrack
 
-SymptoTrack is Hike's started pack for websites using WordPress Headless, Next.js, React, GraphQL and the Rest API.
+Frontend for symptotrack.org
 
 # Requirements
 
