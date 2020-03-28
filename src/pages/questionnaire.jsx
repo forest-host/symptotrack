@@ -42,7 +42,7 @@ const Questionnaire = ({ i18n, t }) => {
           const { error } = resp?.data || {};
           console.error(error);
         } else {
-          trackEvent({ category: 'vragenlijst', action: 'submit', name: respondent_uuid });
+          trackEvent({ category: 'vragenlijst', action: 'submit' });
           Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
         }
       }

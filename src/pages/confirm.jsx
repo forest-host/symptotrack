@@ -20,7 +20,7 @@ const Confirm = ({ t, token, locale, email }) => {
 
   const confirmEmail = async (token, locale, email) => {
     await post(`confirm/${token}`, { locale, email }).then(() => {
-      trackEvent({ category: 'email', action: 'confirm', name: email });
+      trackEvent({ category: 'email', action: 'confirm' });
     });
   };
 
