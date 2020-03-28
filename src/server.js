@@ -18,13 +18,10 @@ const ServiceWorker = (app) => (req, res) => {
   app.serveStatic(req, res, filePath);
 };
 
-(async () => {
-  await app.prepare();
+app.prepare().then(() => {
   const server = express();
 
-  await nextI18next.initPromise;
   server.use(nextI18NextMiddleware(nextI18next));
-
   server.use(compression());
 
   // Handle robots.txt file
@@ -35,6 +32,9 @@ const ServiceWorker = (app) => (req, res) => {
     },
   };
   server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', robotsOptions));
+
+  // handle next files
+  server.get('/_next/*', (req, res) => handle(req, res));
 
   // Map
   server.get('/kaart', (req, res) => {
@@ -69,9 +69,6 @@ const ServiceWorker = (app) => (req, res) => {
     app.render(req, res, '/thankyou');
   });
 
-  // handle next files
-  server.get('/_next/*', (req, res) => handle(req, res));
-
   // ServiceWorker
   server.get('/service-worker.js', ServiceWorker(app));
 
@@ -84,4 +81,4 @@ const ServiceWorker = (app) => (req, res) => {
     // eslint-disable-next-line no-console
     console.log(`> Ready on http://localhost:${port}`);
   });
-})();
+});

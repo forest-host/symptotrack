@@ -47,7 +47,7 @@ const Radio = forwardRef(({ name, options, other, translation, error, prefill },
               name={name}
               checked={checked === option}
               ref={ref}
-              onClick={() => {
+              onChange={() => {
                 setOther(false);
                 setChecked(option);
               }}
@@ -66,7 +66,7 @@ const Radio = forwardRef(({ name, options, other, translation, error, prefill },
               name={name}
               checked={checked === 'other'}
               ref={ref}
-              onClick={() => {
+              onChange={() => {
                 setOther(true);
                 setChecked('other');
               }}
@@ -85,7 +85,7 @@ const Radio = forwardRef(({ name, options, other, translation, error, prefill },
               name={name}
               checked={checked === 'skip'}
               ref={ref}
-              onClick={() => {
+              onChange={() => {
                 setOther(false);
                 setChecked('skip');
               }}

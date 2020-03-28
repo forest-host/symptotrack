@@ -48,7 +48,7 @@ const RadioButtons = forwardRef(
                 name={name}
                 ref={ref}
                 checked={checked === option}
-                onClick={() => {
+                onChange={() => {
                   setOther(false);
                   setChecked(option);
                 }}
@@ -68,7 +68,7 @@ const RadioButtons = forwardRef(
                 name={name}
                 ref={ref}
                 checked={checked === 'other'}
-                onClick={() => {
+                onChange={() => {
                   setOther(true);
                   setChecked('other');
                 }}
@@ -88,7 +88,7 @@ const RadioButtons = forwardRef(
                 name={name}
                 ref={ref}
                 checked={checked === 'skip'}
-                onClick={() => {
+                onChange={() => {
                   setOther(false);
                   setChecked('skip');
                 }}
