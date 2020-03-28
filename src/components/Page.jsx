@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles, Flex } from './styles';
-import theme from '../theme';
+
+// Components
 import Head from './head';
 import Header from './Header';
 import Footer from './Footer';
 import Shapes from './General/Shapes';
+
+// Styling
+import { GlobalStyles, Flex } from './styles';
+import theme from '../theme';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
