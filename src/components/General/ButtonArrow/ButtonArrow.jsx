@@ -7,9 +7,17 @@ import Icon from '../../Icon';
 // Styling
 import SButtonArrow from './styles';
 
-const ButtonArrow = ({ text }) => (
-  <SButtonArrow>
-    {text} <Icon icon="ARROW_RIGHT" color="lightGreen" viewBox="0 0 10 8" size={11} />
+const ButtonArrow = ({ text, reversed, ...props }) => (
+  <SButtonArrow reversed={reversed} {...props}>
+    {!reversed && text}
+    <Icon
+      icon="ARROW_RIGHT"
+      color="currentColor"
+      viewBox="0 0 10 8"
+      size={11}
+      rotate={reversed && 180}
+    />
+    {reversed && text}
   </SButtonArrow>
 );
 

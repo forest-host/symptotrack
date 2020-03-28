@@ -40,7 +40,6 @@ const ServiceWorker = (app) => (req, res) => {
     app.render(req, res, '/');
   });
 
-  /*
   // Map
   server.get('/kaart', (req, res) => {
     app.render(req, res, '/map');
@@ -60,7 +59,19 @@ const ServiceWorker = (app) => (req, res) => {
   server.get('/vragenlijst', (req, res) => {
     app.render(req, res, '/questionnaire');
   });
-  */
+
+  server.get('/vragenlijst/:name', (req, res) => {
+    const queryParams = {
+      name: req.query.name,
+    };
+
+    app.render(req, res, '/questionnaire', queryParams);
+  });
+
+  // Thank you page
+  server.get('/bedankt', (req, res) => {
+    app.render(req, res, '/thankyou');
+  });
 
   // handle next files
   server.get('/_next/*', (req, res) => handle(req, res));

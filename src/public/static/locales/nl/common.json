@@ -4,5 +4,8 @@
   "mailUs": "Mail ons",
   "socialMedia": "Of bekijk onze social mediakanalen",
   "close": "Sluiten",
-  "by": "Door"
+  "by": "Door",
+  "rounded": "afgerond",
+  "copyLink": "Kopieer de link door erop te klikken.",
+  "copied": "Gekopieerd!"
 }

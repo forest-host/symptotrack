@@ -7,8 +7,8 @@ import { formatTags } from '../../utils';
 // Styling
 import { Box, Row, Heading, Text } from '../styles';
 
-const Hero = ({ title, content }) => (
-  <Row mb={40}>
+const Hero = ({ title, content, ...props }) => (
+  <Row mb={40} {...props}>
     <Box width={[1, 6 / 12]}>
       <Heading.H2 as="h1" color="blue">
         {title}

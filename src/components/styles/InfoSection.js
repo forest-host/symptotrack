@@ -7,7 +7,7 @@ const InfoSection = styled(Box)`
   z-index: 0;
 
   ${({ shape }) =>
-    shape === 'topLeft' &&
+    shape &&
     css`
       &:after {
         content: '';
@@ -29,6 +29,18 @@ const InfoSection = styled(Box)`
           height: ${px2rem(180)};
         `}
       }
+      ${shape === 'topRight' &&
+        css`
+          &:after {
+            left: inherit;
+            right: ${px2rem(-45)};
+
+            ${media.small`
+              left: inherit;
+              right: ${px2rem(-90)};
+            `}
+          }
+        `}
     `}
 
   @keyframes float {
