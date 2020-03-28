@@ -11,8 +11,8 @@ import { Box, Flex, Text } from '../../styles';
 import { SSelect } from './styles';
 
 const Select = forwardRef(
-  ({ name, translation, error, width, placeholder, translatedOptions, isMulti }, ref) => {
-    const [selected, setSelected] = useState(null);
+  ({ name, translation, error, width, placeholder, translatedOptions, isMulti, prefill }, ref) => {
+    const [selected, setSelected] = useState(prefill || null);
 
     return (
       <Flex mb={30} mt={[15, 0]} flexDirection="column">
@@ -30,6 +30,7 @@ const Select = forwardRef(
           <ReactSelect
             options={translatedOptions}
             onChange={(e) => setSelected(e)}
+            value={selected}
             placeholder={translation?.placeholder || placeholder}
             isMulti={isMulti}
             defaultMenuIsOpen={isMulti}

@@ -9,7 +9,7 @@ import Tooltip from '../../General/Tooltip';
 import { Box, Flex, Text } from '../../styles';
 import { STextArea } from './styles';
 
-const TextArea = forwardRef(({ name, translation, error, width, placeholder }, ref) => (
+const TextArea = forwardRef(({ name, translation, error, width, placeholder, prefill }, ref) => (
   <Flex mb={30} mt={[15, 0]} flexDirection="column">
     {(translation?.question || translation?.description) && (
       <FieldHeader
@@ -27,6 +27,7 @@ const TextArea = forwardRef(({ name, translation, error, width, placeholder }, r
         ref={ref}
         textArea
         placeholder={translation?.placeholder || placeholder}
+        defaultValue={prefill}
       />
     </Box>
     {error && (
@@ -43,6 +44,7 @@ TextArea.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
   placeholder: PropTypes.string,
+  prefill: PropTypes.string,
 };
 
 TextArea.defaultProps = {
@@ -50,6 +52,7 @@ TextArea.defaultProps = {
   error: false,
   width: 1,
   placeholder: ' ',
+  prefill: null,
 };
 
 export default TextArea;

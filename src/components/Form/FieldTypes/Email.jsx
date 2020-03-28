@@ -9,7 +9,7 @@ import Tooltip from '../../General/Tooltip';
 import { Box, Flex, Text } from '../../styles';
 import STextInput from './styles';
 
-const Email = forwardRef(({ name, translation, error, width, placeholder }, ref) => (
+const Email = forwardRef(({ name, translation, error, width, placeholder, prefill }, ref) => (
   <Flex mb={30} mt={[15, 0]} flexDirection="column">
     {(translation?.question || translation?.description) && (
       <FieldHeader
@@ -27,6 +27,7 @@ const Email = forwardRef(({ name, translation, error, width, placeholder }, ref)
         name={name}
         ref={ref}
         placeholder={translation?.placeholder || placeholder}
+        defaultValue={prefill}
       />
     </Box>
     {error && (
@@ -43,6 +44,7 @@ Email.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
   placeholder: PropTypes.string,
+  prefill: PropTypes.string,
 };
 
 Email.defaultProps = {
@@ -50,6 +52,7 @@ Email.defaultProps = {
   error: false,
   width: 1,
   placeholder: ' ',
+  prefill: null,
 };
 
 export default Email;

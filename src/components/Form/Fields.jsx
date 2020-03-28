@@ -153,6 +153,7 @@ const Fields = ({
             return (
               <Box mb={100}>
                 <TextInput
+                  type="number"
                   width={[1 / 2, 1 / 4]}
                   translation={translations?.[question]}
                   name={question}
@@ -167,7 +168,6 @@ const Fields = ({
                       message: translatedErrors?.invalid_integer,
                     },
                   })}
-                  {...questions[question]}
                 />
               </Box>
             );
@@ -213,6 +213,7 @@ const Fields = ({
       }
     case 'multiselect':
       const translatedOptions = [];
+      const translatedPrefill = [];
       translations?.[question]?.options &&
         Object.keys(translations?.[question]?.options).map((option) => {
           translatedOptions.push({
@@ -220,6 +221,15 @@ const Fields = ({
             label: translations[question].options[option],
           });
         });
+
+      if (prefill) {
+        prefill.map((option) => {
+          translatedPrefill.push({
+            value: option,
+            label: translations?.[question]?.options?.[option],
+          });
+        });
+      }
 
       switch (questions[question]?.variant) {
         case 'checkbox':
@@ -251,7 +261,7 @@ const Fields = ({
                   name={question}
                   control={control}
                   error={errors?.[question]}
-                  prefill={prefill}
+                  prefill={translatedPrefill?.length > 0 && translatedPrefill}
                   translatedOptions={translatedOptions}
                   ref={register({
                     required: questions[question]?.required && translatedErrors?.required,

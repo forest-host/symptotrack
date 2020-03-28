@@ -16,7 +16,7 @@ import Form from '../components/Form';
 import { Box, Container, Row, Flex } from '../components/styles';
 
 const Edit = ({ i18n, t, type, token }) => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(undefined);
   const { language } = i18n || {};
   const { translatedQuestionnaire, translatedErrors, basicQuestionnaireRecurring } = useApp();
 
@@ -32,32 +32,11 @@ const Edit = ({ i18n, t, type, token }) => {
     }
   }, []);
 
-  const testPrefill = {
-    location: [51.92, 4.46],
-    responding_for: 'self',
-    year_of_birth: 1995,
-    fever: true,
-    sex: 'male',
-    fever_degrees: 38.4,
-    dry_cough: true,
-    cough_slime: true,
-    short_breath: true,
-    muscle_ache: false,
-    sore_throat: true,
-    headache: false,
-    chills: true,
-    nauseous: true,
-    other_symptoms: 'nee',
-    start_symptoms: 3,
-    fatigue: false,
-    first_symptom: ['cough_slime', 'sore_throat'],
-    contact_with_positively_tested_person: true,
-    quarantined: false,
-    social_distancing: 'yes',
-    home_leaves: 4,
-    travel_last_weeks: ['AGO'],
-    terms_and_conditions: true,
-  };
+  const prefillFormData = {};
+  data &&
+    Object.keys(data).map((answer) => {
+      prefillFormData[answer] = parseValues(data[answer], true);
+    });
 
   const onSubmit = async (data) => {
     const formData = {};
@@ -87,13 +66,15 @@ const Edit = ({ i18n, t, type, token }) => {
       <Row>
         <Flex justifyContent="center">
           <Box width={[1, 7 / 12]}>
-            <Form
-              form={basicQuestionnaireRecurring}
-              translations={translatedQuestionnaire}
-              translatedErrors={translatedErrors}
-              onSubmit={onSubmit}
-              prefill={testPrefill}
-            />
+            {data && (
+              <Form
+                form={basicQuestionnaireRecurring}
+                translations={translatedQuestionnaire}
+                translatedErrors={translatedErrors}
+                onSubmit={onSubmit}
+                prefill={prefillFormData}
+              />
+            )}
           </Box>
         </Flex>
       </Row>
