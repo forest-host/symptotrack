@@ -13,7 +13,7 @@ import { Box, Flex, Text } from '../../styles';
 import STextInput from './styles';
 
 const Email = forwardRef(
-  ({ name, translation, required, error, width, placeholder, prefill }, ref) => {
+  ({ name, translation, required, error, width, placeholder, prefill, setValue }, ref) => {
     const [email, setEmail] = useState('');
     const [confirmEmail, setConfirmEmail] = useState('');
     const [confirmError, setConfirmError] = useState(null);
@@ -38,7 +38,7 @@ const Email = forwardRef(
             placeholder={translation?.placeholder || placeholder}
             required={required}
             defaultValue={prefill}
-            autocomplete="false"
+            autoComplete="off"
             onChange={(e) => setEmail(e.target.value)}
             onKeyUp={() => {
               if (confirmEmail && email !== confirmEmail) {
@@ -47,6 +47,7 @@ const Email = forwardRef(
               } else {
                 setConfirmError(null);
                 setValidEmail(confirmEmail);
+                setValue(name, confirmEmail);
               }
             }}
           />
@@ -57,7 +58,7 @@ const Email = forwardRef(
             value={confirmEmail}
             placeholder={translation?.placeholder_confirm || placeholder}
             required={required}
-            autocomplete="false"
+            autoComplete="off"
             onChange={(e) => setConfirmEmail(e.target.value)}
             onKeyUp={() => {
               if (email !== confirmEmail) {
@@ -66,6 +67,7 @@ const Email = forwardRef(
               } else {
                 setConfirmError(null);
                 setValidEmail(confirmEmail);
+                setValue(name, confirmEmail);
               }
             }}
           />
@@ -88,6 +90,7 @@ Email.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
   placeholder: PropTypes.string,
   prefill: PropTypes.string,
+  setValue: PropTypes.func.isRequired,
 };
 
 Email.defaultProps = {
