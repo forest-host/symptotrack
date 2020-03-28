@@ -58,7 +58,7 @@ const Checkbox = forwardRef(
                   onChange={() =>
                     setChecked(
                       !checked?.includes(value)
-                        ? [...checked, value]
+                        ? checked?.length < 2 && [...checked, value]
                         : checked.filter((s) => s !== value)
                     )
                   }
