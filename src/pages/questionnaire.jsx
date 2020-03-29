@@ -43,6 +43,7 @@ const Questionnaire = ({ i18n, t }) => {
           console.error(error);
         } else {
           trackEvent({ category: 'vragenlijst', action: 'submit' });
+          window.scrollTo(0, 0);
           Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
         }
       }

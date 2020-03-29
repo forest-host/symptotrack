@@ -59,6 +59,7 @@ const Edit = ({ i18n, t, type, token }) => {
         console.log(error);
       } else {
         trackEvent({ category: 'vragenlijst', action: 'edit' });
+        window.scrollTo(0, 0);
         Router.push(`/thankyou?token=${token}`, '/bedankt');
       }
     });
