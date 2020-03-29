@@ -53,7 +53,7 @@ const Fields = ({
         case 'textarea':
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <TextArea
                   translation={translations?.[question]}
                   name={question}
@@ -71,7 +71,7 @@ const Fields = ({
         default:
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <TextInput
                   translation={translations?.[question]}
                   name={question}
@@ -93,7 +93,7 @@ const Fields = ({
         case 'checkbox':
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <Checkbox
                   translation={translations?.[question]}
                   name={question}
@@ -111,7 +111,7 @@ const Fields = ({
         case 'radio':
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <Radio
                   translation={translations?.[question]}
                   name={question}
@@ -129,7 +129,7 @@ const Fields = ({
         default:
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <RadioButtons
                   translation={translations?.[question]}
                   name={question}
@@ -151,7 +151,7 @@ const Fields = ({
         case 'year':
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <TextInput
                   type="number"
                   width={[1 / 2, 1 / 4]}
@@ -176,7 +176,7 @@ const Fields = ({
         case 'temperature':
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <RangeSlider
                   name={question}
                   error={errors?.[question]}
@@ -195,7 +195,7 @@ const Fields = ({
         default:
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <RangeSlider
                   name={question}
                   error={errors?.[question]}
@@ -235,7 +235,7 @@ const Fields = ({
         case 'checkbox':
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <Checkbox
                   translation={translations?.[question]}
                   name={question}
@@ -255,7 +255,7 @@ const Fields = ({
         default:
           if (show) {
             return (
-              <Box mb={100}>
+              <Box mb={100} id={`field-${question}`}>
                 <Select
                   translation={translations?.[question]}
                   name={question}
@@ -276,7 +276,7 @@ const Fields = ({
     case 'coordinates':
       if (show) {
         return (
-          <Box mb={100}>
+          <Box mb={100} id={`field-${question}`}>
             <Location
               translation={translations?.[question]}
               name={question}
@@ -295,7 +295,7 @@ const Fields = ({
     case 'email':
       if (show) {
         return (
-          <Box mb={100}>
+          <Box mb={100} id={`field-${question}`}>
             <Email
               translation={translations?.[question]}
               name={question}
