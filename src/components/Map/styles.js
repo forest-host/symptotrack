@@ -1,7 +1,15 @@
 import styled from '@xstyled/styled-components';
 import { px2rem } from '../../utils';
 
-const SMyLocation = styled.div`
+const SMap = styled.div`
+  position: relative;
+
+  .leaflet-container {
+    height: ${px2rem(600)};
+  }
+`;
+
+export const SMyLocation = styled.div`
   position: relative;
 
   .leaflet-container {
@@ -9,4 +17,4 @@ const SMyLocation = styled.div`
   }
 `;
 
-export default SMyLocation;
+export default SMap;
