@@ -40,7 +40,7 @@ const Email = forwardRef(
             autoComplete="nope"
             onPaste={(e) => e.preventDefault()}
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
-            onKeyUp={() => {
+            onBlur={() => {
               if (confirmEmail && email !== confirmEmail) {
                 setConfirmError(i18n.t('emailError'));
                 setValidEmail('');
@@ -60,7 +60,7 @@ const Email = forwardRef(
             autoComplete="nope"
             onChange={(e) => setConfirmEmail(e.target.value.toLowerCase())}
             onPaste={(e) => e.preventDefault()}
-            onKeyUp={() => {
+            onBlur={() => {
               if (email !== confirmEmail) {
                 setConfirmError(i18n.t('emailError'));
                 setValidEmail('');
