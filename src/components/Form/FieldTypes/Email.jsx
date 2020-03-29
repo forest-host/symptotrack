@@ -38,7 +38,7 @@ const Email = forwardRef(
             placeholder={translation?.placeholder || placeholder}
             required={required}
             defaultValue={prefill}
-            autoComplete="off"
+            autoComplete="nope"
             onPaste={(e) => e.preventDefault()}
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
             onKeyUp={() => {
@@ -59,7 +59,7 @@ const Email = forwardRef(
             value={confirmEmail}
             placeholder={translation?.placeholder_confirm || placeholder}
             required={required}
-            autoComplete="off"
+            autoComplete="nope"
             onChange={(e) => setConfirmEmail(e.target.value.toLowerCase())}
             onPaste={(e) => e.preventDefault()}
             onKeyUp={() => {

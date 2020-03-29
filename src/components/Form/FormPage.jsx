@@ -85,6 +85,22 @@ const FormPage = ({
       return setError(true);
     });
 
+    if (errors) {
+      let currentErrors = Object.keys(errors);
+      currentErrors = currentErrors.filter((s) => s !== 'location');
+      const currentError = currentErrors[0];
+
+      const errorEl = document.getElementById(`field-${currentError}`);
+
+      if (errorEl) {
+        window.scrollTo({
+          behavior: 'smooth',
+          left: 0,
+          top: errorEl.offsetTop - 50,
+        });
+      }
+    }
+
     if (valid) {
       nextPage();
       window.scrollTo(0, 0);
