@@ -4,9 +4,9 @@ import { string } from 'prop-types';
 
 const defaultDescription = 'Tracking Symptoms Worldwide';
 const defaultOGURL = '';
-const defaultOGImage = '';
+const defaultOGImage = 'https://www.symptotrack.org/static/avatar.jpg';
 
-const Head = ({ title, url, description, ogImage }) => (
+const Head = ({ title, url, description }) => (
   <NextHead>
     <meta charSet="UTF-8" />
     <title>{title || ''}</title>
@@ -24,8 +24,8 @@ const Head = ({ title, url, description, ogImage }) => (
     <meta property="og:description" content={description || defaultDescription} />
     <meta name="twitter:site" content={url || defaultOGURL} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={ogImage || defaultOGImage} />
-    <meta property="og:image" content={ogImage || defaultOGImage} />
+    <meta name="twitter:image" content={defaultOGImage} />
+    <meta property="og:image" content={defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <link
@@ -49,14 +49,12 @@ Head.propTypes = {
   title: string,
   description: string,
   url: string,
-  ogImage: string,
 };
 
 Head.defaultProps = {
   title: '',
   description: '',
   url: '',
-  ogImage: '',
 };
 
 export default Head;
