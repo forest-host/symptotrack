@@ -39,6 +39,7 @@ const Email = forwardRef(
             required={required}
             defaultValue={prefill}
             autoComplete="off"
+            onPaste={(e) => e.preventDefault()}
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
             onKeyUp={() => {
               if (confirmEmail && email !== confirmEmail) {
@@ -60,6 +61,7 @@ const Email = forwardRef(
             required={required}
             autoComplete="off"
             onChange={(e) => setConfirmEmail(e.target.value.toLowerCase())}
+            onPaste={(e) => e.preventDefault()}
             onKeyUp={() => {
               if (email !== confirmEmail) {
                 setConfirmError(i18n.t('emailError'));
