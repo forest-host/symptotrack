@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Styling
-import SMyLocation from './styles';
+import { SMyLocation } from './styles';
 
 const MyLocation = ({ position, newLocation }) => {
   const [renderMap, setMap] = useState(null);

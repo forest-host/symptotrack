@@ -11,7 +11,15 @@ import Icon from '../../Icon';
 import SShare from './styles';
 import { Box, Flex, Row, Heading, Text } from '../../styles';
 
-const Share = ({ title, content, shareUrl, shareTitle }) => (
+const Share = ({
+  title,
+  content,
+  shareUrl,
+  shareTitle,
+  shareFacebook,
+  shareTwitter,
+  shareEmail,
+}) => (
   <Row mb={70}>
     <Box width={[1, 8 / 12]}>
       {title && <Heading.H3>{title}</Heading.H3>}
@@ -24,7 +32,7 @@ const Share = ({ title, content, shareUrl, shareTitle }) => (
     <Flex mx={-12} mb={30}>
       <SShare
         as="a"
-        href={`http://www.facebook.com/sharer/sharer.php?u=${shareUrl}&t=${shareTitle}"`}
+        href={`http://www.facebook.com/sharer/sharer.php?u=${shareUrl}&t=${shareTitle}&quote=${shareFacebook}`}
         aria-label="Facebook"
         target="_blank"
         mx={12}
@@ -39,7 +47,7 @@ const Share = ({ title, content, shareUrl, shareTitle }) => (
       */}
       <SShare
         as="a"
-        href={`http://www.twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
+        href={`http://www.twitter.com/intent/tweet?url=${shareUrl}&text=${shareTwitter}`}
         aria-label="Twitter"
         target="_blank"
         mx={12}
@@ -62,7 +70,7 @@ const Share = ({ title, content, shareUrl, shareTitle }) => (
     <Flex mx={-12} mb={30}>
       <SShare
         as="a"
-        href={`mailto:?subject=${shareTitle}&body=${shareUrl}`}
+        href={`mailto:?subject=${shareTitle}&body=${shareEmail}`}
         aria-label="Mail"
         target="_blank"
         mx={12}
@@ -89,6 +97,9 @@ Share.propTypes = {
   content: PropTypes.string,
   shareUrl: PropTypes.string,
   shareTitle: PropTypes.string,
+  shareTwitter: PropTypes.string,
+  shareFacebook: PropTypes.string,
+  shareEmail: PropTypes.string,
 };
 
 Share.defaultProps = {
@@ -96,6 +107,9 @@ Share.defaultProps = {
   content: null,
   shareUrl: null,
   shareTitle: null,
+  shareTwitter: null,
+  shareFacebook: null,
+  shareEmail: null,
 };
 
 export default Share;
