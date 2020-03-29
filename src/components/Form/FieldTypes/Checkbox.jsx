@@ -33,7 +33,7 @@ const Checkbox = forwardRef(
               name={name}
               ref={ref}
               checked={checked === 'true' || checked}
-              onChange={() => setChecked(!checked)}
+              onClick={() => setChecked(!checked)}
             />
             <Text as="span" />
             {translation?.options?.true}
@@ -55,7 +55,7 @@ const Checkbox = forwardRef(
                   name={`${name}[${value}]`}
                   ref={ref}
                   checked={checked?.includes(value)}
-                  onChange={() => {
+                  onClick={() => {
                     if (!checked?.includes(value)) {
                       setChecked(
                         max_options
