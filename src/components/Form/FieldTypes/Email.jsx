@@ -33,7 +33,6 @@ const Email = forwardRef(
         )}
         <Box width={width}>
           <STextInput
-            type="email"
             value={email}
             placeholder={translation?.placeholder || placeholder}
             required={required}
@@ -55,7 +54,6 @@ const Email = forwardRef(
         </Box>
         <Box width={width} mt={24}>
           <STextInput
-            type="email"
             value={confirmEmail}
             placeholder={translation?.placeholder_confirm || placeholder}
             required={required}
