@@ -12,7 +12,7 @@ const MyLocation = ({ position, newLocation }) => {
 
     const map = (
       <Map center={position} zoom={12}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
         {position && (
           <Marker
             position={position}
