@@ -35,7 +35,6 @@ const Email = forwardRef(
           <STextInput
             value={email}
             placeholder={translation?.placeholder || placeholder}
-            required={required}
             defaultValue={prefill}
             autoComplete="nope"
             onPaste={(e) => e.preventDefault()}
@@ -56,7 +55,6 @@ const Email = forwardRef(
           <STextInput
             value={confirmEmail}
             placeholder={translation?.placeholder_confirm || placeholder}
-            required={required}
             autoComplete="nope"
             onChange={(e) => setConfirmEmail(e.target.value.toLowerCase())}
             onPaste={(e) => e.preventDefault()}

@@ -31,6 +31,12 @@ const SymptoMap = () => {
     });
   };
 
+  const charts = async (instance) => {
+    const { renderCharts } = require('./leaflet');
+
+    await renderCharts(instance, data);
+  };
+
   useEffect(() => {
     // initialize map
     const getMap = require('./leaflet').default;
@@ -41,23 +47,14 @@ const SymptoMap = () => {
   }, []);
 
   useEffect(() => {
-    const { renderCharts } = require('./leaflet');
-
     if (mapInstance) {
-      renderCharts(mapInstance, data);
+      charts(mapInstance);
     }
-  }, [mapInstance]);
-
-  const charts = async (instance) => {
-    const { renderCharts } = require('./leaflet');
-
-    await renderCharts(instance, data);
-  };
+  }, [data]);
 
   useEffect(() => {
     if (mapInstance) {
       getData(mapBounds);
-      charts(mapInstance);
     }
   }, [mapBounds]);
 

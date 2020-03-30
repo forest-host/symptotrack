@@ -3,16 +3,16 @@ import { px2rem } from '../../utils';
 
 const SMap = styled.div`
   position: absolute;
-  top: 0;
+  top: ${px2rem(80)};
   z-index: 0;
-  height: 100%;
+  height: calc(100% - 80px);
   width: 100%;
 
   .leaflet-tile-container {
     height: ${px2rem(128)};
     width: ${px2rem(128)};
 
-    canvas {
+    .chartjs-render-monitor {
       margin-left: ${px2rem(64)};
       margin-top: ${px2rem(64)};
     }

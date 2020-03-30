@@ -14,6 +14,9 @@ const createTiles = (tiles, data) => {
     tile.setAttribute('width', size.x);
     tile.setAttribute('height', size.y);
 
+    tile.strokeStyle = 'red';
+    tile.lineWidth = 1;
+
     if (currentTile) {
       const { fever, dry_cough, fatigue } = currentTile || {};
 
@@ -42,7 +45,7 @@ const createTiles = (tiles, data) => {
             display: false,
           },
           animation: {
-            animateRotate: true,
+            duration: 0,
           },
         },
       });
@@ -50,11 +53,13 @@ const createTiles = (tiles, data) => {
 
     return tile;
   };
+
+  return tiles;
 };
 
 const drawMap = (setMapBounds, data) => {
   const { Map, GridLayer, tileLayer } = require('leaflet');
-  const map = new Map('map', { minZoom: 2, maxZoom: 13, reset: true }).setView([52.5, 6], 8);
+  const map = new Map('map', { minZoom: 2, maxZoom: 13 }).setView([52.5, 6], 8);
   const tiles = new GridLayer();
 
   tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
