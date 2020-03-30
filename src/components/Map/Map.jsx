@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
+import uuid from 'uuid';
+import { Map, Marker, TileLayer, GridLayer } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
+import PieChart from 'react-minimal-pie-chart';
 
 // Utils
 import { get } from '../../api/callers';
 
 // Styling
 import SMap from './styles';
+import theme from '../../theme';
 
 const testData = {
   hits: 100,
@@ -54,26 +60,60 @@ const SymptoMap = () => {
   };
 
   const getMap = async () => {
-    const { Map, Marker, TileLayer } = require('react-leaflet');
+    const { map: test, DivIcon, Point } = require('leaflet');
 
-    const tiles = [];
+    console.log(test.layerPointToLatLng(33, 20));
 
-    testData?.tiles?.map(({ key }) => {
-      tiles.push(key);
-    });
+    const clusterIconCreateFunction = (cluster) => {
+      const childs = cluster.getAllChildMarkers();
+
+      const clusterData = [
+        { type: 'fever', title: 'Fever', value: 0, color: theme.colors.blue },
+        { type: 'dry_cough', title: 'Dry cough', value: 0, color: theme.colors.orange },
+        { type: 'fatigue', title: 'Fatigue', value: 0, color: theme.colors.lightGreen },
+      ];
+
+      childs?.map(({ options: { options } }) => {
+        options &&
+          Object.keys(options).map((option) => {
+            clusterData?.map((s) => {
+              if (option === s.type) {
+                s.value += options[option];
+              }
+            });
+          });
+      });
+
+      return new DivIcon({
+        html: ReactDOMServer.renderToStaticMarkup(<PieChart data={clusterData} />),
+        className: 'marker-cluster-custom',
+        iconSize: new Point(40, 40),
+      });
+    };
 
     const map = (
-      <Map center={[52.1326, 5.2913]} zoom={7}>
+      <Map
+        className="markercluster-map"
+        center={[51.0, 19.0]}
+        maxZoom={18}
+        minZoom={2}
+        zoom={4}
+        animate
+      >
         <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
 
-        {tiles?.map((tile) => (
-          <TileLayer
-            url={`https://tiles.stadiamaps.com/tiles/alidade_smooth/${tile}.png`}
-            opacity={0}
-          >
-            <Marker />
-          </TileLayer>
-        ))}
+        <MarkerClusterGroup
+          iconCreateFunction={clusterIconCreateFunction}
+          spiderfyOnMaxZoom={false}
+          singleMarkerMode
+        >
+          {testData?.tiles?.map(({ key, ...props }) => {
+            const split = key.split('/');
+            const latLng = [split[2], split[1]];
+
+            return <Marker key={uuid()} position={latLng} options={props} />;
+          })}
+        </MarkerClusterGroup>
       </Map>
     );
 

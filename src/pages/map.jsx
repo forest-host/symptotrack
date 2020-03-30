@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -11,14 +11,23 @@ import Hero from '../components/Hero';
 // Styling
 import { Container } from '../components/styles';
 
-const Map = ({ t }) => (
-  <>
-    <Container pt={[20, 40]} pb={70}>
-      <Hero title={t('map:title')} content={t('map:content')} />
-    </Container>
-    {/* <SymptoMap /> */}
-  </>
-);
+const Map = ({ t }) => {
+  const [map, setMap] = useState(null);
+
+  useEffect(() => {
+    const SymptoMap = require('../components/Map').default;
+    setMap(<SymptoMap />);
+  }, []);
+
+  return (
+    <>
+      <Container pt={[20, 40]} pb={70}>
+        <Hero title={t('map:title')} content={t('map:content')} />
+      </Container>
+      {/* map */}
+    </>
+  );
+};
 
 Map.propTypes = {
   t: PropTypes.func.isRequired,
