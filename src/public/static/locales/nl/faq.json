@@ -24,7 +24,7 @@
         },
         {
           "question": "Welke symptomen worden geregistreerd? En waarom deze?",
-          "answer": "SymptoTrack vraagt jou om jouw symptomen te registreren, maar hoe maken wij de keuze welke symptomen er worden opgeslagen? Dat doen wij niet op basis van onze eigen kennis, maar we kijken naar het meest recente onderzoek dat door de WHO wordt gepubliceerd. De lijst met symptomen die wij op dit moment registreren zijn gebaseerd op onderzoek onder grofweg 55.000 mensen die positief getest met COVID-19. Voor de vragenlijst richten wij ons op de 10 meest voorkomende symptomen. Wanneer nieuw onderzoek uitwijst dat er nog andere symptomen zijn, wordt de vragenlijst geupdate."
+          "answer": "SymptoTrack vraagt jou om jouw symptomen te registreren, maar hoe maken wij de keuze welke symptomen er worden opgeslagen? Dat doen wij niet op basis van onze eigen kennis, maar we kijken naar het meest recente onderzoek dat door de WHO wordt gepubliceerd. De lijst met symptomen die wij op dit moment registreren is gebaseerd op onderzoek onder grofweg 55.000 mensen die positief getest met COVID-19. Voor de vragenlijst richten wij ons op de 10 meest voorkomende symptomen. Wanneer nieuw onderzoek uitwijst dat er nog andere symptomen zijn, wordt de vragenlijst geupdate."
         },
         {
           "question": "Welke partijen werken er aan SymptoTrack?",
@@ -36,7 +36,7 @@
       "title": "Over jouw privacy",
       "items": [
         {
-          "question": "Wat gebeurd er met mijn data?",
+          "question": "Wat gebeurt er met mijn data?",
           "answer": "De informatie die jij deelt is de sleutel tot het in kaart brengen van de verspreiding van het coronavirus (COVID-19). SymptoTrack verwerkt jouw data voor de symptoom kaart. Met deze kaart kunnen alle Nederlanders zien hoe het virus zich verspreidt bij hen in de buurt. SymptoTrack is open-source, dat wil zeggen dat de data voor iedereen toegankelijk is. Op die manier hebben artsen, journalisten en epidemiologen direct toegang tot de nieuwste inzichten om de effecten van corona COVID-19 zo veel mogelijk beperken. Om te voorkomen dat anderen kunnen achterhalen welke informatie jij hebt ingevuld is de gehele vragenlijst zo ingericht dat wij geen persoonsgegevens van jou verzamelen. Persoonsgegevens zijn informatie waarmee iemand in staat is te achterhalen van wie de data is. Denk hierbij aan je telefoonnummer, naam of geboortedatum."
         },
         {
