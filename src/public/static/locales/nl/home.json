@@ -11,7 +11,7 @@
     "string": "mensen",
     "content": "hebben hun symptomen al gemeld",
     "link": {
-      "label": "Kijk hier hoe de kaart van Nederland er uit ziet",
+      "label": "Kijk hier hoe de kaart van Nederland eruit ziet",
       "target": "_self",
       "href": "/map",
       "as": "/kaart"
