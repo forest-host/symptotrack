@@ -44,7 +44,7 @@ const SymptoMap = () => {
     const { renderCharts } = require('./leaflet');
 
     if (mapInstance) {
-      renderCharts(mapInstance, data, true);
+      renderCharts(mapInstance, data);
     }
   }, [mapInstance]);
 

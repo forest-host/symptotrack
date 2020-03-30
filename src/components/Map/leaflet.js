@@ -11,8 +11,8 @@ const createTiles = (tiles, data) => {
     const newCoords = `${coords.z}/${coords.x}/${coords.y}`;
     const currentTile = data?.tiles?.find(({ key }) => key === newCoords);
 
-    tile.setAttribute('width', size.x / 2);
-    tile.setAttribute('height', size.y / 2);
+    tile.setAttribute('width', size.x);
+    tile.setAttribute('height', size.y);
 
     if (currentTile) {
       const { fever, dry_cough, fatigue } = currentTile || {};
@@ -80,8 +80,8 @@ const drawMap = (setMapBounds, data) => {
 };
 
 export const renderCharts = async (map, data) => {
-  const layer =
-    map?._layers && Object.keys(map._layers).filter((layer) => !map._layers[layer]._url);
+  const layer = map?._layers && Object.keys(map._layers).find((layer) => !map._layers[layer]._url);
+
   const tiles = map?._layers[layer];
 
   createTiles(tiles, data);

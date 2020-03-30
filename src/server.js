@@ -64,11 +64,9 @@ app.prepare().then(() => {
   });
 
   // ServiceWorker
-  /*
   server.get('/service-worker.js', (req, res) => {
     res.sendFile(path.join(__dirname, '.next', 'service-worker.js'));
   });
-  */
 
   // Fallback handler
   server.get('*', (req, res) => handle(req, res));
