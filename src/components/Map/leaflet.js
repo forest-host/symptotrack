@@ -23,18 +23,15 @@ const createTiles = (tiles, data) => {
           display: false,
         },
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: ['Koorts', 'Droge hoest', 'Vermoeidheid'],
           datasets: [
             {
               label: 'Symptoms',
               data: [fever, dry_cough, fatigue],
               backgroundColor: [
-                pattern.draw('diagonal-right-left', 'rgb(26, 26, 26, 0.2)'),
-                pattern.draw('diagonal-right-left', 'rgb(27, 66, 216, 0.2)'),
-                pattern.draw('diagonal-right-left', 'rgb(255, 160, 21, 0.2)'),
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
+                pattern.draw('diagonal-right-left', 'rgb(26, 26, 26, 0.4)'),
+                pattern.draw('diagonal-right-left', 'rgb(27, 66, 216, 0.4)'),
+                pattern.draw('diagonal-right-left', 'rgb(255, 160, 21, 0.4)'),
               ],
               borderWidth: 0,
             },
@@ -57,7 +54,7 @@ const createTiles = (tiles, data) => {
 
 const drawMap = (setMapBounds, data) => {
   const { Map, GridLayer, tileLayer } = require('leaflet');
-  const map = new Map('map').setView([51.0, 19.0], 6);
+  const map = new Map('map', { minZoom: 2, maxZoom: 13 }).setView([52.5, 6], 8);
   const tiles = new GridLayer();
 
   tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);

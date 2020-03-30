@@ -9,11 +9,11 @@ import SMap from './styles';
 const SymptoMap = () => {
   const [mapInstance, setMapInstance] = useState(null);
   const [mapBounds, setMapBounds] = useState({
-    zoom: 6,
-    top: 53.855,
-    left: 3.086,
-    bottom: 50.584,
-    right: 7.549,
+    zoom: 7,
+    top: 54.4,
+    left: -1.22,
+    bottom: 51,
+    right: 14.6,
   });
   const [data, setData] = useState(null);
 
@@ -48,12 +48,16 @@ const SymptoMap = () => {
     }
   }, [mapInstance]);
 
-  useEffect(() => {
+  const charts = async (instance) => {
     const { renderCharts } = require('./leaflet');
 
+    await renderCharts(instance, data);
+  };
+
+  useEffect(() => {
     if (mapInstance) {
       getData(mapBounds);
-      renderCharts(mapInstance, data);
+      charts(mapInstance);
     }
   }, [mapBounds]);
 

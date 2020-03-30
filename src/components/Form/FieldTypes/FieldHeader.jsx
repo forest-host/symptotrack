@@ -9,9 +9,7 @@ const FieldHeader = ({ question, description, name }) => (
   <Box mb={24}>
     {question && (
       <Box width={7 / 12}>
-        <SLabel as="span" htmlFor={name}>
-          {question}
-        </SLabel>
+        <SLabel as="span" htmlFor={name} dangerouslySetInnerHTML={{ __html: question }} />
       </Box>
     )}
     {description && (
