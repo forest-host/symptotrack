@@ -1,3 +1,4 @@
+/*
 import React, { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import uuid from 'uuid';
@@ -60,9 +61,10 @@ const SymptoMap = () => {
   };
 
   const getMap = async () => {
-    const { map: test, DivIcon, Point } = require('leaflet');
+    const Leaflet = require('leaflet').default;
+    const { DivIcon, Point } = require('leaflet');
 
-    console.log(test.layerPointToLatLng(33, 20));
+    console.log(Leaflet.layerPointToLatLng(33, 20));
 
     const clusterIconCreateFunction = (cluster) => {
       const childs = cluster.getAllChildMarkers();
@@ -129,3 +131,4 @@ const SymptoMap = () => {
 };
 
 export default SymptoMap;
+*/
