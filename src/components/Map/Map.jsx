@@ -10,7 +10,7 @@ const SymptoMap = () => {
   const [initial, setInitial] = useState(true);
   const [mapInstance, setMapInstance] = useState(null);
   const [mapBounds, setMapBounds] = useState({
-    zoom: 7,
+    zoom: 8,
     top: 54.4,
     left: -1.22,
     bottom: 51,
