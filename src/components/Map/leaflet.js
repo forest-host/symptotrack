@@ -1,10 +1,8 @@
 import Chart from 'chart.js';
 import pattern from 'patternomaly';
 
-const createTiles = async (tiles, data) => {
+const createTiles = (tiles, data) => {
   const { DomUtil, Point } = require('leaflet');
-
-  const passData = data;
 
   if (data) {
     tiles.createTile = (coords) => {
@@ -12,7 +10,7 @@ const createTiles = async (tiles, data) => {
       const ctx = tile.getContext('2d');
       const size = new Point(256, 256);
       const newCoords = `${coords.z}/${coords.x}/${coords.y}`;
-      const currentTile = passData?.tiles?.find(({ key }) => key === newCoords);
+      const currentTile = data?.tiles?.find(({ key }) => key === newCoords);
 
       tile.setAttribute('width', size.x);
       tile.setAttribute('height', size.y);
@@ -52,16 +50,22 @@ const createTiles = async (tiles, data) => {
   return tiles;
 };
 
-const drawMap = (setMapBounds) => {
+const drawMap = (setMapBounds, setGridLayer) => {
   const { Map, GridLayer, tileLayer } = require('leaflet');
   const map = new Map('map', { minZoom: 2, maxZoom: 13 }).setView([52.5, 6], 8);
   const tiles = new GridLayer();
+  setGridLayer(tiles);
 
   tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
   map.on('moveend', () => {
     const bounds = map.getBounds();
     const zoom = map.getZoom();
+
+    if (map.hasLayer(tiles)) {
+      map.removeLayer(tiles);
+      console.log('jaa');
+    }
 
     setMapBounds({
       zoom,
@@ -72,27 +76,12 @@ const drawMap = (setMapBounds) => {
     });
   });
 
-  tiles.addTo(map);
-
   return map;
 };
 
-export const renderCharts = async (map, data, initial, setInitial) => {
-  const { GridLayer } = require('leaflet');
-  let tiles;
-
-  if (initial) {
-    tiles = new GridLayer();
-    setInitial(false);
-  } else {
-    const layer =
-      map?._layers && Object.keys(map._layers).find((layer) => !map._layers[layer]._url);
-    tiles = map?._layers[layer];
-  }
-
-  await createTiles(tiles, data);
-
-  tiles.addTo(map);
+export const renderCharts = async (map, data, gridLayer) => {
+  createTiles(gridLayer, data);
+  gridLayer.addTo(map);
 
   return map;
 };

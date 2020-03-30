@@ -1,37 +1,51 @@
 {
-  "hits": 100,
-  "tiles": [
-    {
-      "key": "8/133/84",
-      "hits": 33,
-      "fever": 16,
-      "dry_cough": 12,
-      "fatigue": 13,
-      "recovered": 0
-    },
-    {
-      "key": "8/133/83",
-      "hits": 32,
-      "fever": 14,
-      "dry_cough": 16,
-      "fatigue": 15,
-      "recovered": 0
-    },
-    {
-      "key": "8/132/84",
-      "hits": 22,
-      "fever": 10,
-      "dry_cough": 9,
-      "fatigue": 12,
-      "recovered": 0
-    },
-    {
-      "key": "8/132/83",
-      "hits": 13,
-      "fever": 6,
-      "dry_cough": 8,
-      "fatigue": 8,
-      "recovered": 0
-    }
-  ]
+  "eight": {
+    "hits": 100,
+    "tiles": [
+      {
+        "key": "8/133/84",
+        "hits": 33,
+        "fever": 16,
+        "dry_cough": 12,
+        "fatigue": 13,
+        "recovered": 0
+      },
+      {
+        "key": "8/133/83",
+        "hits": 32,
+        "fever": 14,
+        "dry_cough": 16,
+        "fatigue": 15,
+        "recovered": 0
+      },
+      {
+        "key": "8/132/84",
+        "hits": 22,
+        "fever": 10,
+        "dry_cough": 9,
+        "fatigue": 12,
+        "recovered": 0
+      },
+      {
+        "key": "8/132/83",
+        "hits": 13,
+        "fever": 6,
+        "dry_cough": 8,
+        "fatigue": 8,
+        "recovered": 0
+      }
+    ]
+  },
+  "nine": {
+    "hits": 14,
+    "tiles": [
+      { "key": "9/263/168", "hits": 8, "fever": 2, "dry_cough": 4, "fatigue": 5, "recovered": 0 },
+      { "key": "9/263/168", "hits": 8, "fever": 2, "dry_cough": 4, "fatigue": 5, "recovered": 0 },
+      { "key": "9/263/169", "hits": 2, "fever": 1, "dry_cough": 2, "fatigue": 2, "recovered": 0 },
+      { "key": "9/265/169", "hits": 1, "fever": 1, "dry_cough": 1, "fatigue": 1, "recovered": 0 },
+      { "key": "9/264/169", "hits": 1, "fever": 0, "dry_cough": 1, "fatigue": 1, "recovered": 0 },
+      { "key": "9/262/169", "hits": 1, "fever": 1, "dry_cough": 1, "fatigue": 1, "recovered": 0 },
+      { "key": "9/262/168", "hits": 1, "fever": 0, "dry_cough": 1, "fatigue": 0, "recovered": 0 }
+    ]
+  }
 }

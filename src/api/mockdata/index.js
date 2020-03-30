@@ -1,3 +1,3 @@
 import tiles from './tiles';
 
-export { tiles };
+export default tiles;
