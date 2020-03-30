@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
       `}
   }
 
+  main {
+    z-index: 0;
+  }
+
   *,
   *::before,
   *::after {
