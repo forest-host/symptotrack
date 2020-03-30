@@ -2,8 +2,11 @@ import styled from '@xstyled/styled-components';
 import { px2rem } from '../../utils';
 
 const SMap = styled.div`
-  position: relative;
-  height: ${px2rem(600)};
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
 
   .leaflet-tile-container {
     height: ${px2rem(128)};

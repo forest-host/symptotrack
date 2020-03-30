@@ -60,7 +60,7 @@ const drawMap = (setMapBounds, data) => {
   const map = new Map('map').setView([51.0, 19.0], 6);
   const tiles = new GridLayer();
 
-  tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png').addTo(map);
+  tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
   map.on('moveend', () => {
     const bounds = map.getBounds();

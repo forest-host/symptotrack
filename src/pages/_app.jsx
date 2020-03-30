@@ -43,12 +43,12 @@ if (isClient) {
 class MyApp extends App {
   render() {
     const { Component, pageProps, appData, router } = this.props;
-    const { asPath } = router;
+    const { asPath, route } = router;
 
     return (
       <MatomoProvider value={instance}>
         <AppProvider {...appData}>
-          <Page asPath={asPath}>
+          <Page asPath={asPath} route={route}>
             <GlobalStyles />
             <Component {...pageProps} />
           </Page>

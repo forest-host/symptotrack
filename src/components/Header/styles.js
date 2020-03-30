@@ -3,6 +3,7 @@ import { px2rem, media } from '../../utils';
 
 const SHeader = styled.header`
   position: relative;
+  z-index: 1;
   border-bottom: 2px solid blue;
   background-color: beige;
 

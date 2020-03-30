@@ -5,9 +5,17 @@ import { px2rem, media } from '../../utils';
 const Container = styled.div`
   ${space};
   width: 100%;
-  max-width: ${(props) => props.theme.gridSize};
-  ${(props) =>
-    !props.noPadding &&
+  max-width: ${({ theme }) => theme.gridSize};
+
+  ${({ relative }) =>
+    relative &&
+    css`
+      position: relative;
+      z-index: 1;
+    `}
+
+  ${({ noPadding }) =>
+    !noPadding &&
     css`
       padding-left: ${px2rem(15)};
       padding-right: ${px2rem(15)};

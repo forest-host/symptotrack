@@ -13,7 +13,7 @@ import { Container } from '../components/styles';
 
 const Map = ({ t, test }) => (
   <>
-    <Container pt={[20, 40]} pb={70}>
+    <Container pt={[20, 40]} pb={70} relative>
       <Hero title={t('map:title')} content={t('map:content')} />
     </Container>
     {test && <SymptoMap />}

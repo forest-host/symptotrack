@@ -24,9 +24,10 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Page = ({ children, asPath }) => {
+const Page = ({ children, asPath, route }) => {
   const { trackPageView } = useMatomo();
   const [isOpen, setOpen] = useState(false);
+  const isMap = route === '/map';
   const title = 'SymptoTrack';
   const description = 'Tracking Symptoms Worldwide';
 
@@ -49,7 +50,7 @@ const Page = ({ children, asPath }) => {
         <Header asPath={asPath} isOpen={isOpen} setOpen={setOpen} />
         <Shapes />
         <main>{children}</main>
-        <Footer />
+        {!isMap && <Footer />}
       </Flex>
     </ThemeProvider>
   );
