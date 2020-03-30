@@ -7,6 +7,7 @@ import { get } from '../../api/callers';
 import SMap from './styles';
 
 const SymptoMap = () => {
+  const [initial, setInitial] = useState(true);
   const [mapInstance, setMapInstance] = useState(null);
   const [mapBounds, setMapBounds] = useState({
     zoom: 7,
@@ -31,24 +32,20 @@ const SymptoMap = () => {
     });
   };
 
-  const charts = async (instance) => {
-    const { renderCharts } = require('./leaflet');
-
-    await renderCharts(instance, data);
-  };
-
   useEffect(() => {
     // initialize map
     const getMap = require('./leaflet').default;
-    const map = getMap(setMapBounds, data);
+    const map = getMap(setMapBounds);
 
     setMapInstance(map);
     getData(mapBounds);
   }, []);
 
   useEffect(() => {
+    const { renderCharts } = require('./leaflet');
+
     if (mapInstance) {
-      charts(mapInstance);
+      renderCharts(mapInstance, data, initial, setInitial);
     }
   }, [data]);
 
