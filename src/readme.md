@@ -1,5 +1,4 @@
 # How to setup frontend proxy on valet
-
 - if you run valet secure sitename, valet creates a config file for this site
 - open /Users/username/.config/valet/Nginx/sitename.test
 - add the following code at the end :
