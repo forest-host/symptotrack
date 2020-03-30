@@ -54,7 +54,7 @@ const createTiles = (tiles, data) => {
 
 const drawMap = (setMapBounds, data) => {
   const { Map, GridLayer, tileLayer } = require('leaflet');
-  const map = new Map('map', { minZoom: 2, maxZoom: 13 }).setView([52.5, 6], 8);
+  const map = new Map('map', { minZoom: 2, maxZoom: 13, reset: true }).setView([52.5, 6], 8);
   const tiles = new GridLayer();
 
   tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
