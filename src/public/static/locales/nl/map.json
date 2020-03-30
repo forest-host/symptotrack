@@ -1,4 +1,4 @@
 {
   "title": "De SymptomenKaart",
-  "content": "De kaart wordt zichtbaar wanneer de eerste set data verzameld is."
+  "content": "Bij 1500 ingevulde vragenlijsten van mensen met symptomen wordt de kaart geactiveerd! Heb je zelf symptomen, maar heb je de vragenlijst nog niet ingevuld? <a href='/questionnaire' as='/vragenlijst'>Klik dan gauw hier</a>."
 }

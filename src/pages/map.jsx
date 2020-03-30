@@ -15,6 +15,7 @@ const Map = ({ t, test }) => (
   <>
     <Container pt={[20, 40]} pb={70} relative>
       <Hero title={t('map:title')} content={t('map:content')} />
+      {!test && <img src="/static/avatar.jpg" alt="SymptomenKaart" />}
     </Container>
     {test && <SymptoMap />}
   </>

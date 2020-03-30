@@ -9,11 +9,8 @@ export default function mock(useMock) {
 
     mock
       // Mock GET requests
-      .onGet('data/tiles', { params: { z: 8 } })
+      .onGet('data/tiles')
       .reply(200, tiles.eight)
-
-      .onGet('data/tiles', { params: { z: 9 } })
-      .reply(200, tiles.nine)
 
       // Let unmatched requests through
       .onAny()

@@ -6,6 +6,13 @@ const createTiles = (tiles, data) => {
 
   if (data) {
     tiles.createTile = (coords) => {
+      const tileKeys = Object.keys(tiles?._tiles);
+      const checkCoords = `${coords.x}:${coords.y}:${coords.z}`;
+
+      console.log('tiles', tiles?._tiles);
+      console.log('tileKeys', tileKeys);
+      console.log(checkCoords);
+
       const tile = DomUtil.create('canvas', 'leaflet-tile');
       const ctx = tile.getContext('2d');
       const size = new Point(256, 256);
@@ -56,7 +63,9 @@ const drawMap = (setMapBounds, setGridLayer) => {
   const tiles = new GridLayer();
   setGridLayer(tiles);
 
-  tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  tileLayer(
+    'https://api.mapbox.com/styles/v1/gohike/ck8ewra7t0pmm1ippdeojwhs9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ29oaWtlIiwiYSI6ImNrOGV3bWhvbDAxMTczbW15c2w0c3BoZTMifQ.oNy4IXkFUIEvHtLxM8dV-w'
+  ).addTo(map);
 
   map.on('moveend', () => {
     const bounds = map.getBounds();
@@ -64,7 +73,6 @@ const drawMap = (setMapBounds, setGridLayer) => {
 
     if (map.hasLayer(tiles)) {
       map.removeLayer(tiles);
-      console.log('jaa');
     }
 
     setMapBounds({
