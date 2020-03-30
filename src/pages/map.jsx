@@ -6,18 +6,19 @@ import { withTranslation } from '../i18n';
 
 // Components
 import Hero from '../components/Hero';
-// import SymptoMap from '../components/Map';
 
 // Styling
 import { Container } from '../components/styles';
 
 const Map = ({ t }) => {
-  const [map, setMap] = useState(null);
+  // const [map, setMap] = useState(null);
 
+  /*
   useEffect(() => {
     const SymptoMap = require('../components/Map').default;
     setMap(<SymptoMap />);
   }, []);
+  */
 
   return (
     <>
