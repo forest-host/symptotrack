@@ -20,7 +20,7 @@ const SymptoMap = () => {
   const [data, setData] = useState(null);
 
   const getData = async ({ zoom, top, right, bottom, left }) => {
-    await get('data/tiles', {
+    await get('data/spots', {
       params: {
         z: zoom,
         top,
