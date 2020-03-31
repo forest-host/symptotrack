@@ -1,51 +1,449 @@
 {
-  "eight": {
-    "hits": 100,
-    "tiles": [
-      {
-        "key": "8/133/84",
-        "hits": 33,
-        "fever": 16,
-        "dry_cough": 12,
-        "fatigue": 13,
-        "recovered": 0
+  "hits": 53,
+  "spots": [
+    {
+      "key": "11/1053/675",
+      "location": {
+        "lat": 52.086851983331144,
+        "lon": 5.123029612004757
       },
-      {
-        "key": "8/133/83",
-        "hits": 32,
-        "fever": 14,
-        "dry_cough": 16,
-        "fatigue": 15,
-        "recovered": 0
+      "hits": 9,
+      "fever": 1,
+      "dry_cough": 4,
+      "fatigue": 7,
+      "recovered": 0
+    },
+    {
+      "key": "11/1051/673",
+      "location": {
+        "lat": 52.35811504418962,
+        "lon": 4.885199835989624
       },
-      {
-        "key": "8/132/84",
-        "hits": 22,
-        "fever": 10,
-        "dry_cough": 9,
-        "fatigue": 12,
-        "recovered": 0
+      "hits": 4,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1055/674",
+      "location": {
+        "lat": 52.23906533326954,
+        "lon": 5.526912664063275
       },
-      {
-        "key": "8/132/83",
-        "hits": 13,
-        "fever": 6,
-        "dry_cough": 8,
-        "fatigue": 8,
-        "recovered": 0
-      }
-    ]
-  },
-  "nine": {
-    "hits": 14,
-    "tiles": [
-      { "key": "9/263/168", "hits": 8, "fever": 2, "dry_cough": 4, "fatigue": 5, "recovered": 0 },
-      { "key": "9/263/168", "hits": 8, "fever": 2, "dry_cough": 4, "fatigue": 5, "recovered": 0 },
-      { "key": "9/263/169", "hits": 2, "fever": 1, "dry_cough": 2, "fatigue": 2, "recovered": 0 },
-      { "key": "9/265/169", "hits": 1, "fever": 1, "dry_cough": 1, "fatigue": 1, "recovered": 0 },
-      { "key": "9/264/169", "hits": 1, "fever": 0, "dry_cough": 1, "fatigue": 1, "recovered": 0 },
-      { "key": "9/262/169", "hits": 1, "fever": 1, "dry_cough": 1, "fatigue": 1, "recovered": 0 },
-      { "key": "9/262/168", "hits": 1, "fever": 0, "dry_cough": 1, "fatigue": 0, "recovered": 0 }
-    ]
-  }
+      "hits": 2,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1053/680",
+      "location": {
+        "lat": 51.57286140136421,
+        "lon": 5.122121516615152
+      },
+      "hits": 2,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1052/675",
+      "location": {
+        "lat": 52.09186953725293,
+        "lon": 5.079674092121422
+      },
+      "hits": 2,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1052/673",
+      "location": {
+        "lat": 52.36914880340919,
+        "lon": 4.930431414395571
+      },
+      "hits": 2,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 2,
+      "recovered": 0
+    },
+    {
+      "key": "11/1047/676",
+      "location": {
+        "lat": 52.02375406399369,
+        "lon": 4.21792128123343
+      },
+      "hits": 2,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 2,
+      "recovered": 0
+    },
+    {
+      "key": "11/1063/669",
+      "location": {
+        "lat": 52.788936998695135,
+        "lon": 6.893900027498603
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1062/674",
+      "location": {
+        "lat": 52.25231946911663,
+        "lon": 6.795525569468737
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1062/673",
+      "location": {
+        "lat": 52.2707094065845,
+        "lon": 6.791473003104329
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1061/677",
+      "location": {
+        "lat": 51.92859628703445,
+        "lon": 6.581026464700699
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1058/664",
+      "location": {
+        "lat": 53.24873304460198,
+        "lon": 6.149902939796448
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1057/683",
+      "location": {
+        "lat": 51.1925417650491,
+        "lon": 5.949676455929875
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1057/676",
+      "location": {
+        "lat": 52.00566419865936,
+        "lon": 5.876234471797943
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1056/682",
+      "location": {
+        "lat": 51.28997828811407,
+        "lon": 5.740552498027682
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1056/666",
+      "location": {
+        "lat": 53.028905019164085,
+        "lon": 5.682487199082971
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1055/681",
+      "location": {
+        "lat": 51.420402796939015,
+        "lon": 5.5500418972224
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1054/679",
+      "location": {
+        "lat": 51.71608968637884,
+        "lon": 5.363853760063648
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1054/677",
+      "location": {
+        "lat": 51.87993099913001,
+        "lon": 5.287636024877429
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1054/676",
+      "location": {
+        "lat": 51.996328686363995,
+        "lon": 5.3068899270147085
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1054/675",
+      "location": {
+        "lat": 52.06445939373225,
+        "lon": 5.371719840914011
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1053/674",
+      "location": {
+        "lat": 52.21772090066224,
+        "lon": 5.174288721755147
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1053/672",
+      "location": {
+        "lat": 52.4417512351647,
+        "lon": 5.20929423160851
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1052/679",
+      "location": {
+        "lat": 51.62473838310689,
+        "lon": 4.936678363010287
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1052/678",
+      "location": {
+        "lat": 51.810456295497715,
+        "lon": 4.99613338150084
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1052/676",
+      "location": {
+        "lat": 52.023927443660796,
+        "lon": 5.07351066917181
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1052/672",
+      "location": {
+        "lat": 52.4496655119583,
+        "lon": 4.930202923715115
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1051/672",
+      "location": {
+        "lat": 52.385010151192546,
+        "lon": 4.873945936560631
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1050/680",
+      "location": {
+        "lat": 51.575937015004456,
+        "lon": 4.643221562728286
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1050/678",
+      "location": {
+        "lat": 51.796050779521465,
+        "lon": 4.733315035700798
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1050/676",
+      "location": {
+        "lat": 51.978314886800945,
+        "lon": 4.590380368754268
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 0,
+      "recovered": 1
+    },
+    {
+      "key": "11/1050/673",
+      "location": {
+        "lat": 52.371708364225924,
+        "lon": 4.735509669408202
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1050/672",
+      "location": {
+        "lat": 52.383705717511475,
+        "lon": 4.643559688702226
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 0,
+      "recovered": 0
+    },
+    {
+      "key": "11/1049/677",
+      "location": {
+        "lat": 51.922893365845084,
+        "lon": 4.463178534060717
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 0,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1049/674",
+      "location": {
+        "lat": 52.18336687423289,
+        "lon": 4.47212940081954
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1048/677",
+      "location": {
+        "lat": 51.92278628703207,
+        "lon": 4.329563369974494
+      },
+      "hits": 1,
+      "fever": 1,
+      "dry_cough": 1,
+      "fatigue": 1,
+      "recovered": 0
+    },
+    {
+      "key": "11/1048/675",
+      "location": {
+        "lat": 52.07494553178549,
+        "lon": 4.269680203869939
+      },
+      "hits": 1,
+      "fever": 0,
+      "dry_cough": 1,
+      "fatigue": 0,
+      "recovered": 0
+    }
+  ]
 }

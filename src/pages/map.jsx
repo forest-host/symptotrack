@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dynamic from 'next/dynamic';
 
 // Utils
 import { withTranslation } from '../i18n';
 
 // Components
 import Hero from '../components/Hero';
-import SymptoMap from '../components/Map';
 
 // Styling
 import { Container } from '../components/styles';
 
+const SymptoMap = dynamic(() => import('../components/Map'), { ssr: false });
+
 const Map = ({ t, test }) => (
   <>
     <Container pt={[20, 40]} pb={70} relative>
-      <Hero title={t('map:title')} content={t('map:content')} />
+      {!test && <Hero title={t('map:title')} content={t('map:content')} />}
       {!test && <img src="/static/avatar.jpg" alt="SymptomenKaart" />}
     </Container>
     {test && <SymptoMap />}

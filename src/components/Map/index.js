@@ -1,4 +1,4 @@
-import SymptoMap from './Map';
+import SymptoMap from './SymptoMap';
 import MyLocation from './MyLocation';
 
 export { MyLocation };
