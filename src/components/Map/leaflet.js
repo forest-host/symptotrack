@@ -31,7 +31,13 @@ const createTiles = (tiles, data) => {
                   pattern.draw('diagonal-right-left', 'rgb(27, 66, 216, 0.4)'),
                   pattern.draw('diagonal-right-left', 'rgb(255, 160, 21, 0.4)'),
                 ],
+                borderColor: [
+                  'rgb(26, 26, 26, 0.6)',
+                  'rgb(27, 66, 216, 0.6)',
+                  'rgb(255, 160, 21, 0.6)',
+                ],
                 borderWidth: 0,
+                hoverBorderWidth: 2,
               },
             ],
           },
@@ -63,6 +69,10 @@ const drawMap = (setMapBounds, setGridLayer) => {
   map.on('moveend', () => {
     const bounds = map.getBounds();
     const zoom = map.getZoom();
+
+    if (map.hasLayer(tiles)) {
+      map.removeLayer(tiles);
+    }
 
     setMapBounds({
       zoom,
