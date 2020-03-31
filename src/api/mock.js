@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import tiles from './mockdata';
+import spots from './mockdata';
 
 export default function mock(useMock) {
   if (useMock) {
@@ -9,8 +9,8 @@ export default function mock(useMock) {
 
     mock
       // Mock GET requests
-      .onGet('data/tiles')
-      .reply(200, tiles)
+      .onGet('data/spots')
+      .reply(200, spots)
 
       // Let unmatched requests through
       .onAny()

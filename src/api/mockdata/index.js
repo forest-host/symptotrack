@@ -1,3 +1,3 @@
-import tiles from './tiles';
+import spots from './spots';
 
-export default tiles;
+export default spots;

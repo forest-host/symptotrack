@@ -58,7 +58,7 @@ const SymptoMap = () => {
   const createIcon = (details) =>
     L.divIcon({
       className: 'custom-icon',
-      html: ReactDOMServer.renderToString(<MarkerIcon {...details} />),
+      html: ReactDOMServer.renderToStaticMarkup(<MarkerIcon {...details} />),
     });
 
   return (
