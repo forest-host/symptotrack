@@ -15,6 +15,7 @@ const SMap = styled.div`
     .chartjs-render-monitor {
       margin-left: ${px2rem(64)};
       margin-top: ${px2rem(64)};
+      pointer-events: all;
     }
   }
 `;

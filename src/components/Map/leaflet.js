@@ -6,13 +6,6 @@ const createTiles = (tiles, data) => {
 
   if (data) {
     tiles.createTile = (coords) => {
-      const tileKeys = Object.keys(tiles?._tiles);
-      const checkCoords = `${coords.x}:${coords.y}:${coords.z}`;
-
-      console.log('tiles', tiles?._tiles);
-      console.log('tileKeys', tileKeys);
-      console.log(checkCoords);
-
       const tile = DomUtil.create('canvas', 'leaflet-tile');
       const ctx = tile.getContext('2d');
       const size = new Point(256, 256);
@@ -70,10 +63,6 @@ const drawMap = (setMapBounds, setGridLayer) => {
   map.on('moveend', () => {
     const bounds = map.getBounds();
     const zoom = map.getZoom();
-
-    if (map.hasLayer(tiles)) {
-      map.removeLayer(tiles);
-    }
 
     setMapBounds({
       zoom,
