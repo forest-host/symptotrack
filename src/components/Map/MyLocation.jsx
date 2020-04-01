@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styling
 import { SMyLocation } from './styles';
 
-const MyLocation = ({ position, newLocation }) => {
-  const [renderMap, setMap] = useState(null);
+const MyLocation = ({ position, newLocation, center }) => {
+  const { Map, Marker, TileLayer } = require('react-leaflet');
 
-  const getMap = async () => {
-    const { Map, Marker, TileLayer } = require('react-leaflet');
-
-    const map = (
-      <Map center={position} zoom={12}>
+  return (
+    <SMyLocation>
+      <Map center={position || center} zoom={position ? 12 : 7}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {position && (
           <Marker
@@ -25,27 +23,19 @@ const MyLocation = ({ position, newLocation }) => {
           />
         )}
       </Map>
-    );
-
-    setMap(map);
-  };
-
-  useEffect(() => {
-    if (position) {
-      getMap();
-    }
-  }, [position]);
-
-  return <SMyLocation>{renderMap}</SMyLocation>;
+    </SMyLocation>
+  );
 };
 
 MyLocation.propTypes = {
   position: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   newLocation: PropTypes.func.isRequired,
+  center: PropTypes.arrayOf(PropTypes.number),
 };
 
 MyLocation.defaultProps = {
   position: false,
+  center: [52.1326, 5.2913],
 };
 
 export default MyLocation;

@@ -47,7 +47,8 @@ const Button = styled.button`
       color: inherit;
 
       &:hover,
-      &:active {
+      &:active,
+      &:focus {
         background-color: inherit;
       }
     `}

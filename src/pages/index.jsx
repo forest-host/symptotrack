@@ -4,19 +4,20 @@ import Link from 'next/link';
 
 // Utils
 import { withTranslation } from '../i18n';
+import { get } from '../api/callers';
 import { formatTags } from '../utils';
 
 // Components
 import Layouts from '../components/Layouts';
 import ButtonArrow from '../components/General/ButtonArrow';
-// import Counter from '../components/General/Counter';
+import Counter from '../components/General/Counter';
 
 // Styling
 import { Box, Container, Flex, Row, Heading, Text, HR } from '../components/styles';
 
-const Home = ({ t }) => {
+const Home = ({ t, count }) => {
   const button = t('home:button', { returnObjects: true });
-  // const counter = t('home:counter', { returnObjects: true });
+  const counter = t('home:counter', { returnObjects: true });
   const layouts = t('home:layouts', { returnObjects: true });
 
   return (
@@ -37,21 +38,21 @@ const Home = ({ t }) => {
             )}
           </Box>
           <HR color="blue" smallOnly />
-          {/* counter && (
+          {counter && count && (
             <Box mt={[70, 0]} width={[1, 4 / 12]}>
-              <Counter number={13111121} string={counter.string} />
+              <Counter number={count} string={counter.string} />
               <Text as="p" mt={10}>
                 {counter.content}
               </Text>
-              {counter.link && (
+              {/* counter.link && (
                 <Link href={counter.link?.href} as={counter.link?.as} passHref>
                   <a href target={counter.link?.target}>
                     {counter.link?.label}
                   </a>
                 </Link>
-              )}
+              ) */}
             </Box>
-          ) */}
+          )}
         </Flex>
       </Row>
       {layouts && <Layouts layouts={layouts} />}
@@ -61,10 +62,17 @@ const Home = ({ t }) => {
 
 Home.propTypes = {
   t: PropTypes.func.isRequired,
+  count: PropTypes.number,
 };
 
-Home.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'socials', 'home'],
-});
+Home.defaultProps = {
+  count: null,
+};
+
+Home.getInitialProps = async () => {
+  const count = await get('data/count').then((resp) => resp.count);
+
+  return { count, namespacesRequired: ['common', 'socials', 'home'] };
+};
 
 export default withTranslation('home')(Home);

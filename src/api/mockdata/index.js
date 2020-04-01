@@ -1,3 +1,4 @@
 import spots from './spots';
+import count from './count';
 
-export default spots;
+export { spots, count };

@@ -147,7 +147,7 @@ export const SRadio = styled(Box)`
 export const SSelect = {
   control: (provided, { hasValue }) => ({
     display: 'flex',
-    padding: '5px 0',
+    padding: '5px 100px 5px 0',
     border: '2px solid',
     borderColor: theme.colors.blue,
     color: theme.colors.blue,
@@ -160,11 +160,11 @@ export const SSelect = {
   dropdownIndicator: () => ({
     display: 'none',
   }),
-  menu: (provided) => ({
+  menu: (provided, { isMulti }) => ({
     ...provided,
-    position: 'relative',
+    position: isMulti ? 'relative' : 'absolute',
     marginTop: -2,
-    background: 0,
+    background: theme.colors.beige,
     boxShadow: 0,
     border: '2px solid',
     borderColor: theme.colors.blue,
@@ -356,14 +356,22 @@ export const SLocation = styled(Box)`
 
   button {
     position: absolute;
-    top: 5px;
-    right: 5px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     width: ${px2rem(32)};
     height: ${px2rem(32)};
+
+    &:first-of-type {
+      top: 5px;
+      right: 40px;
+    }
+
+    &:last-of-type {
+      top: 5px;
+      right: 5px;
+    }
   }
 `;
 
