@@ -20,6 +20,8 @@ const MarkerIcon = ({ total, ...spot }) => {
       css={{
         width: `${percentage * 10}px`,
         height: `${percentage * 10}px`,
+        maxHeight: 100,
+        maxWidth: 100,
         transform: 'translateX(-27%) translateY(-46%)',
       }}
       viewBoxSize={[percentage * 10, percentage * 10]}

@@ -15,6 +15,7 @@ const SMap = styled.div`
       min-width: ${px2rem(25)};
       min-height: ${px2rem(25)};
       max-width: ${px2rem(100)};
+      max-height: ${px2rem(100)};
     }
   }
 `;
