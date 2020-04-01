@@ -12,7 +12,7 @@ export default function mock(useMock) {
       .onGet('data/spots')
       .reply(200, spots)
 
-      .onGet('data/count')
+      .onGet('data/counts')
       .reply(200, count)
 
       // Let unmatched requests through
