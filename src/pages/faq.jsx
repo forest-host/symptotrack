@@ -21,7 +21,7 @@ const Faq = ({ t }) => {
       <Hero title={t('faq:title')} content={t('faq:content')} />
       {sections && (
         <Row>
-          <Box width={[1, 8 / 12]}>
+          <Box width={[1, 1, 8 / 12]}>
             {sections.map((section) => (
               <FaqSection key={uuid()} {...section} />
             ))}

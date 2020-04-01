@@ -17,8 +17,13 @@ const Container = styled.div`
   ${({ noPadding }) =>
     !noPadding &&
     css`
-      padding-left: ${px2rem(15)};
-      padding-right: ${px2rem(15)};
+      padding-left: ${px2rem(30)};
+      padding-right: ${px2rem(30)};
+
+      ${media.smallOnly`
+        padding-left: ${px2rem(15)};
+        padding-right: ${px2rem(15)};
+      `}
     `}
 `;
 Container.defaultProps = {
@@ -35,8 +40,8 @@ export const Row = styled.div`
     smallFullWidth &&
     css`
       ${media.smallOnly`
-      width: calc(100% + 30px);
-    `}
+        width: calc(100% + 30px);
+      `}
     `}
 `;
 Row.defaultProps = {

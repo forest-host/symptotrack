@@ -60,7 +60,7 @@ const Location = forwardRef(({ name, translation, error, width, placeholder, set
   }, [debouncedSearchTerm]);
 
   return (
-    <Flex mb={30} mt={[15, 0]} width={[1, 2 / 3]} flexDirection="column">
+    <Flex mb={30} mt={[15, 0]} width={[1, 3 / 4]} flexDirection="column">
       {(translation?.question || translation?.description) && (
         <FieldHeader
           name={name}

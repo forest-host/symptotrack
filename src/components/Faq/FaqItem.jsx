@@ -15,8 +15,10 @@ const FaqItem = ({ question, answer, isOpen, setOpen, isLast }) => (
   <SFaqItem isLast={isLast} p={15}>
     <Button noStyle onClick={setOpen} css={{ width: '100%' }}>
       <Flex alignItems="center" justifyContent="space-between">
-        {question && <Heading.H4 pr={10}>{question}</Heading.H4>}
-        <Icon icon={isOpen ? 'MINUS' : 'PLUS'} viewBox="0 0 512 512" size={16} color="blue" />
+        <Box pr={10}>{question && <Heading.H4>{question}</Heading.H4>}</Box>
+        <Box>
+          <Icon icon={isOpen ? 'MINUS' : 'PLUS'} viewBox="0 0 512 512" size={16} color="blue" />
+        </Box>
       </Flex>
     </Button>
     {isOpen && answer && (

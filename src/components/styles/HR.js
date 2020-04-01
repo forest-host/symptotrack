@@ -10,10 +10,10 @@ const HR = styled.hr`
   border-bottom: 2px solid;
   border-color: ${({ color }) => (color ? theme.colors[color] : theme.colors.lightGreen)};
 
-  ${({ smallOnly }) =>
-    smallOnly &&
+  ${({ mediumDown }) =>
+    mediumDown &&
     css`
-      ${media.small`
+      ${media.medium`
       display: none;
     `}
     `}

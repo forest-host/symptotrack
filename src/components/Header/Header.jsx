@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import uuid from 'uuid';
@@ -9,26 +9,28 @@ import { withTranslation } from '../../i18n';
 // Components
 import Hamburger from '../General/Hamburger';
 import MobileMenu from '../MobileMenu';
+import Icon from '../Icon';
 
 // Styling
 import SHeader, { SMenu, SMenuItem } from './styles';
-import { Container, Flex, Row, Text } from '../styles';
+import { Button, Box, Container, Flex, Row, Text } from '../styles';
 
 const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
   const { language } = i18n || {};
   const mainMenu = t('navigation:items', { returnObjects: true }) || {};
+  const cta = t('navigation:cta', { returnObjects: true }) || {};
 
   return (
     <SHeader>
       <Container>
         <Row>
-          <Flex py={15} justifyContent={['center', 'space-between']} alignItems="center">
+          <Flex py={15} justifyContent={['center', 'center', 'space-between']} alignItems="center">
             <Hamburger onClick={() => setOpen(true)} />
             <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
               <a href>
                 <picture>
-                  <source media="(min-width: 641px)" srcSet="/static/logo-big.svg" />
-                  <source media="(max-width: 640px)" srcSet="/static/logo.svg" />
+                  <source media="(min-width: 1025px)" srcSet="/static/logo-big.svg" />
+                  <source media="(max-width: 1024px)" srcSet="/static/logo.svg" />
                   <img src="/static/logo-big.svg" alt="SymptoTrack" />
                 </picture>
               </a>
@@ -42,6 +44,7 @@ const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
                         as="a"
                         fontFamily="heading"
                         fontWeight={700}
+                        fontSize={14}
                         color="blue"
                         target={link.target}
                       >
@@ -52,10 +55,30 @@ const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
                 ))}
               </SMenu>
             )}
+            {cta?.link && typeof cta === 'object' && (
+              <Box ml={15} className="hide-for-medium">
+                <Link href={cta?.link?.[language]?.href} as={cta?.link?.[language]?.as} passHref>
+                  <Button as="a" target={cta?.link?.target} variant="secondary" smaller>
+                    <Text as="span" fontSize={14}>
+                      {cta.label}
+                    </Text>
+                  </Button>
+                </Link>
+              </Box>
+            )}
+            {cta?.link && typeof cta === 'object' && (
+              <Box ml={15} className="show-for-medium questionnaire">
+                <Link href={cta?.link?.[language]?.href} as={cta?.link?.[language]?.as} passHref>
+                  <Button as="a" target={cta?.link?.target} noStyle>
+                    <Icon icon="QUESTIONNAIRE" size={24} color="orange" viewBox="0 0 448 512" />
+                  </Button>
+                </Link>
+              </Box>
+            )}
           </Flex>
         </Row>
       </Container>
-      <MobileMenu isOpen={isOpen} setOpen={setOpen} menu={mainMenu} />
+      <MobileMenu isOpen={isOpen} setOpen={setOpen} menu={mainMenu} cta={cta} />
     </SHeader>
   );
 };

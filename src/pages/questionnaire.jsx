@@ -61,7 +61,7 @@ const Questionnaire = ({ i18n, t }) => {
         />
         <Row>
           <Flex justifyContent="center">
-            <Box width={[1, 7 / 12]}>
+            <Box width={[1, 10 / 12, 7 / 12]}>
               <Form
                 form={basicQuestionnaire}
                 translations={translatedQuestionnaire}

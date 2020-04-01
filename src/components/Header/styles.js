@@ -10,15 +10,26 @@ const SHeader = styled.header`
   img {
     display: block;
   }
+
+  .questionnaire {
+    position: absolute;
+    right: ${px2rem(15)};
+    top: ${px2rem(13)};
+
+    ${media.mediumOnly`
+      right: ${px2rem(30)};
+    `}
+  }
 `;
 
 export const SMenu = styled.ul`
   display: flex;
   padding: 0;
+  margin-left: auto;
   list-style: none;
 
   li {
-    margin: ${px2rem(0, 20)};
+    margin: ${px2rem(0, 15)};
 
     a {
       text-decoration: none;
@@ -29,7 +40,7 @@ export const SMenu = styled.ul`
     `}
   }
 
-  ${media.smallOnly`
+  ${media.mediumDown`
     display: none;
   `}
 `;

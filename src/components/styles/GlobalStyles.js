@@ -79,6 +79,20 @@ const GlobalStyle = createGlobalStyle`
     `}
   }
 
+  .hide-for-medium {
+    ${media.mediumDown`
+      display: none;
+    `}
+  }
+
+  .show-for-medium {
+    display: none;
+
+    ${media.mediumDown`
+      display: block;
+    `}
+  }
+
   .show-for-small {
     display: none;
 

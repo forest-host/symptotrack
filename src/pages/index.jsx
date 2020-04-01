@@ -23,8 +23,13 @@ const Home = ({ t, count }) => {
   return (
     <Container py={40}>
       <Row pt={[0, 40]} pb={70}>
-        <Flex flexDirection={['column', 'row']} justifyContent="space-between" alignItems="center">
-          <Box mb={[70, 0]} width={[1, 5 / 12]}>
+        <Flex
+          flexDirection={['column', 'row']}
+          justifyContent="space-between"
+          alignItems="center"
+          flexWrap="wrap"
+        >
+          <Box mb={[70, 70, 0]} width={[1, 8 / 12, 5 / 12]}>
             <Heading.H1 color="blue">{t('home:title')}</Heading.H1>
             <Text as="p" mb={40}>
               {formatTags(t('home:content'))}
@@ -37,9 +42,9 @@ const Home = ({ t, count }) => {
               </Link>
             )}
           </Box>
-          <HR color="blue" smallOnly />
+          <HR color="blue" mediumDown />
           {counter && count && (
-            <Box mt={[70, 0]} width={[1, 4 / 12]}>
+            <Box mt={[70, 70, 0]} width={[1, 1, 4 / 12]}>
               <Counter number={count} string={counter.string} />
               <Text as="p" mt={10}>
                 {counter.content}

@@ -6,7 +6,11 @@ const SHamburger = styled(Button)`
   position: absolute;
   left: ${px2rem(15)};
 
-  ${media.small`
+  ${media.mediumOnly`
+    left: ${px2rem(30)};
+  `}
+
+  ${media.medium`
     display: none;
   `}
 `;

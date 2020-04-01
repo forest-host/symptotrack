@@ -56,5 +56,19 @@
         }
       }
     }
-  ]
+  ],
+  "cta": {
+    "label": "meld symptomen",
+    "link": {
+      "target": "_self",
+      "nl": {
+        "href": "/questionnaire",
+        "as": "/vragenlijst"
+      },
+      "en": {
+        "href": "/questionnaire",
+        "as": "/en/questionnaire"
+      }
+    }
+  }
 }

@@ -2,7 +2,7 @@ import styled, { css } from '@xstyled/styled-components';
 import { px2rem } from '../../utils';
 
 const Button = styled.button`
-  padding: ${px2rem(16)};
+  padding: ${({ smaller }) => (smaller ? px2rem(10, 16) : px2rem(16))};
   background-color: blue;
   color: white;
   font-weight: bold;
@@ -13,6 +13,8 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
@@ -23,6 +25,19 @@ const Button = styled.button`
     background-color: orange;
     color: black;
   }
+
+  ${({ variant }) =>
+    variant === 'secondary' &&
+    css`
+      background-color: orange;
+      color: black;
+
+      &:hover,
+      &:focus {
+        background-color: black;
+        color: white;
+      }
+    `}
 
   ${({ transparent }) =>
     transparent &&
@@ -53,5 +68,9 @@ const Button = styled.button`
       }
     `}
 `;
+
+Button.defaultProps = {
+  variant: 'primary',
+};
 
 export default Button;

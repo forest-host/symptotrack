@@ -38,7 +38,7 @@ const SMobileMenu = styled.nav`
   ${({ isOpen }) =>
     isOpen &&
     css`
-      ${media.smallOnly`
+      ${media.mediumDown`
         opacity: 1;
         pointer-events: inherit;
       `}
@@ -60,6 +60,11 @@ export const SMenu = styled.ul`
       text-decoration: none;
     }
   }
+
+  ${media.mediumOnly`
+    justify-content: center;
+    height: 100%;
+  `}
 `;
 
 export const SMenuItem = styled.li`

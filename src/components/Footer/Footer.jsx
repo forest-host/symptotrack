@@ -28,13 +28,21 @@ const Footer = ({ t, i18n }) => {
       <Container py={25}>
         <Row>
           <Flex flexDirection="column">
-            <Flex mb={25} flexDirection={['column', 'row']} alignItems={['initial', 'center']}>
+            <Flex
+              mb={25}
+              flexDirection={['column', 'column', 'row']}
+              alignItems={['initial', 'initial', 'center']}
+            >
               <Heading.H4>{footerTitle}</Heading.H4>
-              <Text as="span" ml={[0, '5px']} fontSize={18} fontFamily="heading">
+              <Text as="span" ml={[0, 0, '5px']} fontSize={18} fontFamily="heading">
                 {footerSubTitle}
               </Text>
             </Flex>
-            <Flex flexDirection={['column', 'row']} justifyContent="space-between" mb={30}>
+            <Flex
+              flexDirection={['column', 'column', 'row']}
+              justifyContent="space-between"
+              mb={30}
+            >
               {mainMenu && (
                 <SFooterMenu>
                   {mainMenu.map(({ label, link }) => (
@@ -48,7 +56,7 @@ const Footer = ({ t, i18n }) => {
                   ))}
                 </SFooterMenu>
               )}
-              <Box width={[1, 4 / 12]} mt="6px" className="hide-for-small">
+              <Box width={[1, 1, 4 / 12]} mt={['6px', 20, '6px']} className="hide-for-small">
                 <Text as="span">Ontwikkeld in samenwerking met ...</Text>
               </Box>
             </Flex>

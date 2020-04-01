@@ -14,9 +14,9 @@ import { Box, Flex, Row, Heading, Text, InfoSection } from '../../styles';
 const Card = ({ title, content, shapePosition, includeLink, token }) => (
   <Row mb={[30, 70]} mx={[-15, 0]} smallFullWidth>
     <InfoSection
-      width={[1, 8 / 12]}
+      width={[1, 1, 8 / 12]}
       py={30}
-      pl={[15, 90]}
+      pl={[15, 50, 90]}
       pr={[15, 40]}
       bg="lightGreen"
       shape={shapePosition}

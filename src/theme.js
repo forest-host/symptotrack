@@ -1,4 +1,4 @@
-export const breakpoints = [640, 1024, 1440];
+export const breakpoints = [640, 1023, 1440];
 
 export default {
   gridSize: '1070px',

@@ -1,5 +1,4 @@
 import styled, { css } from '@xstyled/styled-components';
-import { px2rem, media } from '../../utils';
 import { Box } from '../styles';
 
 const SFaqSection = styled.div`
@@ -9,6 +8,10 @@ const SFaqSection = styled.div`
 `;
 
 export const SFaqItem = styled(Box)`
+  h4 {
+    white-space: initial;
+  }
+
   ${({ isLast }) =>
     !isLast &&
     css`
