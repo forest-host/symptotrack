@@ -37,7 +37,7 @@ const Home = ({ t, count }) => {
             {button && (
               <Link href={button.href} as={button.as} passHref>
                 <a href target={button.target}>
-                  <ButtonArrow text="Meld symptomen" />
+                  <ButtonArrow text={button.label} />
                 </a>
               </Link>
             )}

@@ -1,0 +1,10 @@
+{
+  "title": "Oeps!",
+  "content": "Sorry, we kunnen deze pagina niet meer vinden.",
+  "button": {
+    "label": "terug naar home",
+    "target": "_self",
+    "href": "/",
+    "as": "/"
+  }
+}
