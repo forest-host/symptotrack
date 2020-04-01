@@ -10,7 +10,7 @@ const MyLocation = ({ position, newLocation, center }) => {
   return (
     <SMyLocation>
       <Map center={position || center} zoom={position ? 12 : 7}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer url="https://api.mapbox.com/styles/v1/gohike/ck8ewra7t0pmm1ippdeojwhs9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ29oaWtlIiwiYSI6ImNrOGV3bWhvbDAxMTczbW15c2w0c3BoZTMifQ.oNy4IXkFUIEvHtLxM8dV-w" />
         {position && (
           <Marker
             position={position}
