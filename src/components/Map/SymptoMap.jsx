@@ -74,7 +74,11 @@ const SymptoMap = () => {
         <TileLayer url="https://api.mapbox.com/styles/v1/gohike/ck8ewra7t0pmm1ippdeojwhs9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ29oaWtlIiwiYSI6ImNrOGV3bWhvbDAxMTczbW15c2w0c3BoZTMifQ.oNy4IXkFUIEvHtLxM8dV-w" />
 
         {data?.spots?.map(({ location, ...spot }) => (
-          <Marker key={uuid()} position={[location.lat, location.lon]} icon={createIcon(spot)} />
+          <Marker
+            key={uuid()}
+            position={[location.lat, location.lon]}
+            icon={createIcon({ total: data.hits, ...spot })}
+          />
         ))}
       </Map>
     </SMap>

@@ -10,8 +10,12 @@ const SMap = styled.div`
     width: 100%;
 
     svg {
-      width: ${px2rem(40)};
-      height: ${px2rem(40)};
+      width: 100%;
+      height: 100%;
+      min-width: ${px2rem(25)};
+      min-height: ${px2rem(25)};
+      max-width: ${px2rem(100)};
+      max-height: ${px2rem(100)};
     }
   }
 `;
