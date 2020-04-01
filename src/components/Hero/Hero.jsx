@@ -17,7 +17,7 @@ const Hero = ({ title, content, large, ...props }) => {
           {title}
         </HeroTitle>
         {content && (
-          <Text as="p" mt={large ? 40 : 0} mb={40}>
+          <Text as="p" mt={large ? 40 : 15} mb={40}>
             {formatTags(content)}
           </Text>
         )}
