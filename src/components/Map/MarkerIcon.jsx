@@ -15,7 +15,15 @@ const MarkerIcon = ({ total, ...spot }) => {
   const percentage = ((100 * spot.hits) / total).toFixed(3);
 
   return (
-    <PieChart data={data} css={{ width: `${percentage * 10}px`, height: `${percentage * 10}px` }} />
+    <PieChart
+      data={data}
+      css={{
+        width: `${percentage * 10}px`,
+        height: `${percentage * 10}px`,
+        transform: 'translateX(-27%) translateY(-46%)',
+      }}
+      viewBoxSize={[percentage * 10, percentage * 10]}
+    />
   );
 };
 
