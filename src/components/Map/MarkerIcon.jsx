@@ -7,22 +7,22 @@ import { hex2rgba } from '../../utils';
 import { i18n } from '../../i18n';
 
 // Styling
-import { Text } from '../styles';
+import { Box, Text } from '../styles';
 
 const MarkerIcon = ({ total, totalSymptoms, filters, ...spot }) => {
   const data = [
     {
-      title: 'Koorts',
+      title: i18n.t('map:map:symptoms:fever'),
       value: (filters?.length > 0 && filters.includes('fever') && spot.fever) || 0,
       color: hex2rgba('#1A1A1A', 0.7),
     },
     {
-      title: 'Vermoeidheid',
+      title: i18n.t('map:map:symptoms:fatigue'),
       value: (filters?.length > 0 && filters.includes('fatigue') && spot.fatigue) || 0,
       color: hex2rgba('#1B42D8', 0.7),
     },
     {
-      title: 'Droge hoest',
+      title: i18n.t('map:map:symptoms:dry_cough'),
       value: (filters?.length > 0 && filters.includes('dry_cough') && spot.dry_cough) || 0,
       color: hex2rgba('#FFA015', 0.7),
     },
@@ -56,13 +56,25 @@ const MarkerIcon = ({ total, totalSymptoms, filters, ...spot }) => {
         }}
         viewBoxSize={[perc, perc]}
       >
-        <Text as="span">
-          {spot.fever !== 0 && `${spot.fever}x ${i18n.t('map:map:symptoms:fever')}`}
-          {spot.fever !== 0 && <br />}
-          {spot.fatigue !== 0 && `${spot.fatigue}x ${i18n.t('map:map:symptoms:fatigue')}`}
-          {spot.fatigue !== 0 && <br />}
-          {spot.dry_cough !== 0 && `${spot.dry_cough}x ${i18n.t('map:map:symptoms:dry_cough')}`}
-        </Text>
+        <Box>
+          {filters?.length > 0 && filters.includes('fever') && spot.fever !== 0 && (
+            <Text as="span" color="black">{`${spot.fever}x ${i18n.t(
+              'map:map:symptoms:fever'
+            )}`}</Text>
+          )}
+          {filters?.length > 0 && filters.includes('fever') && spot.fever !== 0 && <br />}
+          {filters?.length > 0 && filters.includes('fatigue') && spot.fatigue !== 0 && (
+            <Text as="span" color="blue">{`${spot.fatigue}x ${i18n.t(
+              'map:map:symptoms:fatigue'
+            )}`}</Text>
+          )}
+          {filters?.length > 0 && filters.includes('fatigue') && spot.fatigue !== 0 && <br />}
+          {filters?.length > 0 && filters.includes('dry_cough') && spot.dry_cough !== 0 && (
+            <Text as="span" color="orange">{`${spot.dry_cough}x ${i18n.t(
+              'map:map:symptoms:dry_cough'
+            )}`}</Text>
+          )}
+        </Box>
       </PieChart>
     </>
   );

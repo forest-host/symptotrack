@@ -11,7 +11,7 @@ const SMap = styled.div`
     width: 100%;
 
     .custom-icon {
-      span {
+      div > div {
         position: absolute;
         bottom: calc(100% - 10px);
         left: calc(50% + 5px);
@@ -19,10 +19,9 @@ const SMap = styled.div`
         background: white;
         white-space: nowrap;
         padding: ${px2rem(5, 10)};
-        color: blue;
         font-family: heading;
         font-weight: 900;
-        font-size: ${px2rem(14)};
+        font-size: ${px2rem(12)};
         opacity: 0;
         transform: translateY(8px);
         transition: opacity 0.3s ease, transform 0.3s ease;
@@ -30,7 +29,7 @@ const SMap = styled.div`
       }
 
       &:hover {
-        span {
+        div > div {
           opacity: 1;
           transform: translateY(0);
         }
