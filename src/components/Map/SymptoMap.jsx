@@ -57,8 +57,8 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
     const { _southWest, _northEast } = mapRef?.current?.leafletElement.getBounds();
 
     Router.push(
-      `/map?test=true&z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
-      `/map?test=true&z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
+      `/map?z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
+      `/kaat?z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
       { shallow: true }
     );
 
