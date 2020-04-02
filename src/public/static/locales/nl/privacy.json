@@ -13,7 +13,7 @@
       "name": "content",
       "layout": {
         "title": "Persoonsgegevens die wij verwerken",
-        "content": "SymptoTrack verwerkt geen persoonsgegevens omdat op onze site geen persoonsgegevens achter gelaten kunnen worden. Ook gebruiken we geen social media plugins."
+        "content": "SymptoTrack verwerkt geen persoonsgegevens omdat op onze site geen persoonsgegevens achter gelaten kunnen worden. Ook gebruiken we geen social media plugins. Er wordt in onze website wel gevraagd de volgende gegevens in te vullen, echter wordt deze data niet (traceerbaar) opgeslagen. Hieronder vind je een overzicht:<br><br>- Geslacht - Dit wordt opgeslagen voor onderzoeksdoeleinden<br>- Geboortejaar - Dit wordt opgeslagen voor onderzoeksdoeleinden<br>- E-mailadres - Wordt niet opgeslagen, deze informatie wordt direct op  het platform verwerkt om een magic link te sturen naar jouw emailadres. Hierbij wordt  je emailadres niet in de server en nog in de logs opgeslagen.<br>- Locatiegegevens - Jouw locatiegegevens worden opgeslagen in GPS coordinaten tot 2 cijfers achter de komma. Dat betekend dat je gegevens nauwkeurig zijn op 1.11km."
       }
     },
     {
@@ -34,21 +34,21 @@
       "name": "content",
       "layout": {
         "title": "Geautomatiseerde besluitvorming",
-        "content": "SymptoTrack neemt  niet op basis van geautomatiseerde verwerkingen besluiten over zaken die (aanzienlijke) gevolgen kunnen hebben voor personen. Het gaat hier om besluiten die worden genomen door computerprogramma's of -systemen, zonder dat daar een mens (bijvoorbeeld een medewerker van SymptoTrack) tussen zit. SymptoTrack gebruikt de volgende computerprogramma's of -systemen: [aanvullen met naam van het systeem, waarom het gebruikt wordt, onderliggende logica, belang en verwachte gevolgen voor betrokkene]"
+        "content": "SymptoTrack neemt  niet op basis van geautomatiseerde verwerkingen besluiten over zaken die (aanzienlijke) gevolgen kunnen hebben voor personen. Het gaat hier om besluiten die worden genomen door computerprogramma's of -systemen, zonder dat daar een mens (bijvoorbeeld een medewerker van SymptoTrack) tussen zit."
       }
     },
     {
       "name": "content",
       "layout": {
         "title": "Hoe lang we persoonsgegevens bewaren",
-        "content": "SymptoTrack bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor je gegevens worden verzameld. Wij hanteren de volgende bewaartermijnen voor de volgende (categorieën) van persoonsgegevens: (Categorie) Geslacht > Onbeperkt > Wetenschappelijk onderzoek en COVID-19 Tracking Geboortejaar > Onbeperkt > Wetenschappelijk onderzoek en COVID-19 Tracking GPS-Locatie op 1.1km nauwkeurigheid beperkt>Onbeperkt > Wetenschappelijk onderzoek en COVID-19 Tracking"
+        "content": "SymptoTrack bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor je gegevens worden verzameld. Wij hanteren de volgende bewaartermijnen voor de volgende (categorieën) van persoonsgegevens: (Categorie)<br>Geslacht >  5 jaar > Wetenschappelijk onderzoek, journalistiek en verwerking voor het in kaart brengen van gevallen met COVID-19 symptomen.<br>Geboortejaar > 5 jaar > Wetenschappelijk onderzoek, journalistiek en verwerking voor het in kaart brengen van gevallen met COVID-19 symptomen.<br>GPS-Locatie op 1.1km nauwkeurigheid beperkt> 5 jaar  > Wetenschappelijk onderzoek, journalistiek en verwerking voor het in kaart brengen van gevallen met COVID-19 symptomen."
       }
     },
     {
       "name": "content",
       "layout": {
         "title": "Delen van persoonsgegevens met derden",
-        "content": "SymptoTrack verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze overeenkomst met jou of om te voldoen aan een wettelijke verplichting."
+        "content": "SymptoTrack verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze overeenkomst met jou of om te voldoen aan een wettelijke verplichting. De anonieme data die door SymptoTrack wordt verzameld wordt opengesteld aan de wetenschap, journalistiek en overheid met als doel de verspreiding van het nieuwe coronavirus (COVID-19) inzichtelijk te maken."
       }
     },
     {

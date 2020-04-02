@@ -19,7 +19,7 @@ const Legend = ({ info, filters, setFilters }) => {
   return (
     <SLegend pt={15} pb={25} px={[10, 30]} bg="white">
       <Heading.H4 color="blue">{info.legend}</Heading.H4>
-      <Flex mt={[0, 15]} flexWrap="wrap">
+      <Flex mt={[0, 15]} flexWrap={['wrap', 'initial']}>
         {info?.symptoms &&
           Object.keys(info.symptoms)?.map((symptom) => {
             let color = 'orange';
@@ -41,7 +41,7 @@ const Legend = ({ info, filters, setFilters }) => {
             return (
               <Flex
                 key={uuid()}
-                width={[1 / 2, 'auto']}
+                width={[1 / 2, 'initial']}
                 mt={[20, 0]}
                 px={['5px', 15]}
                 alignItems="center"

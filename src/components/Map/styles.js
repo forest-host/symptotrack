@@ -1,6 +1,7 @@
 import styled from '@xstyled/styled-components';
 import { px2rem, media } from '../../utils';
 import { Box } from '../styles';
+import theme from '../../theme';
 
 const SMap = styled.div`
   .leaflet-container {
@@ -19,9 +20,14 @@ const SMap = styled.div`
       max-height: ${px2rem(100)};
     }
 
+    ${media.mediumOnly`
+      top: ${px2rem(50)};
+      height: calc(100% - 50px);
+    `}
+
     ${media.smallOnly`
-      top: ${px2rem(100)};
-      height: calc(100% - 100px);
+      top: ${px2rem(186)};
+      height: calc(100% - 186px);
     `}
   }
 `;
@@ -39,8 +45,14 @@ export const SLegend = styled(Box)`
   z-index: 1;
   left: 50%;
   top: ${px2rem(100)};
+  width: 100%;
+  max-width: ${px2rem(525)};
   transform: translateX(-50%);
   text-align: center;
+
+  ${media.mediumOnly`
+    top: ${px2rem(70)};
+  `}
 
   ${media.smallOnly`
     position: relative;

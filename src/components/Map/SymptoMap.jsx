@@ -22,6 +22,7 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
   const mapRef = useRef(null);
   const [data, setData] = useState(null);
   const [filters, setFilters] = useState(['fever', 'fatigue', 'dry_cough']);
+  const [totalSymptoms, setTotalSymptoms] = useState(null);
 
   const getData = async ({ z, top, right, bottom, left }) => {
     await get('data/spots', {
@@ -40,6 +41,17 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
   useEffect(() => {
     getData(coordinates);
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      let count = 0;
+      data?.spots?.map(({ fever, fatigue, dry_cough }) => {
+        count += fever += fatigue += dry_cough;
+      });
+
+      setTotalSymptoms(count);
+    }
+  }, [filters, data]);
 
   const onViewportChanged = ({ zoom = 8 }) => {
     const { _southWest, _northEast } = mapRef?.current?.leafletElement.getBounds();
@@ -89,7 +101,7 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
           <Marker
             key={uuid()}
             position={[location.lat, location.lon]}
-            icon={createIcon({ total: data.hits, filters, ...spot })}
+            icon={createIcon({ total: data.hits, totalSymptoms, filters, ...spot })}
           />
         ))}
       </Map>

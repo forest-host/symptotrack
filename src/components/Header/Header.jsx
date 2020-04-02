@@ -9,7 +9,6 @@ import { withTranslation } from '../../i18n';
 // Components
 import Hamburger from '../General/Hamburger';
 import MobileMenu from '../MobileMenu';
-import Icon from '../Icon';
 
 // Styling
 import SHeader, { SMenu, SMenuItem } from './styles';
