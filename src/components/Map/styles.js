@@ -43,6 +43,7 @@ const SMap = styled.div`
       min-height: ${px2rem(25)};
       max-width: ${px2rem(100)};
       max-height: ${px2rem(100)};
+      transition: all 0.3s ease;
     }
 
     ${media.mediumOnly`

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form/dist/react-hook-form.ie11';
 
 // Utils
 import { numberToFixed } from '../../utils';

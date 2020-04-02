@@ -5,28 +5,12 @@ import dynamic from 'next/dynamic';
 // Utils
 import { withTranslation } from '../i18n';
 
-// Components
-import Hero from '../components/Hero';
-
-// Styling
-import { Container } from '../components/styles';
-
 const SymptoMap = dynamic(() => import('../components/Map'), { ssr: false });
 
-const Map = ({ t, test, z, top, right, bottom, left }) => {
+const Map = ({ t, z, top, right, bottom, left }) => {
   const mapInfo = t('map:map', { returnObjects: true });
 
-  return (
-    <>
-      {!test && (
-        <Container pt={[20, 40]} pb={70} relative>
-          <Hero title={t('map:title')} content={t('map:content')} />
-          <img src="/static/avatar.jpg" alt="SymptomenKaart" />
-        </Container>
-      )}
-      {test && <SymptoMap coordinates={{ z, top, right, bottom, left }} mapInfo={mapInfo} />}
-    </>
-  );
+  return <SymptoMap coordinates={{ z, top, right, bottom, left }} mapInfo={mapInfo} />;
 };
 
 Map.propTypes = {
@@ -47,9 +31,9 @@ Map.defaultProps = {
 };
 
 Map.getInitialProps = async (ctx) => {
-  const { test, z, top, right, bottom, left } = ctx.query;
+  const { z, top, right, bottom, left } = ctx.query;
 
-  return { test, z, top, right, bottom, left, namespacesRequired: ['common', 'map', 'socials'] };
+  return { z, top, right, bottom, left, namespacesRequired: ['common', 'map', 'socials'] };
 };
 
 export default withTranslation('map')(Map);

@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@datapunt/matomo-tracker-react": "^0.1.1",
-    "@symptotrack/questions": "^0.6.30",
+    "@symptotrack/questions": "^0.6.39",
     "@xstyled/styled-components": "^1.16.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",

@@ -49,13 +49,13 @@ const Home = ({ t, count }) => {
               <Text as="p" mt={10}>
                 {counter.content}
               </Text>
-              {/* counter.link && (
+              {counter.link && (
                 <Link href={counter.link?.href} as={counter.link?.as} passHref>
                   <a href target={counter.link?.target}>
                     {counter.link?.label}
                   </a>
                 </Link>
-              ) */}
+              )}
             </Box>
           )}
         </Flex>
