@@ -4,7 +4,7 @@
   "map": {
     "legend": "Filter symptomen",
     "symptoms": {
-      "fever": "Koort",
+      "fever": "Koorts",
       "fatigue": "Vermoeidheid",
       "dry_cough": "Droge hoest"
     }

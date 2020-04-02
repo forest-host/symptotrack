@@ -1,7 +1,6 @@
 import styled from '@xstyled/styled-components';
 import { px2rem, media } from '../../utils';
 import { Box } from '../styles';
-import theme from '../../theme';
 
 const SMap = styled.div`
   .leaflet-container {
@@ -10,6 +9,33 @@ const SMap = styled.div`
     z-index: 0;
     height: calc(100% - 80px);
     width: 100%;
+
+    .custom-icon {
+      span {
+        position: absolute;
+        bottom: calc(100% - 10px);
+        left: calc(50% + 5px);
+        z-index: 2;
+        background: white;
+        white-space: nowrap;
+        padding: ${px2rem(5, 10)};
+        color: blue;
+        font-family: heading;
+        font-weight: 900;
+        font-size: ${px2rem(14)};
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      &:hover {
+        span {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
 
     svg {
       width: 100%;
@@ -46,7 +72,7 @@ export const SLegend = styled(Box)`
   left: 50%;
   top: ${px2rem(100)};
   width: 100%;
-  max-width: ${px2rem(525)};
+  max-width: ${px2rem(535)};
   transform: translateX(-50%);
   text-align: center;
 

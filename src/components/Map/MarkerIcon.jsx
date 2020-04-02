@@ -4,9 +4,10 @@ import PieChart from 'react-minimal-pie-chart';
 
 // Utils
 import { hex2rgba } from '../../utils';
+import { i18n } from '../../i18n';
 
 // Styling
-import theme from '../../theme';
+import { Text } from '../styles';
 
 const MarkerIcon = ({ total, totalSymptoms, filters, ...spot }) => {
   const data = [
@@ -38,41 +39,32 @@ const MarkerIcon = ({ total, totalSymptoms, filters, ...spot }) => {
   const percentage = ((100 * markerTotal) / totalSymptoms).toFixed(3);
   let perc = 0;
 
-  if (percentage !== Infinity) {
-    perc = percentage;
-  } else if (!isNaN(percentage)) {
+  if (percentage !== 'Infinity' && !isNaN(percentage)) {
     perc = percentage;
   }
 
   return (
-    <PieChart
-      data={data}
-      css={{
-        width: `${perc * 10}px`,
-        height: `${perc * 10}px`,
-        maxHeight: 100,
-        maxWidth: 100,
-        transform: 'translateX(-40%) translateY(-40%)',
-      }}
-      viewBoxSize={[perc * 10, perc * 10]}
-      /* injectSvg={() => (
-        <text
-          x="50%"
-          y="50%"
-          dominantBaseline="middle"
-          textAnchor="middle"
-          css={{
-            fontFamily: theme.fonts.heading,
-            fontSize: 16,
-            fill: theme.colors.white,
-            fontWeight: 900,
-          }}
-        >
-          {spot.hits}
-        </text>
-      )}
-      */
-    />
+    <>
+      <PieChart
+        data={data}
+        css={{
+          width: `${perc * 10}px`,
+          height: `${perc * 10}px`,
+          maxHeight: 100,
+          maxWidth: 100,
+          transform: 'translateX(-40%) translateY(-40%)',
+        }}
+        viewBoxSize={[perc, perc]}
+      >
+        <Text as="span">
+          {spot.fever !== 0 && `${spot.fever}x ${i18n.t('map:map:symptoms:fever')}`}
+          {spot.fever !== 0 && <br />}
+          {spot.fatigue !== 0 && `${spot.fatigue}x ${i18n.t('map:map:symptoms:fatigue')}`}
+          {spot.fatigue !== 0 && <br />}
+          {spot.dry_cough !== 0 && `${spot.dry_cough}x ${i18n.t('map:map:symptoms:dry_cough')}`}
+        </Text>
+      </PieChart>
+    </>
   );
 };
 
