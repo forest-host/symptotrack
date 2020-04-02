@@ -74,6 +74,36 @@
           }
         }
       }
+    ],
+    "subMenu": [
+      {
+        "label": "Privacyvoorwaarden",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/privacy",
+            "as": "/privacyvoorwaarden"
+          },
+          "en": {
+            "href": "/privacy",
+            "as": "/en/privacy-conditions"
+          }
+        }
+      },
+      {
+        "label": "Copyright",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/copyright",
+            "as": "/copyright"
+          },
+          "en": {
+            "href": "/copyright",
+            "as": "/en/copyright"
+          }
+        }
+      }
     ]
   }
 }

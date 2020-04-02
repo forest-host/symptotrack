@@ -5,11 +5,23 @@ import PieChart from 'react-minimal-pie-chart';
 // Utils
 import { hex2rgba } from '../../utils';
 
-const MarkerIcon = ({ total, ...spot }) => {
+const MarkerIcon = ({ total, filters, ...spot }) => {
   const data = [
-    { title: 'Koorts', value: spot.fever, color: hex2rgba('#1A1A1A', 0.6) },
-    { title: 'Droge hoest', value: spot.dry_cough, color: hex2rgba('#1B42D8', 0.6) },
-    { title: 'Vermoeidheid', value: spot.fatigue, color: hex2rgba('#FFA015', 0.6) },
+    {
+      title: 'Koorts',
+      value: filters?.length > 0 && filters.includes('fever') && spot.fever,
+      color: hex2rgba('#1A1A1A', 0.7),
+    },
+    {
+      title: 'Vermoeidheid',
+      value: filters?.length > 0 && filters.includes('fatigue') && spot.fatigue,
+      color: hex2rgba('#1B42D8', 0.7),
+    },
+    {
+      title: 'Droge hoest',
+      value: filters?.length > 0 && filters.includes('dry_cough') && spot.dry_cough,
+      color: hex2rgba('#FFA015', 0.7),
+    },
   ];
 
   const percentage = ((100 * spot.hits) / total).toFixed(3);

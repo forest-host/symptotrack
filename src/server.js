@@ -63,6 +63,11 @@ app.prepare().then(() => {
     app.render(req, res, '/thankyou');
   });
 
+  // Privacy
+  server.get('/privacyvoorwaarden', (req, res) => {
+    app.render(req, res, '/privacy');
+  });
+
   // ServiceWorker
   server.get('/service-worker.js', (req, res) => {
     res.sendFile(path.join(__dirname, '.next', 'service-worker.js'));

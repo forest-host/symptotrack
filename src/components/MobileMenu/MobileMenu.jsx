@@ -21,13 +21,13 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
     <SMobileMenu isOpen={isOpen}>
       <Div100vh>
         <Flex
-          pb={20}
+          pb={30}
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
           css={{ height: '100%' }}
         >
-          <Flex py={25} width={1} justifyContent="center" bg="lightGreen">
+          <Flex py={20} width={1} justifyContent="center" bg="lightGreen">
             <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
               <a href onClick={() => setOpen(false)}>
                 <img src="/static/logo-big.svg" alt="SymptoTrack" />
@@ -36,28 +36,12 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
           </Flex>
           {menu && Array.isArray(menu) && (
             <SMenu>
-              <SMenuItem isActive={asPath === '/' || asPath === `/${language}`}>
-                <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
-                  <Text
-                    as="a"
-                    py={30}
-                    fontFamily="heading"
-                    fontWeight={900}
-                    fontSize={24}
-                    color="black"
-                    target="_self"
-                    onClick={() => setOpen(false)}
-                  >
-                    Home
-                  </Text>
-                </Link>
-              </SMenuItem>
               {menu.map(({ label, link }) => (
                 <SMenuItem key={uuid()} isActive={asPath === link[language].as}>
                   <Link href={link[language].href} as={link[language].as} passHref>
                     <Text
                       as="a"
-                      py={30}
+                      py={25}
                       fontFamily="heading"
                       fontWeight={900}
                       fontSize={24}

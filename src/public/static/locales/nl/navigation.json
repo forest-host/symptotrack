@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "label": "Home",
+      "mobileOnly": true,
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/",
+          "as": "/"
+        },
+        "en": {
+          "href": "/",
+          "as": "/en"
+        }
+      }
+    },
+    {
+      "label": "Meld symptomen",
+      "mobileOnly": true,
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/questionnaire",
+          "as": "/vragenlijst"
+        },
+        "en": {
+          "href": "/questionnaire",
+          "as": "/en/questionnaire"
+        }
+      }
+    },
+    {
       "label": "SymptomenKaart",
       "link": {
         "target": "_self",
@@ -56,19 +86,5 @@
         }
       }
     }
-  ],
-  "cta": {
-    "label": "meld symptomen",
-    "link": {
-      "target": "_self",
-      "nl": {
-        "href": "/questionnaire",
-        "as": "/vragenlijst"
-      },
-      "en": {
-        "href": "/questionnaire",
-        "as": "/en/questionnaire"
-      }
-    }
-  }
+  ]
 }

@@ -37,22 +37,24 @@ const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
             </Link>
             {mainMenu && Array.isArray(mainMenu) && (
               <SMenu>
-                {mainMenu.map(({ label, link }) => (
-                  <SMenuItem key={uuid()} isActive={asPath === link[language].as}>
-                    <Link href={link[language].href} as={link[language].as} passHref>
-                      <Text
-                        as="a"
-                        fontFamily="heading"
-                        fontWeight={700}
-                        fontSize={14}
-                        color="blue"
-                        target={link.target}
-                      >
-                        {label}
-                      </Text>
-                    </Link>
-                  </SMenuItem>
-                ))}
+                {mainMenu
+                  .filter((s) => !s.mobileOnly)
+                  .map(({ label, link }) => (
+                    <SMenuItem key={uuid()} isActive={asPath === link[language].as}>
+                      <Link href={link[language].href} as={link[language].as} passHref>
+                        <Text
+                          as="a"
+                          fontFamily="heading"
+                          fontWeight={700}
+                          fontSize={14}
+                          color="blue"
+                          target={link.target}
+                        >
+                          {label}
+                        </Text>
+                      </Link>
+                    </SMenuItem>
+                  ))}
               </SMenu>
             )}
             {cta?.link && typeof cta === 'object' && (
@@ -62,15 +64,6 @@ const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
                     <Text as="span" fontSize={14}>
                       {cta.label}
                     </Text>
-                  </Button>
-                </Link>
-              </Box>
-            )}
-            {cta?.link && typeof cta === 'object' && (
-              <Box ml={15} className="show-for-medium questionnaire">
-                <Link href={cta?.link?.[language]?.href} as={cta?.link?.[language]?.as} passHref>
-                  <Button as="a" target={cta?.link?.target} noStyle>
-                    <Icon icon="QUESTIONNAIRE" size={24} color="orange" viewBox="0 0 448 512" />
                   </Button>
                 </Link>
               </Box>

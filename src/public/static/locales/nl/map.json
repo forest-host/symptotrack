@@ -1,4 +1,12 @@
 {
   "title": "De SymptomenKaart",
-  "content": "Bij 1500 ingevulde vragenlijsten van mensen met symptomen wordt de kaart geactiveerd! Heb je zelf symptomen, maar heb je de vragenlijst nog niet ingevuld? <a href='/questionnaire' as='/vragenlijst'>Klik dan gauw hier</a>."
+  "content": "Bij 1500 ingevulde vragenlijsten van mensen met symptomen wordt de kaart geactiveerd! Heb je zelf symptomen, maar heb je de vragenlijst nog niet ingevuld? <a href='/questionnaire' as='/vragenlijst'>Klik dan gauw hier</a>.",
+  "map": {
+    "legend": "Filter symptomen",
+    "symptoms": {
+      "fever": "Koort",
+      "fatigue": "Vermoeidheid",
+      "dry_cough": "Droge hoest"
+    }
+  }
 }

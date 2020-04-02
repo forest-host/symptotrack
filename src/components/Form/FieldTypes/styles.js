@@ -300,9 +300,10 @@ export const SButtonGroup = styled(Flex)`
 export const SCheckbox = styled(Flex)`
   display: block;
   position: relative;
-  padding-left: ${px2rem(40)};
+  padding-left: ${({ pl }) => (pl ? px2rem(pl) : px2rem(40))};
   cursor: pointer;
   user-select: none;
+  font-size: ${({ fontSize }) => (fontSize ? px2rem(fontSize) : px2rem(16))};
 
   input {
     position: absolute;
@@ -326,7 +327,7 @@ export const SCheckbox = styled(Flex)`
 
   span {
     position: absolute;
-    top: -3px;
+    top: -4px;
     left: 0;
     height: ${px2rem(24)};
     width: ${px2rem(24)};

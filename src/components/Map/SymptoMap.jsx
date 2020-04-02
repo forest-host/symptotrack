@@ -9,17 +9,19 @@ import { get } from '../../api/callers';
 
 // Components
 import MarkerIcon from './MarkerIcon';
+import Legend from './Legend';
 
 // Styling
 import SMap from './styles';
 
-const SymptoMap = ({ coordinates }) => {
+const SymptoMap = ({ coordinates, mapInfo }) => {
   // Leaflet
   const L = require('leaflet');
   const { Map, Marker, TileLayer } = require('react-leaflet');
 
   const mapRef = useRef(null);
   const [data, setData] = useState(null);
+  const [filters, setFilters] = useState(['fever', 'fatigue', 'dry_cough']);
 
   const getData = async ({ z, top, right, bottom, left }) => {
     await get('data/spots', {
@@ -72,6 +74,7 @@ const SymptoMap = ({ coordinates }) => {
 
   return (
     <SMap width={1}>
+      <Legend info={mapInfo} filters={filters} setFilters={setFilters} />
       <Map
         center={calculateCenter(coordinates)}
         maxZoom={18}
@@ -86,7 +89,7 @@ const SymptoMap = ({ coordinates }) => {
           <Marker
             key={uuid()}
             position={[location.lat, location.lon]}
-            icon={createIcon({ total: data.hits, ...spot })}
+            icon={createIcon({ total: data.hits, filters, ...spot })}
           />
         ))}
       </Map>
@@ -101,6 +104,10 @@ SymptoMap.propTypes = {
     left: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     bottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     right: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
+  mapInfo: PropTypes.shape({
+    legend: PropTypes.string,
+    symptoms: PropTypes.object,
   }).isRequired,
 };
 
