@@ -58,7 +58,7 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
 
     Router.push(
       `/map?z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
-      `/kaat?z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
+      `/kaart?z=${zoom}&top=${_northEast?.lat}&right=${_northEast?.lng}&bottom=${_southWest?.lat}&left=${_southWest?.lng}`,
       { shallow: true }
     );
 
