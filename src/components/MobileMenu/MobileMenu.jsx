@@ -75,7 +75,7 @@ const MobileMenu = ({ t, i18n, asPath, isOpen, setOpen, menu }) => {
 MobileMenu.propTypes = {
   t: PropTypes.func.isRequired,
   asPath: PropTypes.string,
-  menu: PropTypes.arrayOf(PropTypes.object).isRequired,
+  menu: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
   isOpen: PropTypes.bool,
   setOpen: PropTypes.func.isRequired,
 };
