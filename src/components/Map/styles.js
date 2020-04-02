@@ -44,6 +44,10 @@ const SMap = styled.div`
       max-width: ${px2rem(100)};
       max-height: ${px2rem(100)};
       transition: all 0.3s ease;
+
+      path {
+        stroke-dashoffset: 0;
+      }
     }
 
     ${media.mediumOnly`
