@@ -32,7 +32,15 @@ app.prepare().then(() => {
 
   // Map
   server.get('/kaart', (req, res) => {
-    app.render(req, res, '/map');
+    const queryParams = {
+      z: req.query.z,
+      top: req.query.top,
+      right: req.query.right,
+      bottom: req.query.bottom,
+      left: req.query.left,
+    };
+
+    app.render(req, res, '/map', queryParams);
   });
 
   // About
