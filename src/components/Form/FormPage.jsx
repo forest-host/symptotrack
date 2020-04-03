@@ -143,11 +143,11 @@ const FormPage = ({
         const errorEl = document.getElementById(`field-${currentError}`);
 
         if (errorEl) {
-          window.scrollTo({
-            behavior: 'smooth',
-            left: 0,
-            top: errorEl.offsetTop - 50,
-          });
+          // window.scrollTo({
+          //   behavior: 'smooth',
+          //   left: 0,
+          //   top: errorEl.offsetTop - 50,
+          // });
         }
       }
 
@@ -181,8 +181,6 @@ const FormPage = ({
     questionArray?.map((question) => {
       if (questions[question]?.conditions) {
         questions[question]?.conditions?.map((q) => {
-          console.log('bla');
-
           const watchQuestion = watch(q.question);
 
           if (watchQuestion && q.answer && q.answer === watchQuestion) {
