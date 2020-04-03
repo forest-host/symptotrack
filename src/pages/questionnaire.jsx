@@ -23,6 +23,7 @@ const Questionnaire = ({ i18n, t }) => {
   const { basicQuestionnaire, translatedQuestionnaire, translatedErrors } = useApp();
   const { language } = i18n || {};
   const [count, setCount] = useState({ currentPage: 1, total: 1 });
+  const [pageTitle, setPageTitle] = useState('');
   const [percentage, setPercentage] = useState(0);
 
   const onSubmit = async (data) => {
@@ -57,7 +58,7 @@ const Questionnaire = ({ i18n, t }) => {
         <Hero
           pt={[20, 40]}
           title={`${t('questionnaire:title')} ${count?.currentPage}/${count?.total}`}
-          content={t('questionnaire:content')}
+          content={pageTitle}
         />
         <Row>
           <Flex justifyContent="center">
@@ -69,6 +70,7 @@ const Questionnaire = ({ i18n, t }) => {
                 onSubmit={onSubmit}
                 setPercentage={setPercentage}
                 setCount={setCount}
+                setPageTitle={setPageTitle}
               />
             </Box>
           </Flex>
