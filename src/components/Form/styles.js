@@ -7,6 +7,16 @@ const SForm = styled.form`
   }
 `;
 
+export const Question = styled.div`
+  background: white;
+  // height: 100vh;
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      background: blue;
+    `}
+`;
+
 export const SFormPage = styled.div`
   ${({ isActive }) =>
     !isActive &&

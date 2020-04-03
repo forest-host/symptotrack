@@ -108,7 +108,9 @@ const Form = ({
             translatedGroup={translations?.[group]}
             translatedErrors={translatedErrors}
             watch={watch}
+            groups={groups}
             triggerValidation={triggerValidation}
+            activePage={activePage}
             isActive={activePage === i + 1}
             isLast={i + 1 === pageAmount}
             nextPage={nextPage}
