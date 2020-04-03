@@ -143,9 +143,15 @@ const Form = ({
 Form.propTypes = {
   form: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  setPercentage: PropTypes.func.isRequired,
-  setCount: PropTypes.func.isRequired,
-  setPageTitle: PropTypes.func.isRequired,
+  setPercentage: PropTypes.func,
+  setCount: PropTypes.func,
+  setPageTitle: PropTypes.func,
+};
+
+Form.defaultProps = {
+  setPercentage: () => {},
+  setCount: () => {},
+  setPageTitle: () => {},
 };
 
 export default Form;
