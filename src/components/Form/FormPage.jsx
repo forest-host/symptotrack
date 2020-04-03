@@ -47,11 +47,7 @@ const FormPage = ({
   useEffect(
     () => {
       const activePageKey = Object.keys(groups)[activePage - 1];
-
-      console.log('page question', Object.keys(groups[activePageKey].questions));
       const activeQuestionKeyName = Object.keys(groups[activePageKey].questions)[activeQuestion];
-
-      // activeQuestionObj[activeQuestionKeyName] = activeQuestionObj2;
       let activeQuestionObj2 = questions[activeQuestionKeyName];
 
       if (typeof activeQuestionObj2 !== 'undefined') {
@@ -69,9 +65,6 @@ const FormPage = ({
     var lastScrollTop = 0;
     var st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
-      /// checken of vraag correct is
-
-      console.log('down');
       // downscroll code
       validateNextQuestion();
     } else {
@@ -81,6 +74,10 @@ const FormPage = ({
     lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
   };
 
+  const nextQuestion = () => {
+    setActiveQuestion(activeQuestion + 1);
+  };
+
   const validateNextQuestion = async () => {
     const watchAll = watch();
     const questionArray = [];
@@ -88,25 +85,28 @@ const FormPage = ({
     let valid = false;
 
     if (typeof activeQuestionObj[0] !== 'undefined') {
-      console.log(questions);
-      console.log(activeQuestionObj[0].key);
+      let questionsArr = [];
+      if (activePage === 1) {
+        let i;
+        for (i = 0; i < 3; i++) {
+          questionsArr.push(Object.keys(questions)[i]);
+        }
+      } else {
+        questionsArr = questions;
+      }
 
-      const questionKey = activeQuestionObj[0].key;
-
-      questions &&
-        Object.keys(questions).map((question) => {
-          const watchKeys = Object.keys(watchAll);
-          console.log(question);
-          if (watchKeys.includes(question)) {
-            questionArray.push(question);
-          } else {
-            watchKeys.map((watch) => {
-              if (watch.startsWith(`${question}[`)) {
-                questionArray.push(watch);
-              }
-            });
-          }
-        });
+      questionsArr.map((question) => {
+        const watchKeys = Object.keys(watchAll);
+        if (watchKeys.includes(question)) {
+          questionArray.push(question);
+        } else {
+          watchKeys.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
 
       questionArray?.map((question) => {
         if (questions[question]?.conditions) {
@@ -133,8 +133,6 @@ const FormPage = ({
         return setError(true);
       });
 
-      // console.log(validateArray);
-
       if (errors) {
         let currentErrors = Object.keys(errors);
         currentErrors = currentErrors.filter((s) => s !== 'location');
@@ -150,11 +148,14 @@ const FormPage = ({
           // });
         }
       }
+      setActiveQuestion(activeQuestion + 1);
 
       if (valid) {
         console.log('valid');
+        nextQuestion();
         // window.scrollTo(0, 0);
       }
+      console.log(activeQuestion);
     }
   };
 
@@ -228,8 +229,8 @@ const FormPage = ({
   return (
     <SFormPage isActive={isActive}>
       {questions &&
-        Object.keys(questions).map((question) => (
-          <Question>
+        Object.keys(questions).map((question, i) => (
+          <Question isActive={activeQuestion === i + 2}>
             <Fields
               key={question}
               register={register}
