@@ -89,8 +89,8 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
       <Legend info={mapInfo} filters={filters} setFilters={setFilters} />
       <Map
         center={calculateCenter(coordinates)}
-        maxZoom={18}
-        minZoom={2}
+        maxZoom={13}
+        minZoom={3}
         zoom={coordinates.z}
         ref={mapRef}
         onViewportChanged={(e) => onViewportChanged(e)}
