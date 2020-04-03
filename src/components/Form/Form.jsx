@@ -19,6 +19,7 @@ const Form = ({
   onSubmit,
   setPercentage,
   setCount,
+  setPageTitle,
 }) => {
   const {
     handleSubmit,
@@ -37,6 +38,13 @@ const Form = ({
   useEffect(() => {
     setCount({ currentPage: activePage, total: pageAmount });
   }, [activePage]);
+
+  useEffect(() => {
+    const groupKey = Object.keys(groups)[0];
+    const groupTranslation = translations?.groups[groupKey]?.title;
+
+    setPageTitle(groupTranslation);
+  }, []);
 
   useEffect(() => {
     const fieldAmount = [];
@@ -86,12 +94,22 @@ const Form = ({
 
   // Navigate to next page
   const nextPage = () => {
-    setActivePage(activePage + 1);
+    const page = activePage + 1;
+    const groupKey = Object.keys(groups)[activePage];
+    const groupTranslation = translations?.groups[groupKey]?.title;
+
+    setActivePage(page);
+    setPageTitle(groupTranslation);
   };
 
   // Navigate to previous page
   const prevPage = () => {
-    setActivePage(activePage - 1);
+    const page = activePage - 1;
+    const groupKey = Object.keys(groups)[page - 1];
+    const groupTranslation = translations?.groups[groupKey]?.title;
+
+    setActivePage(page);
+    setPageTitle(groupTranslation);
   };
 
   return (
@@ -125,13 +143,9 @@ const Form = ({
 Form.propTypes = {
   form: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  setPercentage: PropTypes.func,
-  setCount: PropTypes.func,
-};
-
-Form.defaultProps = {
-  setCount: () => {},
-  setPercentage: () => {},
+  setPercentage: PropTypes.func.isRequired,
+  setCount: PropTypes.func.isRequired,
+  setPageTitle: PropTypes.func.isRequired,
 };
 
 export default Form;
