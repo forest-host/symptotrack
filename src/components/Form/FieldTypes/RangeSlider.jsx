@@ -60,7 +60,11 @@ const RangeSlider = forwardRef(
                   ? `${value}°C`
                   : `${numberToFixed((value * 9) / 5 + 32, 2)}°F`
                 : translation?.placeholder
-                ? `${value.toString()} ${translation.placeholder}`
+                ? `${value === max ? `${(value - 1).toString()}+` : value.toString()} ${
+                    translation.placeholder
+                  }`
+                : value === max
+                ? `${(value - 1).toString()}+`
                 : value.toString()
             }
             onChange={(val) => setValue(val)}

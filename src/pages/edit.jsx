@@ -14,7 +14,7 @@ import Hero from '../components/Hero';
 import Form from '../components/Form';
 
 // Styling
-import { Box, Button, Container, Row, Flex, HR } from '../components/styles';
+import { Box, Button, Container, Row, Flex, HR, Heading } from '../components/styles';
 
 const Edit = ({ i18n, t, type, token }) => {
   const { trackEvent } = useMatomo();
@@ -85,6 +85,7 @@ const Edit = ({ i18n, t, type, token }) => {
       <Box my={70}>
         <HR color="blue" />
       </Box>
+      {recovered && <Heading.H3 color="blue">{t('edit:recovered')}</Heading.H3>}
       <Row>
         <Flex justifyContent="center">
           <Box width={[1, 7 / 12]}>
