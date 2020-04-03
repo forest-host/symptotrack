@@ -90,7 +90,7 @@ const SymptoMap = ({ coordinates, mapInfo }) => {
       <Map
         center={calculateCenter(coordinates)}
         maxZoom={13}
-        minZoom={3}
+        minZoom={4}
         zoom={coordinates.z}
         ref={mapRef}
         onViewportChanged={(e) => onViewportChanged(e)}
