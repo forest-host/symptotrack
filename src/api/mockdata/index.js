@@ -1,4 +1,5 @@
-import spots from './spots';
-import count from './count';
+import spots from './spots.json';
+import count from './count.json';
+import edit from './edit.json';
 
-export { spots, count };
+export { spots, count, edit };
