@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
@@ -21,10 +21,14 @@ const FormPage = ({
   watch,
   triggerValidation,
   questions,
-  nextQuestion,
+
   translatedQuestions,
   translatedErrors,
   activePage,
+  activeQuestionNumber,
+  setActiveQuestionNumber,
+  activeQuestion,
+  setActiveQuestion,
   groups,
   isActive,
   isLast,
@@ -44,17 +48,13 @@ const FormPage = ({
   const watchFields = watch(watchArray);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
-  const [activeQuestion, setActiveQuestion] = useState(
-    Object.keys(groups[activePageKey].questions)[0]
-  );
+  // const [activeQuestion, setActiveQuestion] = useState(
+  //   Object.keys(groups[activePageKey].questions)[0]
+  // );
 
-  useEffect(() => {
-    document.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        console.log('keypress useeffect');
-      }
-    });
-  }, [activePage]);
+  const [activePageQuestions, setActivePageQuestions] = useState(
+    Object.keys(groups[activePageKey].questions)
+  );
 
   const handleScroll = () => {
     var lastScrollTop = 0;
@@ -130,8 +130,154 @@ const FormPage = ({
     }
 
     if (valid) {
-      console.log('valid nextpage');
       nextPage();
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // Navigate to next question
+  const nextQuestionNumber = () => {
+    setActiveQuestionNumber(activeQuestionNumber + 1);
+    nextQuestion();
+  };
+
+  // Navigate to next question
+  const nextQuestion = () => {
+    let activeQuestionWatchKeys = [];
+    const watchKeys = Object.keys(watch());
+    watchKeys.map((watchKey) => {
+      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+    //
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
+      return activeQuestionWatchKeys.indexOf(item) == pos;
+    });
+    setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+  };
+
+  // const nextQuestionKeyName = () => {
+  //   let activeQuestionWatchKeys = [];
+  //   const watchKeys = Object.keys(watch());
+  //
+  //   watchKeys.map((watchKey) => {
+  //     let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+  //     activeQuestionWatchKeys.push(activeQuestionKey);
+  //   });
+  //
+  //   activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function (item, pos) {
+  //     return activeQuestionWatchKeys.indexOf(item) == pos;
+  //   });
+  //   setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+  // };
+
+  const validateNextQuestion = async () => {
+    const watchAll = watch();
+    const questionArray = [];
+    const validateArray = [];
+    let valid = false;
+    const activePageKey = Object.keys(groups)[activePage - 1];
+    const questions = groups[activePageKey].questions;
+    questionArray.push(activeQuestion);
+    const watchKeys = Object.keys(watchAll);
+    let activeQuestionWatchKeys = [];
+
+    watchKeys.map((watchKey) => {
+      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
+      return activeQuestionWatchKeys.indexOf(item) == pos;
+    });
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        if (activeQuestionWatchKeys.includes(question)) {
+          questionArray.push(question);
+        } else {
+          activeQuestionWatchKeys.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    let pageQuestions = questionArray.filter(function(item, pos) {
+      return questionArray.indexOf(item) == pos;
+    });
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        const pageQuestions = Object.keys(watchAll);
+        if (pageQuestions.includes(question)) {
+          questionArray.push(question);
+        } else {
+          pageQuestions.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    pageQuestions?.map((question) => {
+      if (questions[question]?.conditions) {
+        questions[question]?.conditions?.map((q) => {
+          const watchQuestion = watch(q.question);
+
+          if (watchQuestion && q.answer && q.answer === watchQuestion) {
+            validateArray.push(question);
+          }
+          if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+            validateArray.push(question);
+          }
+        });
+      } else {
+        validateArray.push(questions[question]);
+      }
+    });
+
+    let activePageQuestions = [];
+
+    pageQuestions?.map((question) => {
+      activePageQuestions[question] = groups[activePageKey].questions[question];
+    });
+
+    setActivePageQuestions(activePageQuestions);
+
+    // let getNextQuestion = Object.keys(activePageQuestions)[activeQuestionNumber];
+    // console.log(getNextQuestion);
+
+    await triggerValidation(activeQuestion).then((resp) => {
+      if (resp) {
+        valid = true;
+        return setError(false);
+      }
+      return setError(true);
+    });
+
+    if (errors) {
+      let currentErrors = Object.keys(errors);
+
+      console.log('errors');
+
+      currentErrors = currentErrors.filter((s) => s !== 'location');
+      const currentError = currentErrors[0];
+
+      const errorEl = document.getElementById(`field-${currentError}`);
+      if (errorEl) {
+        window.scrollTo({
+          behavior: 'smooth',
+          left: 0,
+          top: errorEl.offsetTop - 50,
+        });
+      }
+    }
+    if (valid) {
+      nextQuestionNumber();
+      // nextQuestionKeyName();
       window.scrollTo(0, 0);
     }
   };
@@ -148,7 +294,15 @@ const FormPage = ({
               watchFields={watchFields}
               question={question}
               questions={questions}
+              groups={groups}
               translations={translatedQuestions}
+              activePage={activePage}
+              watch={watch}
+              activeQuestionNumber={activeQuestionNumber}
+              activeQuestion={activeQuestion}
+              setActiveQuestionNumber={setActiveQuestionNumber}
+              validateNextQuestion={validateNextQuestion}
+              triggerValidation={triggerValidation}
               translatedErrors={translatedErrors}
               prefill={prefill?.[question]}
               errors={errors}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
@@ -22,6 +22,10 @@ const Fields = ({
   errors,
   watchFields,
   questions,
+  activeQuestion,
+  activeQuestionNumber,
+  validateNextQuestion,
+  setActiveQuestionNumber,
   question,
   translations,
   translatedErrors,
@@ -46,6 +50,15 @@ const Fields = ({
       show = true;
     }
   });
+
+  useEffect(() => {
+    setActiveQuestionNumber(activeQuestionNumber);
+    document.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        validateNextQuestion();
+      }
+    });
+  }, [activeQuestionNumber, activeQuestion]);
 
   switch (questions[question]?.type) {
     case 'text':
