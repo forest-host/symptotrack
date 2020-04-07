@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
 
 // Utils
 import { i18n } from '../../i18n';
@@ -48,9 +47,6 @@ const FormPage = ({
   const watchFields = watch(watchArray);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
-  // const [activeQuestion, setActiveQuestion] = useState(
-  //   Object.keys(groups[activePageKey].questions)[0]
-  // );
 
   const [activePageQuestions, setActivePageQuestions] = useState(
     Object.keys(groups[activePageKey].questions)
@@ -135,13 +131,11 @@ const FormPage = ({
     }
   };
 
-  // Navigate to next question
   const nextQuestionNumber = () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
     nextQuestion();
   };
 
-  // Navigate to next question
   const nextQuestion = () => {
     let activeQuestionWatchKeys = [];
     const watchKeys = Object.keys(watch());
@@ -155,21 +149,6 @@ const FormPage = ({
     });
     setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
   };
-
-  // const nextQuestionKeyName = () => {
-  //   let activeQuestionWatchKeys = [];
-  //   const watchKeys = Object.keys(watch());
-  //
-  //   watchKeys.map((watchKey) => {
-  //     let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
-  //     activeQuestionWatchKeys.push(activeQuestionKey);
-  //   });
-  //
-  //   activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function (item, pos) {
-  //     return activeQuestionWatchKeys.indexOf(item) == pos;
-  //   });
-  //   setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
-  // };
 
   const validateNextQuestion = async () => {
     const watchAll = watch();
@@ -247,9 +226,6 @@ const FormPage = ({
 
     setActivePageQuestions(activePageQuestions);
 
-    // let getNextQuestion = Object.keys(activePageQuestions)[activeQuestionNumber];
-    // console.log(getNextQuestion);
-
     await triggerValidation(activeQuestion).then((resp) => {
       if (resp) {
         valid = true;
@@ -260,9 +236,6 @@ const FormPage = ({
 
     if (errors) {
       let currentErrors = Object.keys(errors);
-
-      console.log('errors');
-
       currentErrors = currentErrors.filter((s) => s !== 'location');
       const currentError = currentErrors[0];
 
@@ -277,7 +250,6 @@ const FormPage = ({
     }
     if (valid) {
       nextQuestionNumber();
-      // nextQuestionKeyName();
       window.scrollTo(0, 0);
     }
   };
