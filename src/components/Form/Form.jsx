@@ -33,6 +33,18 @@ const Form = ({
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
+  const [hasError, setError] = useState(false);
+
+  const activePageKey = Object.keys(groups)[activePage - 1];
+  const [activePageQuestions, setActivePageQuestions] = useState(
+    Object.keys(groups[activePageKey].questions)
+  );
+
+  const [activeQuestion, setActiveQuestion] = useState(
+    Object.keys(groups[activePageKey].questions)[0]
+  );
+
+  const [activeQuestionNumber, setActiveQuestionNumber] = useState(0);
 
   useEffect(() => {
     setCount({ currentPage: activePage, total: pageAmount });
@@ -81,6 +93,11 @@ const Form = ({
       }
     });
 
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        validateNextQuestion();
+      }
+    });
     setPercentage(numberToFixed((100 * fieldAmount.length) / (requiredFields.length - 1)));
   }, [formState]);
 
@@ -92,6 +109,124 @@ const Form = ({
   // Navigate to previous page
   const prevPage = () => {
     setActivePage(activePage - 1);
+  };
+
+  const getNextQuestion = () => {
+    let question = Object.keys(activePageQuestions)[activeQuestionNumber + 1];
+    console.log(question);
+    setActiveQuestion(question);
+    return question;
+  };
+
+  const validateNextQuestion = async () => {
+    const watchAll = watch();
+    const questionArray = [];
+    const validateArray = [];
+    let valid = false;
+    const activePageKey = Object.keys(groups)[activePage - 1];
+    const questions = groups[activePageKey].questions;
+    questionArray.push(activeQuestion);
+    const watchKeys = Object.keys(watchAll);
+    let activeQuestionWatchKeys = [];
+
+    watchKeys.map((watchKey) => {
+      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
+      return activeQuestionWatchKeys.indexOf(item) == pos;
+    });
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        if (activeQuestionWatchKeys.includes(question)) {
+          questionArray.push(question);
+        } else {
+          activeQuestionWatchKeys.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    let pageQuestions = questionArray.filter(function(item, pos) {
+      return questionArray.indexOf(item) == pos;
+    });
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        const pageQuestions = Object.keys(watchAll);
+        if (pageQuestions.includes(question)) {
+          questionArray.push(question);
+        } else {
+          pageQuestions.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    pageQuestions?.map((question) => {
+      if (questions[question]?.conditions) {
+        questions[question]?.conditions?.map((q) => {
+          const watchQuestion = watch(q.question);
+
+          if (watchQuestion && q.answer && q.answer === watchQuestion) {
+            validateArray.push(question);
+          }
+          if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+            validateArray.push(question);
+          }
+        });
+      } else {
+        validateArray.push(questions[question]);
+      }
+    });
+
+    function findNextQuestion(key, obj) {
+      var keys = Object.keys(obj);
+      let question = keys[(keys.indexOf(key) + 1) % keys.length];
+      return question;
+    }
+
+    let activePageQuestions = [];
+
+    pageQuestions?.map((question) => {
+      activePageQuestions[question] = groups[activePageKey].questions[question];
+    });
+
+    setActivePageQuestions(activePageQuestions);
+
+    await triggerValidation(activeQuestion).then((resp) => {
+      if (resp) {
+        valid = true;
+        return setError(false);
+      }
+      return setError(true);
+    });
+
+    if (errors) {
+      let currentErrors = Object.keys(errors);
+      currentErrors = currentErrors.filter((s) => s !== 'location');
+      const currentError = currentErrors[0];
+
+      const errorEl = document.getElementById(`field-${currentError}`);
+      if (errorEl) {
+        window.scrollTo({
+          behavior: 'smooth',
+          left: 0,
+          top: errorEl.offsetTop - 50,
+        });
+      }
+    }
+    if (valid) {
+      setActiveQuestion(activeQuestion + 1);
+      getNextQuestion();
+      // window.scrollTo(0, 0);
+    }
   };
 
   return (
@@ -115,6 +250,7 @@ const Form = ({
             isLast={i + 1 === pageAmount}
             nextPage={nextPage}
             prevPage={prevPage}
+            nextQuestion={activeQuestion}
             prefill={prefill}
             setValue={setValue}
             {...groups[group]}
