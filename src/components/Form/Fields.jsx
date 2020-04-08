@@ -22,6 +22,7 @@ const Fields = ({
   errors,
   watchFields,
   questions,
+  watch,
   activeQuestion,
   activeQuestionNumber,
   setActiveQuestionNumber,
@@ -29,7 +30,6 @@ const Fields = ({
   setActivePageQuestionNumber,
   validateNextQuestion,
   question,
-  keyPressActive,
   translations,
   translatedErrors,
   prefill,
@@ -55,30 +55,24 @@ const Fields = ({
   });
 
   const handleScroll = () => {
-    var lastScrollTop = 0;
-    var st = window.pageYOffset || document.documentElement.scrollTop;
+    let lastScrollTop = 0;
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+
     if (st > lastScrollTop) {
-      // validateNextQuestion();
+      const watchField = watch(activeQuestion, 'value');
+
+      if (watchField) {
+        validateNextQuestion();
+      }
     } else {
-      // upscroll code
       console.log('up');
     }
-    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
   };
 
   useEffect(() => {
-    setActiveQuestionNumber(activeQuestionNumber);
-    setActivePageQuestionNumber(activePageQuestionNumber);
-    if (keyPressActive === true) {
-      document.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          if (activeQuestion === question) {
-            validateNextQuestion();
-          }
-        }
-      });
-    }
-  }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
+    window.addEventListener('scroll', handleScroll, true);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion, setActiveQuestionNumber]);
 
   switch (questions[question]?.type) {
     case 'text':

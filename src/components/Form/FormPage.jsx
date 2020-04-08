@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -29,6 +29,8 @@ const FormPage = ({
   setActivePageQuestionNumber,
   activeQuestion,
   validateNextQuestion,
+  setScrollActive,
+  scrollActive,
   groups,
   isActive,
   isLast,
@@ -121,12 +123,37 @@ const FormPage = ({
     }
   };
 
+  const nextPageBtn = () => {
+    let respondingAnswer = watch(['responding_for'])['responding_for'];
+    let answerOffset;
+    if (respondingAnswer === 'self') {
+      answerOffset = activePageQuestions.length - 2;
+    } else {
+      answerOffset = activePageQuestions.length;
+    }
+    if (activeQuestionNumber === answerOffset) {
+      return (
+        <Box mb={24} order={[0, 1]}>
+          <ButtonArrow
+            type="button"
+            text={i18n.t('nextQuestions')}
+            onClick={() => validateNextPage()}
+          />
+          {hasError && (
+            <Text mt={10} fontSize={12}>
+              {i18n.t('invalidForm')}
+            </Text>
+          )}
+        </Box>
+      );
+    }
+  };
+
   return (
     <SFormPage isActive={isActive}>
       {questions &&
         Object.keys(questions).map((question, i) => (
-          <Question isActive={activeQuestion === question}>
-            {console.log(activePageQuestionNumber)}
+          <Question isActive={activeQuestion === question} className={`question-${question}`}>
             <Fields
               key={question}
               register={register}
@@ -146,6 +173,8 @@ const FormPage = ({
               activePageQuestions={activePageQuestions}
               validateNextQuestion={validateNextQuestion}
               keyPressActive={keyPressActive}
+              scrollActive={scrollActive}
+              setScrollActive={setScrollActive}
               translatedErrors={translatedErrors}
               prefill={prefill?.[question]}
               errors={errors}
@@ -168,20 +197,7 @@ const FormPage = ({
             />
           </Box>
         )}
-        {!isLast && (
-          <Box mb={24} order={[0, 1]}>
-            <ButtonArrow
-              type="button"
-              text={i18n.t('nextQuestions')}
-              onClick={() => validateNextPage()}
-            />
-            {hasError && (
-              <Text mt={10} fontSize={12}>
-                {i18n.t('invalidForm')}
-              </Text>
-            )}
-          </Box>
-        )}
+        {!isLast && nextPageBtn()}
         {isLast && (
           <Box mb={24} order={[0, 1]}>
             <ButtonArrow type="submit" text={i18n.t('finishQuestionnaire')} />

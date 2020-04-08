@@ -8,12 +8,13 @@ const SForm = styled.form`
 `;
 
 export const Question = styled.div`
-  background: white;
-  // height: 100vh;
+  display: none;
   ${({ isActive }) =>
     isActive &&
     css`
-      background: blue;
+      display: block;
+      position: relative;
+      // transform: translateY(50%);
     `}
 `;
 
