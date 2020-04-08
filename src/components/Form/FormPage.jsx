@@ -25,6 +25,8 @@ const FormPage = ({
   activePage,
   activeQuestionNumber,
   setActiveQuestionNumber,
+  activePageQuestionNumber,
+  setActivePageQuestionNumber,
   activeQuestion,
   validateNextQuestion,
   groups,
@@ -119,33 +121,12 @@ const FormPage = ({
     }
   };
 
-  const activePageQuestionNumber = () => {
-    // console.log(activePageKey);
-
-    // console.log(Object.keys(groups[activePageKey].questions));
-    const currentIteration = parseInt(
-      Object.keys(activePageQuestions).find((key) => activePageQuestions[key] === activeQuestion)
-    );
-
-    // console.log(activePageQuestions);
-
-    // Array.observe(activePageQuestions, function(changes) {
-    //   console.log('changed');
-    // });
-    let active = true;
-
-    if (currentIteration < activePageQuestions.length) {
-      active = false;
-    }
-    ///
-    return currentIteration;
-  };
-
   return (
     <SFormPage isActive={isActive}>
       {questions &&
         Object.keys(questions).map((question, i) => (
           <Question isActive={activeQuestion === question}>
+            {console.log(activePageQuestionNumber)}
             <Fields
               key={question}
               register={register}
@@ -157,10 +138,11 @@ const FormPage = ({
               translations={translatedQuestions}
               activePage={activePage}
               watch={watch}
-              activePageQuestionNumber={activePageQuestionNumber}
-              activeQuestionNumber={activeQuestionNumber}
               activeQuestion={activeQuestion}
+              activeQuestionNumber={activeQuestionNumber}
               setActiveQuestionNumber={setActiveQuestionNumber}
+              activePageQuestionNumber={activePageQuestionNumber}
+              setActivePageQuestionNumber={setActivePageQuestionNumber}
               activePageQuestions={activePageQuestions}
               validateNextQuestion={validateNextQuestion}
               keyPressActive={keyPressActive}

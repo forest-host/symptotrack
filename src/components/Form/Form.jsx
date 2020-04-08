@@ -43,6 +43,7 @@ const Form = ({
   );
 
   const [activeQuestionNumber, setActiveQuestionNumber] = useState(1);
+  const [activePageQuestionNumber, setActivePageQuestionNumber] = useState(1);
 
   const [activeQuestion, setActiveQuestion] = useState(
     Object.keys(groups[activePageKey].questions)[0]
@@ -100,7 +101,7 @@ const Form = ({
   // Navigate to next page
   const nextPage = () => {
     setActivePage(activePage + 1);
-    setActivePageQuestion(0);
+    setActiveQuestionNumber(0);
   };
 
   // Navigate to previous page
@@ -111,33 +112,29 @@ const Form = ({
 
   useEffect(() => {
     const activePageQuestions = Object.keys(groups[activePageKey].questions);
-    if (activeQuestionNumber >= activePageQuestions.length - 1) {
+    if (activePageQuestionNumber >= activePageQuestions.length - 1) {
       setKeypressActive(false);
     }
-  }, []);
+  }, [activePageQuestionNumber]);
 
   const nextQuestionNumber = () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
+    setActivePageQuestionNumber(activePageQuestionNumber + 1);
     setActivePageQuestion(activePageQuestion + 1);
     nextQuestion();
   };
 
   const nextQuestion = () => {
-    // console.log(activeQuestionNumber);
     let activeQuestionWatchKeys = [];
     const watchKeys = Object.keys(watch());
     watchKeys.map((watchKey) => {
       const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
       activeQuestionWatchKeys.push(activeQuestionKey);
     });
-    //
     activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
       (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
     );
     setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
-
-    // console.log('hier moet het false zijn');
-    // setQuestionVisible(false);
   };
 
   const validateNextQuestion = async () => {
@@ -267,6 +264,8 @@ const Form = ({
             prevPage={prevPage}
             activeQuestionNumber={activeQuestionNumber}
             setActiveQuestionNumber={setActiveQuestionNumber}
+            activePageQuestionNumber={activePageQuestionNumber}
+            setActivePageQuestionNumber={setActivePageQuestionNumber}
             validateNextQuestion={validateNextQuestion}
             nextQuestion={activeQuestion}
             activeQuestion={activeQuestion}

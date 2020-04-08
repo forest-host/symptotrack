@@ -25,10 +25,9 @@ const Fields = ({
   activeQuestion,
   activeQuestionNumber,
   setActiveQuestionNumber,
-  questionVisible,
-  validateNextQuestion,
   activePageQuestionNumber,
-  activePageQuestions,
+  setActivePageQuestionNumber,
+  validateNextQuestion,
   question,
   keyPressActive,
   translations,
@@ -69,6 +68,7 @@ const Fields = ({
 
   useEffect(() => {
     setActiveQuestionNumber(activeQuestionNumber);
+    setActivePageQuestionNumber(activePageQuestionNumber);
     if (keyPressActive === true) {
       document.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -78,7 +78,7 @@ const Fields = ({
         }
       });
     }
-  }, [activeQuestionNumber, activeQuestion, questionVisible]);
+  }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
 
   switch (questions[question]?.type) {
     case 'text':
