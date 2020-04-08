@@ -24,8 +24,10 @@ const Fields = ({
   questions,
   activeQuestion,
   activeQuestionNumber,
-  validateNextQuestion,
   setActiveQuestionNumber,
+  questionVisible,
+  validateNextQuestion,
+  activePageQuestions,
   question,
   translations,
   translatedErrors,
@@ -53,12 +55,17 @@ const Fields = ({
 
   useEffect(() => {
     setActiveQuestionNumber(activeQuestionNumber);
+
+    console.log(activePageQuestions.length);
+
     document.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        validateNextQuestion();
+        if (activeQuestion === question) {
+          validateNextQuestion();
+        }
       }
     });
-  }, [activeQuestionNumber, activeQuestion]);
+  }, [activeQuestionNumber, activeQuestion, questionVisible]);
 
   switch (questions[question]?.type) {
     case 'text':

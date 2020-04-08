@@ -33,6 +33,7 @@ const Form = ({
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
+  const [hasError, setError] = useState(false);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
   const [activePageQuestions, setActivePageQuestions] = useState(
@@ -52,7 +53,6 @@ const Form = ({
   useEffect(() => {
     const fieldAmount = [];
     const requiredFields = [];
-
     groups &&
       requiredFields?.length === 0 &&
       Object.keys(groups).map((group) => {
@@ -105,6 +105,135 @@ const Form = ({
     setActivePage(activePage - 1);
   };
 
+  const nextQuestionNumber = () => {
+    setActiveQuestionNumber(activeQuestionNumber + 1);
+    nextQuestion();
+  };
+
+  const nextQuestion = () => {
+    // console.log(activeQuestionNumber);
+    let activeQuestionWatchKeys = [];
+    const watchKeys = Object.keys(watch());
+    watchKeys.map((watchKey) => {
+      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+    //
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
+      return activeQuestionWatchKeys.indexOf(item) == pos;
+    });
+    setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+
+    // console.log('hier moet het false zijn');
+    // setQuestionVisible(false);
+  };
+
+  const validateNextQuestion = async () => {
+    // console.log('hoevaak');
+
+    const watchAll = watch();
+    const questionArray = [];
+    const validateArray = [];
+    let valid = false;
+    const activePageKey = Object.keys(groups)[activePage - 1];
+    const questions = groups[activePageKey].questions;
+    questionArray.push(activeQuestion);
+    const watchKeys = Object.keys(watchAll);
+    let activeQuestionWatchKeys = [];
+
+    watchKeys.map((watchKey) => {
+      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
+      return activeQuestionWatchKeys.indexOf(item) == pos;
+    });
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        if (activeQuestionWatchKeys.includes(question)) {
+          questionArray.push(question);
+        } else {
+          activeQuestionWatchKeys.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    let pageQuestions = questionArray.filter(function(item, pos) {
+      return questionArray.indexOf(item) == pos;
+    });
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        const pageQuestions = Object.keys(watchAll);
+        if (pageQuestions.includes(question)) {
+          questionArray.push(question);
+        } else {
+          pageQuestions.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    pageQuestions?.map((question) => {
+      if (questions[question]?.conditions) {
+        questions[question]?.conditions?.map((q) => {
+          const watchQuestion = watch(q.question);
+
+          if (watchQuestion && q.answer && q.answer === watchQuestion) {
+            validateArray.push(question);
+          }
+          if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+            validateArray.push(question);
+          }
+        });
+      } else {
+        validateArray.push(questions[question]);
+      }
+    });
+
+    let activePageQuestions = [];
+
+    pageQuestions?.map((question) => {
+      activePageQuestions[question] = groups[activePageKey].questions[question];
+    });
+
+    setActivePageQuestions(activePageQuestions);
+
+    await triggerValidation(activeQuestion).then((resp) => {
+      if (resp) {
+        valid = true;
+        return setError(false);
+      }
+      return setError(true);
+    });
+
+    if (errors) {
+      let currentErrors = Object.keys(errors);
+      currentErrors = currentErrors.filter((s) => s !== 'location');
+      const currentError = currentErrors[0];
+
+      const errorEl = document.getElementById(`field-${currentError}`);
+      if (errorEl) {
+        window.scrollTo({
+          behavior: 'smooth',
+          left: 0,
+          top: errorEl.offsetTop - 50,
+        });
+      }
+    }
+    if (valid) {
+      nextQuestionNumber();
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <SForm onSubmit={handleSubmit(onSubmit)}>
       {groups &&
@@ -128,6 +257,7 @@ const Form = ({
             prevPage={prevPage}
             activeQuestionNumber={activeQuestionNumber}
             setActiveQuestionNumber={setActiveQuestionNumber}
+            validateNextQuestion={validateNextQuestion}
             nextQuestion={activeQuestion}
             activeQuestion={activeQuestion}
             setActiveQuestion={setActiveQuestion}
