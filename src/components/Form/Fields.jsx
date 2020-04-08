@@ -27,8 +27,10 @@ const Fields = ({
   setActiveQuestionNumber,
   questionVisible,
   validateNextQuestion,
+  activePageQuestionNumber,
   activePageQuestions,
   question,
+  keyPressActive,
   translations,
   translatedErrors,
   prefill,
@@ -53,18 +55,29 @@ const Fields = ({
     }
   });
 
+  const handleScroll = () => {
+    var lastScrollTop = 0;
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      // validateNextQuestion();
+    } else {
+      // upscroll code
+      console.log('up');
+    }
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+  };
+
   useEffect(() => {
     setActiveQuestionNumber(activeQuestionNumber);
-
-    console.log(activePageQuestions.length);
-
-    document.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        if (activeQuestion === question) {
-          validateNextQuestion();
+    if (keyPressActive === true) {
+      document.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          if (activeQuestion === question) {
+            validateNextQuestion();
+          }
         }
-      }
-    });
+      });
+    }
   }, [activeQuestionNumber, activeQuestion, questionVisible]);
 
   switch (questions[question]?.type) {

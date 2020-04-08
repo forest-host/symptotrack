@@ -33,7 +33,9 @@ const Form = ({
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
+  const [activePageQuestion, setActivePageQuestion] = useState(0);
   const [hasError, setError] = useState(false);
+  const [keyPressActive, setKeypressActive] = useState(true);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
   const [activePageQuestions, setActivePageQuestions] = useState(
@@ -98,15 +100,25 @@ const Form = ({
   // Navigate to next page
   const nextPage = () => {
     setActivePage(activePage + 1);
+    setActivePageQuestion(0);
   };
 
   // Navigate to previous page
   const prevPage = () => {
     setActivePage(activePage - 1);
+    setActivePageQuestion(0);
   };
+
+  useEffect(() => {
+    const activePageQuestions = Object.keys(groups[activePageKey].questions);
+    if (activeQuestionNumber >= activePageQuestions.length - 1) {
+      setKeypressActive(false);
+    }
+  }, []);
 
   const nextQuestionNumber = () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
+    setActivePageQuestion(activePageQuestion + 1);
     nextQuestion();
   };
 
@@ -115,13 +127,13 @@ const Form = ({
     let activeQuestionWatchKeys = [];
     const watchKeys = Object.keys(watch());
     watchKeys.map((watchKey) => {
-      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
       activeQuestionWatchKeys.push(activeQuestionKey);
     });
     //
-    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
-      return activeQuestionWatchKeys.indexOf(item) == pos;
-    });
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
+      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
+    );
     setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
 
     // console.log('hier moet het false zijn');
@@ -136,19 +148,19 @@ const Form = ({
     const validateArray = [];
     let valid = false;
     const activePageKey = Object.keys(groups)[activePage - 1];
-    const questions = groups[activePageKey].questions;
+    const { questions } = groups[activePageKey];
     questionArray.push(activeQuestion);
     const watchKeys = Object.keys(watchAll);
     let activeQuestionWatchKeys = [];
 
     watchKeys.map((watchKey) => {
-      let activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
       activeQuestionWatchKeys.push(activeQuestionKey);
     });
 
-    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(function(item, pos) {
-      return activeQuestionWatchKeys.indexOf(item) == pos;
-    });
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
+      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
+    );
 
     questions &&
       Object.keys(questions).map((question) => {
@@ -163,9 +175,7 @@ const Form = ({
         }
       });
 
-    let pageQuestions = questionArray.filter(function(item, pos) {
-      return questionArray.indexOf(item) == pos;
-    });
+    const pageQuestions = questionArray.filter((item, pos) => questionArray.indexOf(item) == pos);
 
     questions &&
       Object.keys(questions).map((question) => {
@@ -198,7 +208,7 @@ const Form = ({
       }
     });
 
-    let activePageQuestions = [];
+    const activePageQuestions = [];
 
     pageQuestions?.map((question) => {
       activePageQuestions[question] = groups[activePageKey].questions[question];
@@ -261,6 +271,7 @@ const Form = ({
             nextQuestion={activeQuestion}
             activeQuestion={activeQuestion}
             setActiveQuestion={setActiveQuestion}
+            keyPressActive={keyPressActive}
             prefill={prefill}
             setValue={setValue}
             {...groups[group]}
