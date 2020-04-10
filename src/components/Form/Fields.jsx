@@ -54,17 +54,45 @@ const Fields = ({
     }
   });
 
-  const handleScroll = () => {
-    var lastScrollTop = 0;
-    var st = window.pageYOffset || document.documentElement.scrollTop;
+  const debounce = (func, wait, immediate) => {
+    let timeout;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      }, wait);
+      if (immediate && !timeout) func.apply(context, args);
+    };
+  };
+
+  let isFetchingState;
+
+  const [isFetching, setIsFetching] = useState(false);
+
+  isFetchingState = isFetching;
+
+  const handleScroll = debounce(() => {
+    let lastScrollTop = 0;
+    let st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
-      // validateNextQuestion();
+      validateNextQuestion();
     } else {
-      // upscroll code
       console.log('up');
     }
-    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-  };
+  }, 300);
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener('scroll', handleScroll);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
 
   useEffect(() => {
     setActiveQuestionNumber(activeQuestionNumber);
