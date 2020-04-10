@@ -9,7 +9,7 @@ const SForm = styled.form`
 
 export const Question = styled.div`
   position: relative;
-  top: 50%;
+  top: 0%;
   ${({ isActive }) =>
     !isActive &&
     css`

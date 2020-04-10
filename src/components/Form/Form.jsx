@@ -154,6 +154,8 @@ const Form = ({
       (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
     );
 
+    console.log(activeQuestion);
+
     questions &&
       Object.keys(questions).map((question) => {
         if (activeQuestionWatchKeys.includes(question)) {
