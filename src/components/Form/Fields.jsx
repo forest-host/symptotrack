@@ -76,7 +76,7 @@ const Fields = ({
     } else {
       console.log('up');
     }
-  }, 500);
+  }, 1000);
 
   useEffect(() => {
     function watchScroll() {
