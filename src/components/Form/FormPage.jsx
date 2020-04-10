@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -29,8 +29,6 @@ const FormPage = ({
   setActivePageQuestionNumber,
   activeQuestion,
   validateNextQuestion,
-  setScrollActive,
-  scrollActive,
   groups,
   isActive,
   isLast,
@@ -131,7 +129,7 @@ const FormPage = ({
     } else {
       answerOffset = activePageQuestions.length;
     }
-    if (activeQuestionNumber === answerOffset) {
+    if (activeQuestionNumber - 1 === answerOffset) {
       return (
         <Box mb={24} order={[0, 1]}>
           <ButtonArrow
@@ -153,7 +151,7 @@ const FormPage = ({
     <SFormPage isActive={isActive}>
       {questions &&
         Object.keys(questions).map((question, i) => (
-          <Question isActive={activeQuestion === question} className={`question-${question}`}>
+          <Question isActive={activeQuestion === question}>
             <Fields
               key={question}
               register={register}
@@ -173,8 +171,6 @@ const FormPage = ({
               activePageQuestions={activePageQuestions}
               validateNextQuestion={validateNextQuestion}
               keyPressActive={keyPressActive}
-              scrollActive={scrollActive}
-              setScrollActive={setScrollActive}
               translatedErrors={translatedErrors}
               prefill={prefill?.[question]}
               errors={errors}

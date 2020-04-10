@@ -36,7 +36,6 @@ const Form = ({
   const [activePageQuestion, setActivePageQuestion] = useState(0);
   const [hasError, setError] = useState(false);
   const [keyPressActive, setKeypressActive] = useState(true);
-  const [scrollActive, setScrollActive] = useState(false);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
   const [activePageQuestions, setActivePageQuestions] = useState(
@@ -111,38 +110,6 @@ const Form = ({
     setActivePageQuestion(0);
   };
 
-  const nextQuestion = () => {
-    setActivePageQuestionNumber(activePageQuestionNumber + 1);
-    setActivePageQuestion(activePageQuestion + 1);
-    let activeQuestionWatchKeys = [];
-    const watchKeys = Object.keys(watch());
-    watchKeys.map((watchKey) => {
-      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
-      activeQuestionWatchKeys.push(activeQuestionKey);
-    });
-
-    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
-      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
-    );
-    let respondingAnswer = watch(['responding_for'])['responding_for'];
-    let questionNumber = activeQuestionNumber;
-
-    if (respondingAnswer != 'self') {
-      questionNumber = activeQuestionNumber + 22;
-    }
-
-    if (questionNumber > activeQuestionWatchKeys.length - 1) {
-      questionNumber = questionNumber - activeQuestionWatchKeys.length + 1;
-    }
-
-    setActiveQuestionNumber(activeQuestionNumber + 1);
-    setActiveQuestion(activeQuestionWatchKeys[questionNumber]);
-    console.log('quest nr', questionNumber);
-    console.log('next?', activeQuestionWatchKeys[questionNumber]);
-
-    console.log('item', activeQuestionNumber);
-  };
-
   useEffect(() => {
     const activePageQuestions = Object.keys(groups[activePageKey].questions);
     if (activePageQuestionNumber >= activePageQuestions.length - 1) {
@@ -150,18 +117,38 @@ const Form = ({
     }
   }, [activePageQuestionNumber]);
 
-  const validateNextQuestion = async () => {
+  const nextQuestionNumber = () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
+    setActivePageQuestionNumber(activePageQuestionNumber + 1);
+    setActivePageQuestion(activePageQuestion + 1);
+    nextQuestion();
+  };
+
+  const nextQuestion = () => {
+    let activeQuestionWatchKeys = [];
+    const watchKeys = Object.keys(watch());
+    watchKeys.map((watchKey) => {
+      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
+      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
+    );
+    setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+  };
+
+  const validateNextQuestion = async () => {
+    // console.log('hoevaak');
+
     const watchAll = watch();
     const questionArray = [];
-    const activePageQuestions = [];
-    let activeQuestionWatchKeys = [];
+    const validateArray = [];
     let valid = false;
-
     const activePageKey = Object.keys(groups)[activePage - 1];
     const { questions } = groups[activePageKey];
     questionArray.push(activeQuestion);
     const watchKeys = Object.keys(watchAll);
+    let activeQuestionWatchKeys = [];
 
     watchKeys.map((watchKey) => {
       const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
@@ -202,6 +189,25 @@ const Form = ({
       });
 
     pageQuestions?.map((question) => {
+      if (questions[question]?.conditions) {
+        questions[question]?.conditions?.map((q) => {
+          const watchQuestion = watch(q.question);
+
+          if (watchQuestion && q.answer && q.answer === watchQuestion) {
+            validateArray.push(question);
+          }
+          if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+            validateArray.push(question);
+          }
+        });
+      } else {
+        validateArray.push(questions[question]);
+      }
+    });
+
+    const activePageQuestions = [];
+
+    pageQuestions?.map((question) => {
       activePageQuestions[question] = groups[activePageKey].questions[question];
     });
 
@@ -229,11 +235,9 @@ const Form = ({
         });
       }
     }
-    //
     if (valid) {
-      nextQuestion();
-      let questionElement = document.getElementsByClassName(`question-${activeQuestion}`);
-      window.scrollTo(0, questionElement[0].offsetTop);
+      nextQuestionNumber();
+      window.scrollTo(0, 0);
     }
   };
 
@@ -266,8 +270,6 @@ const Form = ({
             nextQuestion={activeQuestion}
             activeQuestion={activeQuestion}
             setActiveQuestion={setActiveQuestion}
-            scrollActive={scrollActive}
-            setScrollActive={setScrollActive}
             keyPressActive={keyPressActive}
             prefill={prefill}
             setValue={setValue}
