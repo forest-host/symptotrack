@@ -84,19 +84,19 @@ const Fields = ({
     }
   }, 300);
 
-  useEffect(() => {
-    function watchScroll() {
-      window.addEventListener('scroll', handleScroll);
-    }
-    watchScroll();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
+  // useEffect(() => {
+  //   function watchScroll() {
+  //     window.addEventListener('scroll', handleScroll);
+  //   }
+  //   watchScroll();
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
 
   useEffect(() => {
-    setActiveQuestionNumber(activeQuestionNumber);
-    setActivePageQuestionNumber(activePageQuestionNumber);
+    // setActiveQuestionNumber(activeQuestionNumber);
+    // setActivePageQuestionNumber(activePageQuestionNumber);
     if (keyPressActive === true) {
       document.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {

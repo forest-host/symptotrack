@@ -37,16 +37,19 @@ const Form = ({
   const [hasError, setError] = useState(false);
   const [keyPressActive, setKeypressActive] = useState(true);
 
-  const activePageKey = Object.keys(groups)[activePage - 1];
-  const [activePageQuestions, setActivePageQuestions] = useState(
-    Object.keys(groups[activePageKey].questions)
-  );
+  let activePageKey = Object.keys(groups)[activePage - 1];
+  // const [activePageQuestions, setActivePageQuestions] = useState(
+  //   Object.keys(groups[activePageKey].questions)
+  // );
+
+  let activePageQuestions = Object.keys(groups[activePageKey].questions);
+  console.log(activePageQuestions);
 
   const [activeQuestionNumber, setActiveQuestionNumber] = useState(1);
   const [activePageQuestionNumber, setActivePageQuestionNumber] = useState(1);
 
   const [activeQuestion, setActiveQuestion] = useState(
-    Object.keys(groups[activePageKey].questions)[0]
+    Object.keys(groups[activePageKey].questions)[activeQuestionNumber - 1]
   );
 
   useEffect(() => {
@@ -138,13 +141,10 @@ const Form = ({
   };
 
   const validateNextQuestion = async () => {
-    // console.log('hoevaak');
-
     const watchAll = watch();
     const questionArray = [];
     const validateArray = [];
     let valid = false;
-    const activePageKey = Object.keys(groups)[activePage - 1];
     const { questions } = groups[activePageKey];
     questionArray.push(activeQuestion);
     const watchKeys = Object.keys(watchAll);
@@ -188,30 +188,13 @@ const Form = ({
         }
       });
 
-    pageQuestions?.map((question) => {
-      if (questions[question]?.conditions) {
-        questions[question]?.conditions?.map((q) => {
-          const watchQuestion = watch(q.question);
-
-          if (watchQuestion && q.answer && q.answer === watchQuestion) {
-            validateArray.push(question);
-          }
-          if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
-            validateArray.push(question);
-          }
-        });
-      } else {
-        validateArray.push(questions[question]);
-      }
-    });
-
     const activePageQuestions = [];
 
     pageQuestions?.map((question) => {
       activePageQuestions[question] = groups[activePageKey].questions[question];
     });
 
-    setActivePageQuestions(activePageQuestions);
+    // setActivePageQuestions(activePageQuestions);
 
     await triggerValidation(activeQuestion).then((resp) => {
       if (resp) {
