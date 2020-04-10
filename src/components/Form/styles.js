@@ -8,10 +8,12 @@ const SForm = styled.form`
 `;
 
 export const Question = styled.div`
+  position: absolute;
+  top: 50%;
   ${({ isActive }) =>
-    isActive &&
+    !isActive &&
     css`
-      background: blue;
+      visibility: hidden;
     `}
 `;
 

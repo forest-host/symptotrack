@@ -43,7 +43,6 @@ const Form = ({
   // );
 
   let activePageQuestions = Object.keys(groups[activePageKey].questions);
-  console.log(activePageQuestions);
 
   const [activeQuestionNumber, setActiveQuestionNumber] = useState(1);
   const [activePageQuestionNumber, setActivePageQuestionNumber] = useState(1);
@@ -120,14 +119,10 @@ const Form = ({
     }
   }, [activePageQuestionNumber]);
 
-  const nextQuestionNumber = () => {
+  const nextQuestion = () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
     setActivePageQuestionNumber(activePageQuestionNumber + 1);
     setActivePageQuestion(activePageQuestion + 1);
-    nextQuestion();
-  };
-
-  const nextQuestion = () => {
     let activeQuestionWatchKeys = [];
     const watchKeys = Object.keys(watch());
     watchKeys.map((watchKey) => {
@@ -194,8 +189,6 @@ const Form = ({
       activePageQuestions[question] = groups[activePageKey].questions[question];
     });
 
-    // setActivePageQuestions(activePageQuestions);
-
     await triggerValidation(activeQuestion).then((resp) => {
       if (resp) {
         valid = true;
@@ -219,7 +212,7 @@ const Form = ({
       }
     }
     if (valid) {
-      nextQuestionNumber();
+      nextQuestion();
       window.scrollTo(0, 0);
     }
   };
