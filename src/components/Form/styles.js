@@ -19,6 +19,7 @@ export const Question = styled.div`
 `;
 
 export const SFormPage = styled.div`
+  height: 100vh;
   ${({ isActive }) =>
     !isActive &&
     css`

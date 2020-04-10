@@ -24,11 +24,12 @@ const FormPage = ({
   translatedErrors,
   activePage,
   activeQuestionNumber,
+  setActiveQuestion,
   setActiveQuestionNumber,
   activePageQuestionNumber,
   setActivePageQuestionNumber,
   activeQuestion,
-  validateNextQuestion,
+  bla2,
   groups,
   isActive,
   isLast,
@@ -49,12 +50,121 @@ const FormPage = ({
   const watchFields = watch(watchArray);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
+  const [activePageQuestion, setActivePageQuestion] = useState(0);
 
   const [activePageQuestions, setActivePageQuestions] = useState(
     Object.keys(groups[activePageKey].questions)
   );
 
-  const validateNextPage = async () => {
+  const nextQuestion = () => {
+    let actief;
+    setActiveQuestionNumber(activeQuestionNumber + 1);
+    setActivePageQuestionNumber(activePageQuestionNumber + 1);
+    setActivePageQuestion(activePageQuestion + 1);
+    let activeQuestionWatchKeys = [];
+    const watchKeys = Object.keys(watch());
+    watchKeys.map((watchKey) => {
+      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
+      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
+    );
+    actief = activeQuestionWatchKeys[activeQuestionNumber];
+    setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+  };
+
+  const validateNextQuestion = async () => {
+    const watchAll = watch();
+    const questionArray = [];
+    const validateArray = [];
+    let valid = false;
+    const { questions } = groups[activePageKey];
+    questionArray.push(activeQuestion);
+    const watchKeys = Object.keys(watchAll);
+    let activeQuestionWatchKeys = [];
+
+    watchKeys.map((watchKey) => {
+      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
+      activeQuestionWatchKeys.push(activeQuestionKey);
+    });
+
+    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
+      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
+    );
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        if (activeQuestionWatchKeys.includes(question)) {
+          questionArray.push(question);
+        } else {
+          activeQuestionWatchKeys.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    const pageQuestions = questionArray.filter((item, pos) => questionArray.indexOf(item) == pos);
+
+    questions &&
+      Object.keys(questions).map((question) => {
+        const pageQuestions = Object.keys(watchAll);
+        if (pageQuestions.includes(question)) {
+          questionArray.push(question);
+        } else {
+          pageQuestions.map((watch) => {
+            if (watch.startsWith(`${question}[`)) {
+              questionArray.push(watch);
+            }
+          });
+        }
+      });
+
+    const activePageQuestions = [];
+
+    pageQuestions?.map((question) => {
+      activePageQuestions[question] = groups[activePageKey].questions[question];
+    });
+
+    let activeQuestionWatchKey;
+
+    if (activeQuestion === 'location') {
+      activeQuestionWatchKey = [watchKeys[1], watchKeys[1]];
+    } else {
+      activeQuestionWatchKey = activeQuestion;
+    }
+
+    await triggerValidation(activeQuestionWatchKey).then((resp) => {
+      if (resp) {
+        valid = true;
+        return setError(false);
+      }
+      return setError(true);
+    });
+
+    if (errors) {
+      let currentErrors = Object.keys(errors);
+      currentErrors = currentErrors.filter((s) => s !== 'location');
+      const currentError = currentErrors[0];
+
+      const errorEl = document.getElementById(`field-${currentError}`);
+      if (errorEl) {
+        window.scrollTo({
+          behavior: 'smooth',
+          left: 0,
+          top: errorEl.offsetTop - 50,
+        });
+      }
+    }
+    if (valid) {
+      nextQuestion();
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const validateNextPage = async (activeQuestion) => {
     const watchAll = watch();
     const questionArray = [];
     const validateArray = [];

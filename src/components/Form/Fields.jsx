@@ -68,12 +68,6 @@ const Fields = ({
     };
   };
 
-  let isFetchingState;
-
-  const [isFetching, setIsFetching] = useState(false);
-
-  isFetchingState = isFetching;
-
   const handleScroll = debounce(() => {
     let lastScrollTop = 0;
     let st = window.pageYOffset || document.documentElement.scrollTop;
@@ -82,30 +76,16 @@ const Fields = ({
     } else {
       console.log('up');
     }
-  }, 300);
-
-  // useEffect(() => {
-  //   function watchScroll() {
-  //     window.addEventListener('scroll', handleScroll);
-  //   }
-  //   watchScroll();
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
+  }, 500);
 
   useEffect(() => {
-    // setActiveQuestionNumber(activeQuestionNumber);
-    // setActivePageQuestionNumber(activePageQuestionNumber);
-    if (keyPressActive === true) {
-      document.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          if (activeQuestion === question) {
-            validateNextQuestion();
-          }
-        }
-      });
+    function watchScroll() {
+      window.addEventListener('scroll', handleScroll);
     }
+    watchScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
 
   switch (questions[question]?.type) {

@@ -33,7 +33,6 @@ const Form = ({
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
-  const [activePageQuestion, setActivePageQuestion] = useState(0);
   const [hasError, setError] = useState(false);
   const [keyPressActive, setKeypressActive] = useState(true);
 
@@ -50,6 +49,11 @@ const Form = ({
   const [activeQuestion, setActiveQuestion] = useState(
     Object.keys(groups[activePageKey].questions)[activeQuestionNumber - 1]
   );
+
+  const bla2 = (activeQuestion) => {
+    console.log(activeQuestion);
+    // do something with value in parent component, like save to state
+  };
 
   useEffect(() => {
     setCount({ currentPage: activePage, total: pageAmount });
@@ -119,106 +123,6 @@ const Form = ({
     }
   }, [activePageQuestionNumber]);
 
-  const nextQuestion = () => {
-    setActiveQuestionNumber(activeQuestionNumber + 1);
-    setActivePageQuestionNumber(activePageQuestionNumber + 1);
-    setActivePageQuestion(activePageQuestion + 1);
-    let activeQuestionWatchKeys = [];
-    const watchKeys = Object.keys(watch());
-    watchKeys.map((watchKey) => {
-      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
-      activeQuestionWatchKeys.push(activeQuestionKey);
-    });
-    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
-      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
-    );
-    setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
-  };
-
-  const validateNextQuestion = async () => {
-    const watchAll = watch();
-    const questionArray = [];
-    const validateArray = [];
-    let valid = false;
-    const { questions } = groups[activePageKey];
-    questionArray.push(activeQuestion);
-    const watchKeys = Object.keys(watchAll);
-    let activeQuestionWatchKeys = [];
-
-    watchKeys.map((watchKey) => {
-      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
-      activeQuestionWatchKeys.push(activeQuestionKey);
-    });
-
-    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
-      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
-    );
-
-    console.log(activeQuestion);
-
-    questions &&
-      Object.keys(questions).map((question) => {
-        if (activeQuestionWatchKeys.includes(question)) {
-          questionArray.push(question);
-        } else {
-          activeQuestionWatchKeys.map((watch) => {
-            if (watch.startsWith(`${question}[`)) {
-              questionArray.push(watch);
-            }
-          });
-        }
-      });
-
-    const pageQuestions = questionArray.filter((item, pos) => questionArray.indexOf(item) == pos);
-
-    questions &&
-      Object.keys(questions).map((question) => {
-        const pageQuestions = Object.keys(watchAll);
-        if (pageQuestions.includes(question)) {
-          questionArray.push(question);
-        } else {
-          pageQuestions.map((watch) => {
-            if (watch.startsWith(`${question}[`)) {
-              questionArray.push(watch);
-            }
-          });
-        }
-      });
-
-    const activePageQuestions = [];
-
-    pageQuestions?.map((question) => {
-      activePageQuestions[question] = groups[activePageKey].questions[question];
-    });
-
-    await triggerValidation(activeQuestion).then((resp) => {
-      if (resp) {
-        valid = true;
-        return setError(false);
-      }
-      return setError(true);
-    });
-
-    if (errors) {
-      let currentErrors = Object.keys(errors);
-      currentErrors = currentErrors.filter((s) => s !== 'location');
-      const currentError = currentErrors[0];
-
-      const errorEl = document.getElementById(`field-${currentError}`);
-      if (errorEl) {
-        window.scrollTo({
-          behavior: 'smooth',
-          left: 0,
-          top: errorEl.offsetTop - 50,
-        });
-      }
-    }
-    if (valid) {
-      nextQuestion();
-      window.scrollTo(0, 0);
-    }
-  };
-
   return (
     <SForm onSubmit={handleSubmit(onSubmit)}>
       {groups &&
@@ -240,11 +144,11 @@ const Form = ({
             isLast={i + 1 === pageAmount}
             nextPage={nextPage}
             prevPage={prevPage}
+            bla2={bla2}
             activeQuestionNumber={activeQuestionNumber}
             setActiveQuestionNumber={setActiveQuestionNumber}
             activePageQuestionNumber={activePageQuestionNumber}
             setActivePageQuestionNumber={setActivePageQuestionNumber}
-            validateNextQuestion={validateNextQuestion}
             nextQuestion={activeQuestion}
             activeQuestion={activeQuestion}
             setActiveQuestion={setActiveQuestion}
