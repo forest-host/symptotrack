@@ -11,6 +11,21 @@ export const Question = styled.div`
   position: relative;
   top: 0%;
   ${({ isActive }) =>
+    isActive &&
+    css`
+      animation: fadein 0.3s ease-in both;
+      @keyframes fadein {
+        from {
+          opacity: 0;
+          transform: translate3d(0, -20%, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    `}
+  ${({ isActive }) =>
     !isActive &&
     css`
       visibility: hidden;
