@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
@@ -24,12 +24,9 @@ const Fields = ({
   questions,
   activeQuestion,
   activeQuestionNumber,
-  setActiveQuestionNumber,
-  activePageQuestionNumber,
-  setActivePageQuestionNumber,
   validateNextQuestion,
+  activePageQuestions,
   question,
-  keyPressActive,
   translations,
   translatedErrors,
   prefill,
@@ -78,15 +75,26 @@ const Fields = ({
     }
   }, 1000);
 
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+  const prevQuestion = usePrevious(activeQuestion);
+
   useEffect(() => {
-    function watchScroll() {
-      window.addEventListener('scroll', handleScroll);
+    if (prevQuestion != activeQuestion && activeQuestionNumber < activePageQuestions.length - 2) {
+      function watchScroll() {
+        window.addEventListener('scroll', handleScroll);
+      }
+      watchScroll();
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
     }
-    watchScroll();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [activeQuestionNumber, activePageQuestionNumber, activeQuestion]);
+  }, [activeQuestionNumber, activeQuestion, activePageQuestions]);
 
   switch (questions[question]?.type) {
     case 'text':

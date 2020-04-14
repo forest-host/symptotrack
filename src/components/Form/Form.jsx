@@ -33,27 +33,11 @@ const Form = ({
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
-  const [hasError, setError] = useState(false);
-  const [keyPressActive, setKeypressActive] = useState(true);
-
-  let activePageKey = Object.keys(groups)[activePage - 1];
-  // const [activePageQuestions, setActivePageQuestions] = useState(
-  //   Object.keys(groups[activePageKey].questions)
-  // );
-
-  let activePageQuestions = Object.keys(groups[activePageKey].questions);
-
+  const [activePageKey, setActivePageKey] = useState(Object.keys(groups)[activePage - 1]);
   const [activeQuestionNumber, setActiveQuestionNumber] = useState(1);
-  const [activePageQuestionNumber, setActivePageQuestionNumber] = useState(1);
-
   const [activeQuestion, setActiveQuestion] = useState(
     Object.keys(groups[activePageKey].questions)[activeQuestionNumber - 1]
   );
-
-  const bla2 = (activeQuestion) => {
-    console.log(activeQuestion);
-    // do something with value in parent component, like save to state
-  };
 
   useEffect(() => {
     setCount({ currentPage: activePage, total: pageAmount });
@@ -107,21 +91,18 @@ const Form = ({
   // Navigate to next page
   const nextPage = () => {
     setActivePage(activePage + 1);
+    setActiveQuestion(Object.keys(groups[activePageKey].questions)[0]);
     setActiveQuestionNumber(0);
   };
+
+  useEffect(() => {
+    setActivePageKey(Object.keys(groups)[activePage]);
+  }, [activePage]);
 
   // Navigate to previous page
   const prevPage = () => {
     setActivePage(activePage - 1);
-    setActivePageQuestion(0);
   };
-
-  useEffect(() => {
-    const activePageQuestions = Object.keys(groups[activePageKey].questions);
-    if (activePageQuestionNumber >= activePageQuestions.length - 1) {
-      setKeypressActive(false);
-    }
-  }, [activePageQuestionNumber]);
 
   return (
     <SForm onSubmit={handleSubmit(onSubmit)}>
@@ -137,22 +118,18 @@ const Form = ({
             translatedGroup={translations?.[group]}
             translatedErrors={translatedErrors}
             watch={watch}
-            groups={groups}
             triggerValidation={triggerValidation}
-            activePage={activePage}
             isActive={activePage === i + 1}
             isLast={i + 1 === pageAmount}
             nextPage={nextPage}
             prevPage={prevPage}
-            bla2={bla2}
+            groups={groups}
+            activePage={activePage}
             activeQuestionNumber={activeQuestionNumber}
             setActiveQuestionNumber={setActiveQuestionNumber}
-            activePageQuestionNumber={activePageQuestionNumber}
-            setActivePageQuestionNumber={setActivePageQuestionNumber}
             nextQuestion={activeQuestion}
             activeQuestion={activeQuestion}
             setActiveQuestion={setActiveQuestion}
-            keyPressActive={keyPressActive}
             prefill={prefill}
             setValue={setValue}
             {...groups[group]}

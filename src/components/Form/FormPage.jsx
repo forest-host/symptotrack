@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -26,14 +26,10 @@ const FormPage = ({
   activeQuestionNumber,
   setActiveQuestion,
   setActiveQuestionNumber,
-  activePageQuestionNumber,
-  setActivePageQuestionNumber,
   activeQuestion,
-  bla2,
   groups,
   isActive,
   isLast,
-  keyPressActive,
   nextPage,
   prevPage,
   prefill,
@@ -51,18 +47,19 @@ const FormPage = ({
 
   const activePageKey = Object.keys(groups)[activePage - 1];
   const [activePageQuestion, setActivePageQuestion] = useState(0);
-
   const [activePageQuestions, setActivePageQuestions] = useState(
     Object.keys(groups[activePageKey].questions)
   );
 
   const nextQuestion = () => {
-    let actief;
     setActiveQuestionNumber(activeQuestionNumber + 1);
-    setActivePageQuestionNumber(activePageQuestionNumber + 1);
     setActivePageQuestion(activePageQuestion + 1);
+
     let activeQuestionWatchKeys = [];
     const watchKeys = Object.keys(watch());
+
+    let respondingAnswer = watch(['responding_for'])['responding_for'];
+
     watchKeys.map((watchKey) => {
       const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
       activeQuestionWatchKeys.push(activeQuestionKey);
@@ -70,15 +67,23 @@ const FormPage = ({
     activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
       (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
     );
-    actief = activeQuestionWatchKeys[activeQuestionNumber];
-    setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+
+    if (respondingAnswer === 'self') {
+      setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+    } else {
+      activeQuestionWatchKeys.splice(1, 0, 'asked_permission');
+      activeQuestionWatchKeys.splice(2, 0, 'takes_precautions');
+      activeQuestionWatchKeys.splice(25, 1);
+      activeQuestionWatchKeys.splice(25, 1);
+      setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+    }
   };
 
   const validateNextQuestion = async () => {
     const watchAll = watch();
     const questionArray = [];
-    const validateArray = [];
     let valid = false;
+
     const { questions } = groups[activePageKey];
     questionArray.push(activeQuestion);
     const watchKeys = Object.keys(watchAll);
@@ -123,12 +128,11 @@ const FormPage = ({
       });
 
     const activePageQuestions = [];
+    let activeQuestionWatchKey;
 
     pageQuestions?.map((question) => {
       activePageQuestions[question] = groups[activePageKey].questions[question];
     });
-
-    let activeQuestionWatchKey;
 
     if (activeQuestion === 'location') {
       activeQuestionWatchKey = [watchKeys[1], watchKeys[1]];
@@ -164,7 +168,7 @@ const FormPage = ({
     }
   };
 
-  const validateNextPage = async (activeQuestion) => {
+  const validateNextPage = async () => {
     const watchAll = watch();
     const questionArray = [];
     const validateArray = [];
@@ -239,7 +243,8 @@ const FormPage = ({
     } else {
       answerOffset = activePageQuestions.length;
     }
-    if (activeQuestionNumber - 1 === answerOffset) {
+
+    if (activeQuestionNumber === answerOffset) {
       return (
         <Box mb={24} order={[0, 1]}>
           <ButtonArrow
@@ -275,12 +280,8 @@ const FormPage = ({
               watch={watch}
               activeQuestion={activeQuestion}
               activeQuestionNumber={activeQuestionNumber}
-              setActiveQuestionNumber={setActiveQuestionNumber}
-              activePageQuestionNumber={activePageQuestionNumber}
-              setActivePageQuestionNumber={setActivePageQuestionNumber}
               activePageQuestions={activePageQuestions}
               validateNextQuestion={validateNextQuestion}
-              keyPressActive={keyPressActive}
               translatedErrors={translatedErrors}
               prefill={prefill?.[question]}
               errors={errors}
