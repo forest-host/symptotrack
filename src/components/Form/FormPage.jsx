@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -23,10 +23,6 @@ const FormPage = ({
   translatedQuestions,
   translatedErrors,
   activePage,
-  activeQuestionNumber,
-  setActiveQuestion,
-  setActiveQuestionNumber,
-  activeQuestion,
   groups,
   isActive,
   isLast,
@@ -43,15 +39,23 @@ const FormPage = ({
         !watchArray.includes(question) && watchArray.push(question);
       });
     });
+
   const watchFields = watch(watchArray);
 
   const activePageKey = Object.keys(groups)[activePage - 1];
   const [activePageQuestion, setActivePageQuestion] = useState(0);
-  const [activePageQuestions, setActivePageQuestions] = useState(
-    Object.keys(groups[activePageKey].questions)
+  const [activeQuestionNumber, setActiveQuestionNumber] = useState(0);
+  const activePageQuestions = Object.keys(groups[activePageKey].questions);
+
+  const [activeQuestion, setActiveQuestion] = useState(
+    Object.keys(groups[activePageKey].questions)[0]
   );
 
-  const nextQuestion = () => {
+  useEffect(() => {
+    setActiveQuestion(Object.keys(groups[activePageKey].questions)[0]);
+  }, [activePageKey]);
+
+  const nextQuestion = async () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
     setActivePageQuestion(activePageQuestion + 1);
 
@@ -205,6 +209,7 @@ const FormPage = ({
         validateArray.push(question);
       }
     });
+
     await triggerValidation(validateArray).then((resp) => {
       if (resp) {
         valid = true;
@@ -238,7 +243,7 @@ const FormPage = ({
   const nextPageBtn = () => {
     let respondingAnswer = watch(['responding_for'])['responding_for'];
     let answerOffset;
-    if (respondingAnswer === 'self') {
+    if (respondingAnswer === 'self' && activePage === 1) {
       answerOffset = activePageQuestions.length - 2;
     } else {
       answerOffset = activePageQuestions.length;
@@ -278,6 +283,7 @@ const FormPage = ({
               translations={translatedQuestions}
               activePage={activePage}
               watch={watch}
+              actiePage={activePage}
               activeQuestion={activeQuestion}
               activeQuestionNumber={activeQuestionNumber}
               activePageQuestions={activePageQuestions}

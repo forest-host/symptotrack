@@ -6,6 +6,7 @@ import formatTags from './formatTags';
 import getLocale from './getLocale';
 import numberToFixed from './numberToFixed';
 import useDebounce from './useDebounce';
+import usePrevious from './usePrevious';
 import parseValues from './parseValues';
 
 export {
@@ -17,5 +18,6 @@ export {
   getLocale,
   numberToFixed,
   useDebounce,
+  usePrevious,
   parseValues,
 };

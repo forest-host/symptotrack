@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useDebounce, usePrevious } from '../../utils';
 
 // Components
 import {
@@ -20,8 +21,10 @@ import { Box } from '../styles';
 const Fields = ({
   register,
   errors,
+  watch,
   watchFields,
   questions,
+  activePage,
   activeQuestion,
   activeQuestionNumber,
   validateNextQuestion,
@@ -51,48 +54,42 @@ const Fields = ({
     }
   });
 
-  const debounce = (func, wait, immediate) => {
-    let timeout;
-    return function() {
-      const context = this;
-      const args = arguments;
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      }, wait);
-      if (immediate && !timeout) func.apply(context, args);
-    };
+  const validateOnScroll = () => {
+    if (typeof window !== 'undefined') {
+      const lastScrollTop = 0;
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        validateNextQuestion();
+      }
+    }
   };
 
-  const handleScroll = debounce(() => {
-    let lastScrollTop = 0;
-    let st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-      validateNextQuestion();
-    }
-  }, 500);
-
-  function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
+  const handleScroll = validateOnScroll;
 
   const prevQuestion = usePrevious(activeQuestion);
+  const prevPage = usePrevious(activePage);
 
   useEffect(() => {
-    if (prevQuestion != activeQuestion && activeQuestionNumber < activePageQuestions.length - 2) {
+    let questionLength = activePageQuestions.length;
+    const respondingAnswer = watch(['responding_for']).responding_for;
+
+    if (respondingAnswer === 'self' && activePage === 1) {
+      questionLength = activePageQuestions.length - 2;
+    }
+
+    // if(prevPage != activePage) {
+    if (activeQuestionNumber < questionLength) {
+      // if (prevQuestion != activeQuestion && activeQuestionNumber < activePageQuestions.length - 2) {
       function watchScroll() {
         window.addEventListener('wheel', handleScroll);
       }
+
       watchScroll();
       return () => {
         window.removeEventListener('wheel', handleScroll);
       };
     }
+    // }
   }, [activeQuestionNumber, activeQuestion, activePageQuestions]);
 
   switch (questions[question]?.type) {
