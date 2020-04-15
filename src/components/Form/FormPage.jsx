@@ -23,6 +23,11 @@ const FormPage = ({
   translatedQuestions,
   translatedErrors,
   activePage,
+  activePageKey,
+  activeQuestionNumber,
+  setActiveQuestionNumber,
+  setActiveQuestion,
+  activeQuestion,
   groups,
   isActive,
   isLast,
@@ -42,22 +47,14 @@ const FormPage = ({
 
   const watchFields = watch(watchArray);
 
-  const activePageKey = Object.keys(groups)[activePage - 1];
-  const [activePageQuestion, setActivePageQuestion] = useState(0);
-  const [activeQuestionNumber, setActiveQuestionNumber] = useState(0);
   const activePageQuestions = Object.keys(groups[activePageKey].questions);
 
-  const [activeQuestion, setActiveQuestion] = useState(
-    Object.keys(groups[activePageKey].questions)[0]
-  );
-
   useEffect(() => {
-    setActiveQuestion(Object.keys(groups[activePageKey].questions)[0]);
+    setActiveQuestion(Object.keys(groups[Object.keys(groups)[activePage - 1]].questions)[0]);
   }, [activePageKey]);
 
   const nextQuestion = async () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
-    setActivePageQuestion(activePageQuestion + 1);
 
     let activeQuestionWatchKeys = [];
     const watchKeys = Object.keys(watch());
@@ -72,14 +69,18 @@ const FormPage = ({
       (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
     );
 
-    if (respondingAnswer === 'self') {
-      setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+    if (activePage === 1) {
+      if (respondingAnswer === 'self') {
+        setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber + 1]);
+      } else {
+        activeQuestionWatchKeys.splice(1, 0, 'asked_permission');
+        activeQuestionWatchKeys.splice(2, 0, 'takes_precautions');
+        activeQuestionWatchKeys.splice(25, 1);
+        activeQuestionWatchKeys.splice(25, 1);
+        setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+      }
     } else {
-      activeQuestionWatchKeys.splice(1, 0, 'asked_permission');
-      activeQuestionWatchKeys.splice(2, 0, 'takes_precautions');
-      activeQuestionWatchKeys.splice(25, 1);
-      activeQuestionWatchKeys.splice(25, 1);
-      setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
+      setActiveQuestion(activePageQuestions[activeQuestionNumber]);
     }
   };
 
@@ -240,6 +241,25 @@ const FormPage = ({
     }
   };
 
+  const prevPageBtn = () => {
+    if (activeQuestionNumber === 0) {
+      return (
+        <Box mb={24} order={[1, 0]}>
+          <ButtonArrow
+            type="button"
+            text={i18n.t('prevQuestions')}
+            reversed
+            transparent
+            onClick={() => {
+              prevPage();
+              window.scrollTo(0, 0);
+            }}
+          />
+        </Box>
+      );
+    }
+  };
+
   const nextPageBtn = () => {
     let respondingAnswer = watch(['responding_for'])['responding_for'];
     let answerOffset;
@@ -249,7 +269,7 @@ const FormPage = ({
       answerOffset = activePageQuestions.length;
     }
 
-    if (activeQuestionNumber === answerOffset) {
+    if (activeQuestionNumber === answerOffset - 1) {
       return (
         <Box mb={24} order={[0, 1]}>
           <ButtonArrow
@@ -296,20 +316,7 @@ const FormPage = ({
           </Question>
         ))}
       <Flex justifyContent="space-between" flexWrap="wrap" flexDirection={['column', 'row']}>
-        {index !== 0 && (
-          <Box mb={24} order={[1, 0]}>
-            <ButtonArrow
-              type="button"
-              text={i18n.t('prevQuestions')}
-              reversed
-              transparent
-              onClick={() => {
-                prevPage();
-                window.scrollTo(0, 0);
-              }}
-            />
-          </Box>
-        )}
+        {index !== 0 && prevPageBtn()}
         {!isLast && nextPageBtn()}
         {isLast && (
           <Box mb={24} order={[0, 1]}>
@@ -340,6 +347,7 @@ FormPage.propTypes = {
 FormPage.defaultProps = {
   translatedQuestions: {},
   activePage: 1,
+  activeQuestionNumber: 0,
   isActive: false,
   isLast: false,
 };

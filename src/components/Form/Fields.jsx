@@ -78,7 +78,7 @@ const Fields = ({
     }
 
     // if(prevPage != activePage) {
-    if (activeQuestionNumber < questionLength) {
+    if (activeQuestionNumber < questionLength - 1) {
       // if (prevQuestion != activeQuestion && activeQuestionNumber < activePageQuestions.length - 2) {
       function watchScroll() {
         window.addEventListener('wheel', handleScroll);

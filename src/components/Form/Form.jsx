@@ -33,9 +33,20 @@ const Form = ({
   const watchAllFields = watch();
   const pageAmount = Object.size(groups);
   const [activePage, setActivePage] = useState(1);
+  const [activeQuestionNumber, setActiveQuestionNumber] = useState(0);
+  const activePageKey = Object.keys(groups)[activePage - 1];
+
+  const [activeQuestion, setActiveQuestion] = useState(
+    Object.keys(groups[Object.keys(groups)[activePage - 1]].questions)[0]
+  );
+
+  // console.log(2 -1);
+  // console.log(activeQuestion);
 
   useEffect(() => {
     setCount({ currentPage: activePage, total: pageAmount });
+
+    // setActiveQuestion(Object.keys(groups[ Object.keys(groups)[activePage - 1]].questions)[0])
   }, [activePage]);
 
   useEffect(() => {
@@ -87,6 +98,7 @@ const Form = ({
   // Navigate to next page
   const nextPage = () => {
     setActivePage(activePage + 1);
+    setActiveQuestionNumber(0);
   };
 
   // Navigate to previous page
@@ -115,6 +127,11 @@ const Form = ({
             prevPage={prevPage}
             groups={groups}
             activePage={activePage}
+            activeQuestion={activeQuestion}
+            setActiveQuestion={setActiveQuestion}
+            activePageKey={activePageKey}
+            activeQuestionNumber={activeQuestionNumber}
+            setActiveQuestionNumber={setActiveQuestionNumber}
             prefill={prefill}
             setValue={setValue}
             {...groups[group]}
