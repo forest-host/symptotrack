@@ -70,10 +70,8 @@ const Fields = ({
     let st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
       validateNextQuestion();
-    } else {
-      console.log('up');
     }
-  }, 1000);
+  }, 500);
 
   function usePrevious(value) {
     const ref = useRef();
@@ -82,16 +80,17 @@ const Fields = ({
     });
     return ref.current;
   }
+
   const prevQuestion = usePrevious(activeQuestion);
 
   useEffect(() => {
     if (prevQuestion != activeQuestion && activeQuestionNumber < activePageQuestions.length - 2) {
       function watchScroll() {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('wheel', handleScroll);
       }
       watchScroll();
       return () => {
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('wheel', handleScroll);
       };
     }
   }, [activeQuestionNumber, activeQuestion, activePageQuestions]);

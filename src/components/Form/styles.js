@@ -1,6 +1,8 @@
 import styled, { css } from '@xstyled/styled-components';
 
 const SForm = styled.form`
+  overflow: hidden;
+  padding-bottom: 100px;
   fieldset {
     padding: 0;
     border: 0;
@@ -13,11 +15,11 @@ export const Question = styled.div`
   ${({ isActive }) =>
     isActive &&
     css`
-      animation: fadein 0.3s ease-in both;
+      animation: fadein 0.5s ease-in both;
       @keyframes fadein {
         from {
           opacity: 0;
-          transform: translate3d(0, -20%, 0);
+          transform: translate3d(0, 20%, 0);
         }
         to {
           opacity: 1;
