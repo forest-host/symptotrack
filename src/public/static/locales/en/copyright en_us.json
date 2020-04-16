@@ -1,0 +1,25 @@
+"title": "Copyright",
+  "content": "Source: tekst",
+  "layouts": [
+    {
+      "name": "content",
+      "layout": {
+        "content": "Tekst."
+      }
+    },
+    {
+      "name": "content",
+      "layout": {
+        "title": "Article 1 – Defenitions.",
+        "content": "Tekst"
+      }
+    },
+    {
+      "name": "content",
+      "layout": {
+        "title": "Article 2 – Tekst.",
+        "content": " Tekst"
+      }
+    }
+  ]
+}
