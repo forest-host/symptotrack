@@ -1,0 +1,53 @@
+{
+  "title": "Frequently Asked Questions (FAQs)",
+  "content": "Do you have any questions about SymptoTrack or our privacy policy [hyperlink to privacy policy]? View the answers to the frequently asked questions.",
+  "moreQuestions": "More Questions? <a href='mailto:info@symptotrack.org'>Email us</a>.",
+  "sections": [
+    {
+      "title": "About the website",
+      "items": [
+        {
+          "question": "What is SymptoTrack?",
+          "answer": "SymptoTrack is a tool that works to map anyone with symptoms of COVID-19. By answering this questionnaire, you can record your own symptoms or someone else's. In this way, all of the data is collected so we can help  track, and therefore stop,  the spread of the virus."
+        },
+        {
+          "question": "How does SymptoTrack work?",
+          "answer": "With your help and that of many others, SymptoTrack registers the number of people who experience the different  symptoms of COVID-19. Those symptoms do not say much about one person, but if many people report their symptoms, we can help public health officials  map the spread of the virus."
+        },
+        {
+          "question": "I have symptoms, do I now also have COVID-19?",
+          "answer": "Your symptoms are an indicator that you might have COVID-19, but you cannot be certain. Many other flu-like illnesses have similar symptoms. Therefore, the only way to be certain that you have COVID-19 is by getting tested. Make sure that when you are exhibiting symptoms of the virus that you do not infect others. Stay at home if you have a fever or cough, and follow the guidelines set by your government. If your symptoms worsen, contact your doctor. While at an individual level these symptoms can not indicate if you have COVID-19 without a test, at the population level this data is essential. When we aggregate the data of many individuals with symptoms of COVID-19 we can, working with public health experts, use statistical analyses to approximate the number of COVID-19 cases. We can use the strength of population level data to help monitor the spread of the disease. "
+        },
+        {
+          "question": "Why isn't everyone being tested for COVID-19?",
+          "answer": "The governments,  guided by the WHO, are working hard to map the spread of the coronavirus (COVID-19). However, the pandemic has caused shortages of essential raw materials that are required to perform the tests for COVID-19; Raw materials that almost every country in the world currently has a demand for. Governments are  reserving tests for high risk populations and working hard to increase their testing capacity. However, it will be highly unlikely that large parts of the population will be tested any time soon. That is why SymptoTrack offers the possibility to report your symptoms yourself and to supplement the data of governments and global health institutions such as the WHO."
+        },
+        {
+          "question": "- What symptoms are measured? And why these symptoms?",
+          "answer": "SymptoTrack asks you to report your symptoms, but how do we choose which symptoms are recorded? We rely on the most recent research published by the WHO. The list of symptoms that we currently register is based on a survey of roughly 55,000 people who have tested positive for the coronavirus (COVID-19). For the questionnaire, we focus on the 10 most common symptoms. The questionnaire is updated when new research reveals that there are other symptoms."
+        },
+        {
+          "question": "Who is working on SymptoTrack?",
+          "answer": "SymptoTrack is founded by volunteers at Hike, Greenberry and Forrest. With our knowledge of programming, design and hosting, we have worked hard to get SymptoTrack online within a short time frame. Several agencies now support our work. See this [<a href='/over-symptotrack' as='/over-symptotrack'>this page</a>] page for more information about our partners."
+        }
+      ]
+    },
+    {
+      "title": "About your privacy",
+      "items": [
+        {
+          "question": "What happens to my data?",
+          "answer": "The information you share is key to mapping the spread of the coronavirus (COVID-19). SymptoTrack processes your data for the SymptomsMap. With this map, anyone can see how the virus spreads in their community. SymptoTrack is open source, which means that the data is accessible to everyone. In this way, doctors, journalists and epidemiologists have access to the latest insights  as they work to  minimize the effects of the coronavirus (COVID-19). To prevent others from tracing the information you have shared back to you, the questionnaire has been designed  in a way that does not require any personal data. Personal data is information which can be used to find out who the data belongs to. Think of your phone number, name or date of birth."
+        },
+        {
+          "question": "Why do I have to share my email?",
+          "answer": "To map how you’re feeling, whether your symptoms are getting worse and when you’re feeling better, we want to offer you the opportunity to return to SymptoTrack. To avoid creating a user account, we will send you an email with a link after completing the questionnaire. Your email address is used to send that email, after which your email address is automatically deleted by the system before it can be stored in the database. As a result, you have access to your questionnaire, but we do not  have access to your email address. If you want to know how this works, check out Github for our code. SymptoTrack is open source, so you can check how we collect and process your data."
+        },
+        {
+          "question": "Why do I have to share my GPS location?",
+          "answer": "In order to map out where people with symptoms are in the world, we have to collect information about your location. But this information doesn’t have to be exact. Therefore, your GPS coordinates are only registered at 2 decimal places. This means that your location is accurate to 1.11 km / 0.69 miles and therefore can’t be traced back to you or your place of residence."
+        }
+      ]
+    }
+  ]
+}
