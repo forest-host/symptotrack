@@ -40,9 +40,6 @@ const Form = ({
     Object.keys(groups[Object.keys(groups)[activePage - 1]].questions)[0]
   );
 
-  // console.log(2 -1);
-  // console.log(activeQuestion);
-
   useEffect(() => {
     setCount({ currentPage: activePage, total: pageAmount });
 

@@ -27,6 +27,7 @@ const FormPage = ({
   activeQuestionNumber,
   setActiveQuestionNumber,
   setActiveQuestion,
+  requiredQuestions,
   activeQuestion,
   groups,
   isActive,
@@ -47,41 +48,41 @@ const FormPage = ({
 
   const watchFields = watch(watchArray);
 
-  const activePageQuestions = Object.keys(groups[activePageKey].questions);
-
   useEffect(() => {
     setActiveQuestion(Object.keys(groups[Object.keys(groups)[activePage - 1]].questions)[0]);
   }, [activePageKey]);
 
-  const nextQuestion = async () => {
+  const activeQuestions = () => {
+    let groupArr = [];
+    groups &&
+      groupArr?.length === 0 &&
+      Object.keys(groups).map((group) => {
+        let page = [];
+
+        Object.keys(groups[group]?.questions).map((question) => {
+          if (groups[group]?.questions[question]?.conditions) {
+            groups[group]?.questions[question]?.conditions?.map((q) => {
+              const watchQuestion = watch(q.question);
+
+              if (watchQuestion && q.answer && q.answer === watchQuestion) {
+                page.push(question);
+              }
+              if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+                page.push(question);
+              }
+            });
+          } else {
+            page.push(question);
+          }
+        });
+        questions[group] = page;
+      });
+    return groupArr[activePageKey];
+  };
+
+  const nextQuestion = () => {
     setActiveQuestionNumber(activeQuestionNumber + 1);
-
-    let activeQuestionWatchKeys = [];
-    const watchKeys = Object.keys(watch());
-
-    let respondingAnswer = watch(['responding_for'])['responding_for'];
-
-    watchKeys.map((watchKey) => {
-      const activeQuestionKey = watchKey.replace(/\[.*?\]/g, '').replace(/[0-9]/g, '');
-      activeQuestionWatchKeys.push(activeQuestionKey);
-    });
-    activeQuestionWatchKeys = activeQuestionWatchKeys.filter(
-      (item, pos) => activeQuestionWatchKeys.indexOf(item) == pos
-    );
-
-    if (activePage === 1) {
-      if (respondingAnswer === 'self') {
-        setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber + 1]);
-      } else {
-        activeQuestionWatchKeys.splice(1, 0, 'asked_permission');
-        activeQuestionWatchKeys.splice(2, 0, 'takes_precautions');
-        activeQuestionWatchKeys.splice(25, 1);
-        activeQuestionWatchKeys.splice(25, 1);
-        setActiveQuestion(activeQuestionWatchKeys[activeQuestionNumber]);
-      }
-    } else {
-      setActiveQuestion(activePageQuestions[activeQuestionNumber]);
-    }
+    setActiveQuestion(activeQuestions()[activeQuestionNumber]);
   };
 
   const validateNextQuestion = async () => {
@@ -261,15 +262,7 @@ const FormPage = ({
   };
 
   const nextPageBtn = () => {
-    let respondingAnswer = watch(['responding_for'])['responding_for'];
-    let answerOffset;
-    if (respondingAnswer === 'self' && activePage === 1) {
-      answerOffset = activePageQuestions.length - 2;
-    } else {
-      answerOffset = activePageQuestions.length;
-    }
-
-    if (activeQuestionNumber === answerOffset - 1) {
+    if (activeQuestionNumber === activeQuestions().length) {
       return (
         <Box mb={24} order={[0, 1]}>
           <ButtonArrow
@@ -306,7 +299,7 @@ const FormPage = ({
               actiePage={activePage}
               activeQuestion={activeQuestion}
               activeQuestionNumber={activeQuestionNumber}
-              activePageQuestions={activePageQuestions}
+              activeQuestions={activeQuestions()}
               validateNextQuestion={validateNextQuestion}
               translatedErrors={translatedErrors}
               prefill={prefill?.[question]}

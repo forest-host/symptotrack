@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDebounce, usePrevious } from '../../utils';
 
 // Components
 import {
@@ -17,18 +16,18 @@ import {
 
 // Styling
 import { Box } from '../styles';
+import { useDebounce } from '../../utils';
 
 const Fields = ({
   register,
   errors,
-  watch,
   watchFields,
   questions,
   activePage,
   activeQuestion,
   activeQuestionNumber,
   validateNextQuestion,
-  activePageQuestions,
+  activeQuestions,
   question,
   translations,
   translatedErrors,
@@ -64,22 +63,10 @@ const Fields = ({
     }
   };
 
-  const handleScroll = validateOnScroll;
-
-  const prevQuestion = usePrevious(activeQuestion);
-  const prevPage = usePrevious(activePage);
+  const handleScroll = useDebounce(validateOnScroll, 500);
 
   useEffect(() => {
-    let questionLength = activePageQuestions.length;
-    const respondingAnswer = watch(['responding_for']).responding_for;
-
-    if (respondingAnswer === 'self' && activePage === 1) {
-      questionLength = activePageQuestions.length - 2;
-    }
-
-    // if(prevPage != activePage) {
-    if (activeQuestionNumber < questionLength - 1) {
-      // if (prevQuestion != activeQuestion && activeQuestionNumber < activePageQuestions.length - 2) {
+    if (activeQuestionNumber < activeQuestions.length) {
       function watchScroll() {
         window.addEventListener('wheel', handleScroll);
       }
@@ -89,8 +76,7 @@ const Fields = ({
         window.removeEventListener('wheel', handleScroll);
       };
     }
-    // }
-  }, [activeQuestionNumber, activeQuestion, activePageQuestions]);
+  }, [activeQuestionNumber, activeQuestion, activeQuestions]);
 
   switch (questions[question]?.type) {
     case 'text':

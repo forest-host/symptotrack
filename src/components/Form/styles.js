@@ -2,7 +2,9 @@ import styled, { css } from '@xstyled/styled-components';
 
 const SForm = styled.form`
   overflow: hidden;
-  padding-bottom: 100px;
+  top: 200px;
+  position: relative;
+  padding-bottom: 600px;
   fieldset {
     padding: 0;
     border: 0;
