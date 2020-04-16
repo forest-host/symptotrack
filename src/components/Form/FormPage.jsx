@@ -75,7 +75,7 @@ const FormPage = ({
             page.push(question);
           }
         });
-        questions[group] = page;
+        groupArr[group] = page;
       });
     return groupArr[activePageKey];
   };
