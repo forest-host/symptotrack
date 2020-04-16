@@ -27,7 +27,6 @@ const FormPage = ({
   activeQuestionNumber,
   setActiveQuestionNumber,
   setActiveQuestion,
-  requiredQuestions,
   activeQuestion,
   groups,
   isActive,
@@ -54,27 +53,31 @@ const FormPage = ({
 
   const activeQuestions = () => {
     let groupArr = [];
+
     groups &&
       groupArr?.length === 0 &&
       Object.keys(groups).map((group) => {
         let page = [];
 
-        Object.keys(groups[group]?.questions).map((question) => {
-          if (groups[group]?.questions[question]?.conditions) {
-            groups[group]?.questions[question]?.conditions?.map((q) => {
-              const watchQuestion = watch(q.question);
+        groups[group]?.questions &&
+          Object.keys(groups[group]?.questions).map((question) => {
+            if (groups[group]?.questions[question]?.conditions) {
+              groups[group]?.questions[question]?.conditions?.map((q) => {
+                const watchQuestion = watch(q.question);
 
-              if (watchQuestion && q.answer && q.answer === watchQuestion) {
-                page.push(question);
-              }
-              if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
-                page.push(question);
-              }
-            });
-          } else {
-            page.push(question);
-          }
-        });
+                if (watchQuestion && q.answer && q.answer === watchQuestion) {
+                  page.push(question);
+                }
+                if (watchQuestion && q.not_answer && q.not_answer !== watchQuestion) {
+                  page.push(question);
+                } else {
+                  page.push(question);
+                }
+              });
+            } else {
+              page.push(question);
+            }
+          });
         groupArr[group] = page;
       });
     return groupArr[activePageKey];
@@ -168,6 +171,7 @@ const FormPage = ({
         });
       }
     }
+
     if (valid) {
       nextQuestion();
       window.scrollTo(0, 0);
@@ -280,11 +284,27 @@ const FormPage = ({
     }
   };
 
+  const finalizeBtn = () => {
+    if (activeQuestionNumber === activeQuestions().length) {
+      return (
+        <Box mb={24} order={[0, 1]}>
+          <ButtonArrow type="submit" text={i18n.t('finishQuestionnaire')} />
+          {hasError && (
+            <Text mt={10} fontSize={12}>
+              {i18n.t('invalidForm')}
+            </Text>
+          )}
+        </Box>
+      );
+    }
+  };
+
   return (
     <SFormPage isActive={isActive}>
       {questions &&
         Object.keys(questions).map((question, i) => (
           <Question isActive={activeQuestion === question}>
+            {console.log(questions)},
             <Fields
               key={question}
               register={register}
@@ -311,16 +331,7 @@ const FormPage = ({
       <Flex justifyContent="space-between" flexWrap="wrap" flexDirection={['column', 'row']}>
         {index !== 0 && prevPageBtn()}
         {!isLast && nextPageBtn()}
-        {isLast && (
-          <Box mb={24} order={[0, 1]}>
-            <ButtonArrow type="submit" text={i18n.t('finishQuestionnaire')} />
-            {hasError && (
-              <Text mt={10} fontSize={12}>
-                {i18n.t('invalidForm')}
-              </Text>
-            )}
-          </Box>
-        )}
+        {isLast && finalizeBtn()}
       </Flex>
     </SFormPage>
   );

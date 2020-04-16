@@ -63,7 +63,7 @@ const Fields = ({
     }
   };
 
-  const handleScroll = useDebounce(validateOnScroll, 500);
+  const handleScroll = useDebounce(validateOnScroll, 1000);
 
   useEffect(() => {
     if (activeQuestionNumber < activeQuestions.length) {
