@@ -1,0 +1,104 @@
+{
+  "items": [
+    {
+      "label": "Home",
+      "mobileOnly": true,
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/",
+          "as": "/"
+        },
+        "en": {
+          "href": "/",
+          "as": "/en"
+        }
+      }
+    },
+    {
+      "label": "Report Symptoms",
+      "mobileOnly": true,
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/questionnaire",
+          "as": "/vragenlijst"
+        },
+        "en": {
+          "href": "/questionnaire",
+          "as": "/en/questionnaire"
+        }
+      }
+    },
+    {
+      "label": "SymptomsMap",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/map",
+          "as": "/kaart"
+        },
+        "en": {
+          "href": "/map",
+          "as": "/en/map"
+        }
+      }
+    },
+    {
+      "label": "About SymptoTrack",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/about",
+          "as": "/over-symptotrack"
+        },
+        "en": {
+          "href": "/about",
+          "as": "/en/about-symptotrack"
+        }
+      }
+    },
+    {
+      "label": "Contact",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/contact",
+          "as": "/contact"
+        },
+        "en": {
+          "href": "/contact",
+          "as": "/en/contact"
+        }
+      }
+    },
+    {
+      "label": "FAQ",
+      "link": {
+        "target": "_self",
+        "nl": {
+          "href": "/faq",
+          "as": "/veelgestelde-vragen"
+        },
+        "en": {
+          "href": "/faq",
+          "as": "/en/faq"
+        }
+      }
+    }
+  ],
+  "cta": {
+    "label": "Report Symptoms",
+    "link": {
+      "target": "_self",
+      "nl": {
+        "href": "/questionnaire",
+        "as": "/vragenlijst"
+      },
+      "en": {
+        "href": "/questionnaire",
+        "as": "/en/questionnaire"
+      }
+    }
+  }
+}
