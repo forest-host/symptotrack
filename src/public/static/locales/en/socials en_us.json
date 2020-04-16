@@ -1,0 +1,25 @@
+{
+  "title": "Or check out our social media channels",
+  "items": [
+    {
+      "label": "Facebook",
+      "name": "facebook",
+      "url": "https://www.facebook.com/SymptoTrack"
+    },
+    {
+      "label": "Instagram",
+      "name": "instagram",
+      "url": "https://www.instagram.com/symptotrack/"
+    },
+    {
+      "label": "Twitter",
+      "name": "twitter",
+      "url": "https://twitter.com/SymptoTrack"
+    },
+    {
+      "label": "Linkedin",
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/company/symptotrack"
+    }
+  ]
+}
