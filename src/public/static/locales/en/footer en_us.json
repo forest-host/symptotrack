@@ -1,0 +1,109 @@
+{
+  "title": "SymptoTrack",
+  "subTitle": "Tracking Symptoms Worldwide",
+  "developed": "Developed in collaboration with ...",
+  "menus": {
+    "mainMenu": [
+      {
+        "label": "Home",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/",
+            "as": "/"
+          },
+          "en": {
+            "href": "/",
+            "as": "/en"
+          }
+        }
+      },
+      {
+        "label": "SymptomsMap",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/map",
+            "as": "/kaart"
+          },
+          "en": {
+            "href": "/map",
+            "as": "/en/map"
+          }
+        }
+      },
+      {
+        "label": "About SymptoTrack",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/about",
+            "as": "/over-symptotrack"
+          },
+          "en": {
+            "href": "/about",
+            "as": "/en/about-symptotrack"
+          }
+        }
+      },
+      {
+        "label": "Contact",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/contact",
+            "as": "/contact"
+          },
+          "en": {
+            "href": "/contact",
+            "as": "/en/contact"
+          }
+        }
+      },
+      {
+        "label": "FAQ",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/faq",
+            "as": "/veelgestelde-vragen"
+          },
+          "en": {
+            "href": "/faq",
+            "as": "/en/faq"
+          }
+        }
+      }
+    ],
+    "subMenu": [
+      {
+        "label": "Privacyconditions",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/privacy",
+            "as": "/privacyvoorwaarden"
+          },
+          "en": {
+            "href": "/privacy",
+            "as": "/en/privacy-conditions"
+          }
+        }
+      },
+      {
+        "label": "Copyright",
+        "link": {
+          "target": "_self",
+          "nl": {
+            "href": "/copyright",
+            "as": "/copyright"
+          },
+          "en": {
+            "href": "/copyright",
+            "as": "/en/copyright"
+          }
+        }
+      }
+    ]
+  }
+}
