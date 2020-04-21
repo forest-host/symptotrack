@@ -6,25 +6,14 @@ const AppContext = React.createContext();
 /* Create provider Component */
 class AppProvider extends Component {
   state = {
-    basicQuestionnaire: {},
-    translatedQuestionnaire: {},
-    translatedErrors: {},
+    questionnaires: {},
   };
 
   static getDerivedStateFromProps(props) {
     const update = {};
 
-    if (props.basicQuestionnaire) {
-      update.basicQuestionnaire = props.basicQuestionnaire;
-    }
-    if (props.translatedQuestionnaire) {
-      update.translatedQuestionnaire = props.translatedQuestionnaire;
-    }
-    if (props.translatedErrors) {
-      update.translatedErrors = props.translatedErrors;
-    }
-    if (props.basicQuestionnaireRecurring) {
-      update.basicQuestionnaireRecurring = props.basicQuestionnaireRecurring;
+    if (props.questionnaires) {
+      update.questionnaires = props.questionnaires;
     }
     return update;
   }

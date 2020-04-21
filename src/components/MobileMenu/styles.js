@@ -16,7 +16,7 @@ const SMobileMenu = styled.nav`
     display: block;
   }
 
-  button {
+  button:not(.lang) {
     position: absolute;
     bottom: ${px2rem(20)};
     left: 0;

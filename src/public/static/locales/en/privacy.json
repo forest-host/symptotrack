@@ -1,0 +1,20 @@
+{
+  "title": "Privacy policy",
+  "content": "Tekst..",
+  "layouts": [
+    {
+      "name": "content",
+      "layout": {
+        "title": "Contact details..",
+        "content": "<a href='https://www.symptotrack.org'>https://www.symptotrack.org</a><br>Gruttersdijk 22, 3514BG Utrecht<br><a href='tel:+31307371303'>+31307371303</a>"
+      }
+    },
+    {
+      "name": "content",
+      "layout": {
+        "title": "tekst..",
+        "content": "Tekst.."
+      }
+    }
+  ]
+}

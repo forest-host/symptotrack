@@ -1,0 +1,10 @@
+{
+  "title": "Oops!",
+  "content": "Sorry, we cannot find this page anymore. Maybe the page no longer exists or has been moved.",
+  "button": {
+    "label": "Back to home",
+    "target": "_self",
+    "href": "/",
+    "as": "/"
+  }
+}

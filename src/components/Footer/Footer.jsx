@@ -57,7 +57,7 @@ const Footer = ({ t, i18n }) => {
                 </SFooterMenu>
               )}
               <Box width={[1, 1, 4 / 12]} mt={['6px', 20, '6px']} className="hide-for-small">
-                <Text as="span">Ontwikkeld in samenwerking met ...</Text>
+                <Text as="span">{t('footer:developed')}</Text>
               </Box>
             </Flex>
             {socials && (
@@ -94,7 +94,7 @@ const Footer = ({ t, i18n }) => {
               </Box>
             )}
             <Box key={uuid()} mt={35} width={1} className="show-for-small">
-              <Text as="span">Ontwikkeld in samenwerking met ...</Text>
+              <Text as="span">{t('footer:developed')}</Text>
             </Box>
             <Box key={uuid()} mt={25} width={1} className="show-for-small">
               <BuiltBy by={t('by')} />

@@ -1,12 +1,11 @@
-const getLocale = (lang = 'nl') => {
+const getLocale = (lang = 'en') => {
   switch (lang) {
     case 'nl':
       return 'nl_nl';
     case 'en':
       return 'en_us';
     default:
-      return 'nl_nl';
-      break;
+      return 'en_us';
   }
 };
 

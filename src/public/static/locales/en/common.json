@@ -1,5 +1,16 @@
 {
   "h1": "Example",
   "followUs": "Follow us",
-  "mailUs": "Mail us"
+  "mailUs": "Mail us",
+  "socialMedia": "Or check out our social media channels",
+  "close": "Close",
+  "by": "By",
+  "rounded": "rounded",
+  "copyLink": "Copy the link by clicking on it.",
+  "copied": "Copied!",
+  "emailError": "Email addresses do not match.",
+  "prevQuestions": "Previous questions",
+  "nextQuestions": "Next questions",
+  "finishQuestionnaire": "Submit questions",
+  "invalidForm": "You have forgotten a question"
 }

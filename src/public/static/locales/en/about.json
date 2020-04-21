@@ -1,0 +1,13 @@
+{
+  "title": "About SymptoTrack",
+  "content": "SymptoTrack is a tool that works to map anyone with symptoms of COVID-19. By answering this <a href='/questionnaire' as='/questionnaire'>questionnaire</a>, you can record your own symptoms or those of someone else. We use this data to <a href='/map' as='/map'>map</a> the spread of the virus.",
+  "layouts": [
+    {
+      "name": "content",
+      "layout": {
+        "title": "Why are we doing this?",
+        "content": "The novel coronavirus (COVID-19) is spreading across the world. As the number of infected people increases, the pressure on healthcare systems is mounting. To lower that pressure, we must all do our best to stop the virus from spreading;we can do this by mapping the spread of the virus in our communities. The easiest way to map the spread of COVID-19 is to test as many people as possible. In many countries however, it’s simply not possible to test everyone, as the tests are reserved for health care workers, at-risk groups and patients with severe symptoms. If you have mild to moderate symptoms, you often don't get tested. This gives a distorted picture of the number of people infected with the virus. SymptoTrack was developed by HIKE, Greenberry and Forest to help healthcare workers in their fight against the coronavirus."
+      }
+    }
+  ]
+}

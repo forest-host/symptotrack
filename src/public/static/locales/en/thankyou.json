@@ -1,0 +1,27 @@
+{
+  "title": "Thanks!",
+  "content": "Thank you for completing the questionnaire. You can help us by answering some additional questions.",
+  "layouts": [
+    {
+      "name": "share",
+      "layout": {
+        "title": "Spread the questionnaire, not the virus",
+        "content": "Help us identify more people with symptoms by sharing this questionnaire. Do you have symptoms of the virus yourself? Then this is extra important. It is possible that you have transferred the virus to others. Send the questionnaire to all the people you've seen in the past two weeks.",
+        "shareTitle": "Questionnaire SymptoTrack",
+        "shareUrl": "https://www.symptotrack.org/questionnaire",
+        "shareFacebook": "I have reported my #symtpoms of #COVID19. Do you have, or know someone with symtpoms of COVID19? Go to www.SymptoTrack.org. Only together can we stop this virus!  #corona #coronavirus #SpreadTheSurvey #SymptoTrack",
+        "shareTwitter": "I have reported my #symtpoms of #COVID19. Do you have, or know someone with symtpoms of COVID19? Go to www.SymptoTrack.org. Only together can we stop this virus!  #corona #coronavirus #SpreadTheSurvey #SymptoTrack",
+        "shareEmail": "I have reported my #symtpoms of #COVID19. Do you have, or know someone with symtpoms of COVID19? Go to www.SymptoTrack.org. Only together can we stop this virus!"
+      }
+    },
+    {
+      "name": "card",
+      "layout": {
+        "title": "Adjust symptoms or let us know you’re feeling better",
+        "content": "Use the link below to edit your answers or let us know you’re feeling better.",
+        "includeLink": true,
+        "shapePosition": "topRight"
+      }
+    }
+  ]
+}

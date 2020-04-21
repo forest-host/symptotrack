@@ -1,7 +1,7 @@
 {
   "title": "SymptoTrack",
   "subTitle": "Tracking Symptoms Worldwide",
-  "developed": "Ontwikkeld in samenwerking met ...",
+  "developed": "Developed in collaboration with ...",
   "menus": {
     "mainMenu": [
       {
@@ -19,7 +19,7 @@
         }
       },
       {
-        "label": "SymptomenKaart",
+        "label": "SymptomsMap",
         "link": {
           "target": "_self",
           "nl": {
@@ -33,7 +33,7 @@
         }
       },
       {
-        "label": "Over SymptoTrack",
+        "label": "About SymptoTrack",
         "link": {
           "target": "_self",
           "nl": {
@@ -61,7 +61,7 @@
         }
       },
       {
-        "label": "Veelgestelde vragen",
+        "label": "FAQ",
         "link": {
           "target": "_self",
           "nl": {
@@ -77,7 +77,7 @@
     ],
     "subMenu": [
       {
-        "label": "Privacyvoorwaarden",
+        "label": "Privacyconditions",
         "link": {
           "target": "_self",
           "nl": {

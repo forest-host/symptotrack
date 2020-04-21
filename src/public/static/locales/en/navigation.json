@@ -16,7 +16,7 @@
       }
     },
     {
-      "label": "Meld symptomen",
+      "label": "Report Symptoms",
       "mobileOnly": true,
       "link": {
         "target": "_self",
@@ -31,7 +31,7 @@
       }
     },
     {
-      "label": "SymptomenKaart",
+      "label": "SymptomsMap",
       "link": {
         "target": "_self",
         "nl": {
@@ -45,7 +45,7 @@
       }
     },
     {
-      "label": "Over SymptoTrack",
+      "label": "About SymptoTrack",
       "link": {
         "target": "_self",
         "nl": {
@@ -73,7 +73,7 @@
       }
     },
     {
-      "label": "Veelgestelde vragen",
+      "label": "FAQ",
       "link": {
         "target": "_self",
         "nl": {
@@ -88,7 +88,7 @@
     }
   ],
   "cta": {
-    "label": "meld symptomen",
+    "label": "Report Symptoms",
     "link": {
       "target": "_self",
       "nl": {

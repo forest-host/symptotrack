@@ -1,0 +1,29 @@
+{
+  "title": "COVID-19 SymptoTrack",
+  "content": "We do not know how many people are truly infected with the novel coronavirus (COVID-19). As the majority of COVID-19 positive individuals have mild to moderate symptoms, without this information it is nearly impossible to stop the spread of the virus. SymptoTrackworks to identify people with COVID-19 symptoms, so we can show you how the virus is spreading in your community. Are you experiencing symptoms of COVID-19? Register your data anonymously and stop the spread of the virus!",
+  "button": {
+    "label": "Report symptoms",
+    "target": "_self",
+    "href": "/questionnaire",
+    "as": "/questionnaire"
+  },
+  "counter": {
+    "string": "people",
+    "content": "have already reported their symptoms",
+    "link": {
+      "label": "Click to see what the map looks like",
+      "target": "_self",
+      "href": "/map",
+      "as": "/map"
+    }
+  },
+  "layouts": [
+    {
+      "name": "card",
+      "layout": {
+        "title": "I’m feeling better",
+        "content": "Once your symptoms have subsided,  you can update your status using the link you have received in your email.  With every new recovered case we are winning the fight against COVID-19. Make sure you are free of any symptoms for 24 hours before you register yourself as recovered."
+      }
+    }
+  ]
+}
