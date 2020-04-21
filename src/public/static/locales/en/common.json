@@ -1,7 +1,7 @@
 {
   "h1": "Example",
   "followUs": "Follow us",
-  "mailUs": "email us",
+  "mailUs": "Mail us",
   "socialMedia": "Or check out our social media channels",
   "close": "Close",
   "by": "By",
@@ -13,10 +13,4 @@
   "nextQuestions": "Next questions",
   "finishQuestionnaire": "Submit questions",
   "invalidForm": "You have forgotten a question"
-}
-
-{
-  "h1": "Example",
-  "followUs": "Follow us",
-  "mailUs": "Mail us"
 }

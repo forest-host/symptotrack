@@ -30,8 +30,13 @@ app.prepare().then(() => {
   // handle next files
   server.get('/_next/*', (req, res) => handle(req, res));
 
+  // Home
+  server.get('/nl', (req, res) => {
+    app.render(req, res, '/');
+  });
+
   // Map
-  server.get('/kaart', (req, res) => {
+  server.get('/nl/kaart', (req, res) => {
     const queryParams = {
       z: req.query.z,
       top: req.query.top,
@@ -44,37 +49,64 @@ app.prepare().then(() => {
   });
 
   // About
-  server.get('/over-symptotrack', (req, res) => {
-    app.render(req, res, '/about');
+  server.get('/nl/over-symptotrack', (req, res) => {
+    const queryParams = { lang: 'nl' };
+    app.render(req, res, '/about', queryParams);
   });
 
   // Faq
-  server.get('/veelgestelde-vragen', (req, res) => {
-    app.render(req, res, '/faq');
+  server.get('/nl/veelgestelde-vragen', (req, res) => {
+    const queryParams = { lang: 'nl' };
+    app.render(req, res, '/faq', queryParams);
+  });
+
+  // Contact
+  server.get('/nl/contact', (req, res) => {
+    const queryParams = { lang: 'nl' };
+    app.render(req, res, '/contact', queryParams);
   });
 
   // Questionnaire
-  server.get('/vragenlijst', (req, res) => {
-    app.render(req, res, '/questionnaire');
+  server.get('/nl/vragenlijst', (req, res) => {
+    const queryParams = { lang: 'nl' };
+    app.render(req, res, '/questionnaire', queryParams);
   });
 
-  server.get('/vragenlijst/:name', (req, res) => {
+  server.get('/nl/vragenlijst/:name', (req, res) => {
     const queryParams = {
       name: req.query.name,
+      lang: 'nl',
     };
 
     app.render(req, res, '/questionnaire', queryParams);
   });
 
   // Thank you page
-  server.get('/bedankt', (req, res) => {
-    app.render(req, res, '/thankyou');
+  server.get('/nl/bedankt', (req, res) => {
+    const queryParams = { lang: 'nl' };
+    app.render(req, res, '/thankyou', queryParams);
   });
 
   // Privacy
-  server.get('/privacyvoorwaarden', (req, res) => {
-    app.render(req, res, '/privacy');
+  server.get('/nl/privacyvoorwaarden', (req, res) => {
+    const queryParams = { lang: 'nl' };
+    app.render(req, res, '/privacy', queryParams);
   });
+
+  // Redirects
+  server.get(
+    [
+      '/kaart',
+      '/over-symptotrack',
+      '/veelgestelde-vragen',
+      '/vragenlijst',
+      '/bedankt',
+      '/privacyvoorwaarden',
+    ],
+    (req, res) => {
+      res.redirect('/nl' + req.originalUrl);
+    }
+  );
 
   // ServiceWorker
   server.get('/service-worker.js', (req, res) => {

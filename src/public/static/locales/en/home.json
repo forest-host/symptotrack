@@ -1,12 +1,11 @@
 {
   "title": "COVID-19 SymptoTrack",
-  "content": "We do not know how many people are truly infected with the novel coronavirus (COVID-19). As the majority of COVID-19 positive individuals have mild to moderate symptoms, without this information it is nearly impossible to stop the spread of the virus. SymptoTrackworks to identify people with COVID-19 symptoms, so we can show you how the virus is spreading in your community. Are you experiencing symptoms of COVID-19? Register your data anonymously and stop the spread of the virus!
-",
+  "content": "We do not know how many people are truly infected with the novel coronavirus (COVID-19). As the majority of COVID-19 positive individuals have mild to moderate symptoms, without this information it is nearly impossible to stop the spread of the virus. SymptoTrackworks to identify people with COVID-19 symptoms, so we can show you how the virus is spreading in your community. Are you experiencing symptoms of COVID-19? Register your data anonymously and stop the spread of the virus!",
   "button": {
     "label": "Report symptoms",
     "target": "_self",
     "href": "/questionnaire",
-    "as": "/vragenlijst"
+    "as": "/questionnaire"
   },
   "counter": {
     "string": "people",
@@ -15,7 +14,7 @@
       "label": "Click to see what the map looks like",
       "target": "_self",
       "href": "/map",
-      "as": "/kaart"
+      "as": "/map"
     }
   },
   "layouts": [

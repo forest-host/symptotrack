@@ -7,11 +7,11 @@
         "target": "_self",
         "nl": {
           "href": "/",
-          "as": "/"
+          "as": "/nl"
         },
         "en": {
           "href": "/",
-          "as": "/en"
+          "as": "/"
         }
       }
     },
@@ -22,11 +22,11 @@
         "target": "_self",
         "nl": {
           "href": "/questionnaire",
-          "as": "/vragenlijst"
+          "as": "/nl/vragenlijst"
         },
         "en": {
           "href": "/questionnaire",
-          "as": "/en/questionnaire"
+          "as": "/questionnaire"
         }
       }
     },
@@ -36,11 +36,11 @@
         "target": "_self",
         "nl": {
           "href": "/map",
-          "as": "/kaart"
+          "as": "/nl/kaart"
         },
         "en": {
           "href": "/map",
-          "as": "/en/map"
+          "as": "/map"
         }
       }
     },
@@ -50,11 +50,11 @@
         "target": "_self",
         "nl": {
           "href": "/about",
-          "as": "/over-symptotrack"
+          "as": "/nl/over-symptotrack"
         },
         "en": {
           "href": "/about",
-          "as": "/en/about-symptotrack"
+          "as": "/about"
         }
       }
     },
@@ -64,11 +64,11 @@
         "target": "_self",
         "nl": {
           "href": "/contact",
-          "as": "/contact"
+          "as": "/nl/contact"
         },
         "en": {
           "href": "/contact",
-          "as": "/en/contact"
+          "as": "/contact"
         }
       }
     },
@@ -78,11 +78,11 @@
         "target": "_self",
         "nl": {
           "href": "/faq",
-          "as": "/veelgestelde-vragen"
+          "as": "/nl/veelgestelde-vragen"
         },
         "en": {
           "href": "/faq",
-          "as": "/en/faq"
+          "as": "/faq"
         }
       }
     }
@@ -93,11 +93,11 @@
       "target": "_self",
       "nl": {
         "href": "/questionnaire",
-        "as": "/vragenlijst"
+        "as": "/nl/vragenlijst"
       },
       "en": {
         "href": "/questionnaire",
-        "as": "/en/questionnaire"
+        "as": "/questionnaire"
       }
     }
   }

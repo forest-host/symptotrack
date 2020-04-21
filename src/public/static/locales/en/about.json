@@ -1,7 +1,6 @@
-
 {
   "title": "About SymptoTrack",
-  "content": "SymptoTrack is a tool that works to map anyone with symptoms of COVID-19. By answering this <a href='/questionnaire' as='/vragenlijst'>questionnaire</a>, you can record your own symptoms or those of someone else. We use this data to map [hyperlink to map] the spread of the virus.",
+  "content": "SymptoTrack is a tool that works to map anyone with symptoms of COVID-19. By answering this <a href='/questionnaire' as='/questionnaire'>questionnaire</a>, you can record your own symptoms or those of someone else. We use this data to <a href='/map' as='/map'>map</a> the spread of the virus.",
   "layouts": [
     {
       "name": "content",

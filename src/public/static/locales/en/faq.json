@@ -28,7 +28,7 @@
         },
         {
           "question": "Who is working on SymptoTrack?",
-          "answer": "SymptoTrack is founded by volunteers at Hike, Greenberry and Forrest. With our knowledge of programming, design and hosting, we have worked hard to get SymptoTrack online within a short time frame. Several agencies now support our work. See this [<a href='/over-symptotrack' as='/over-symptotrack'>this page</a>] page for more information about our partners."
+          "answer": "SymptoTrack is founded by volunteers at Hike, Greenberry and Forrest. With our knowledge of programming, design and hosting, we have worked hard to get SymptoTrack online within a short time frame. Several agencies now support our work. See <a href='/about' as='/about'>this page</a> for more information about our partners."
         }
       ]
     },

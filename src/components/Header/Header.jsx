@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import Link from 'next/link';
 import uuid from 'uuid';
 
@@ -15,7 +16,7 @@ import SHeader, { SMenu, SMenuItem } from './styles';
 import { Button, Box, Container, Flex, Row, Text } from '../styles';
 
 const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
-  const { language } = i18n || {};
+  const { language, changeLanguage } = i18n || {};
   const mainMenu = t('navigation:items', { returnObjects: true }) || {};
   const cta = t('navigation:cta', { returnObjects: true }) || {};
 
@@ -25,7 +26,34 @@ const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
         <Row>
           <Flex py={15} justifyContent={['center', 'center', 'space-between']} alignItems="center">
             <Hamburger onClick={() => setOpen(true)} />
-            <Link href="/" as={language === 'nl' ? '/' : `/${language}`} passHref>
+            <Button
+              noStyle
+              onClick={(e) => {
+                e.preventDefault();
+
+                const translation = mainMenu?.find((s) => s.link[language].as === asPath);
+                const { link } = translation || {};
+                const switchLang = language === 'nl' ? 'en' : 'nl';
+
+                changeLanguage(switchLang, () => {
+                  translation && Router.push(link[switchLang].href, link[switchLang].as);
+                });
+              }}
+              className="show-for-small"
+              css={{ position: 'absolute', left: 45 }}
+            >
+              <Text
+                as="span"
+                fontFamily="heading"
+                fontWeight={700}
+                fontSize={14}
+                color="blue"
+                css={{ position: 'relative', top: -2 }}
+              >
+                {language === 'nl' ? 'EN' : 'NL'}
+              </Text>
+            </Button>
+            <Link href="/" as={language === 'en' ? '/' : `/${language}`} passHref>
               <a href>
                 <picture>
                   <source media="(min-width: 1025px)" srcSet="/static/logo-big.svg" />
@@ -54,6 +82,33 @@ const Header = ({ t, i18n, asPath, isOpen, setOpen }) => {
                       </Link>
                     </SMenuItem>
                   ))}
+                <SMenuItem>
+                  <Button
+                    noStyle
+                    onClick={(e) => {
+                      e.preventDefault();
+
+                      const translation = mainMenu?.find((s) => s.link[language].as === asPath);
+                      const { link } = translation || {};
+                      const switchLang = language === 'nl' ? 'en' : 'nl';
+
+                      changeLanguage(switchLang, () => {
+                        translation && Router.push(link[switchLang].href, link[switchLang].as);
+                      });
+                    }}
+                  >
+                    <Text
+                      as="span"
+                      fontFamily="heading"
+                      fontWeight={700}
+                      fontSize={14}
+                      color="blue"
+                      css={{ position: 'relative', top: -2 }}
+                    >
+                      {language === 'nl' ? 'EN' : 'NL'}
+                    </Text>
+                  </Button>
+                </SMenuItem>
               </SMenu>
             )}
             {cta?.link && typeof cta === 'object' && (
