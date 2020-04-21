@@ -20,7 +20,7 @@ import { Box, Container, Row, Flex } from '../components/styles';
 
 const Questionnaire = ({ i18n, t }) => {
   const { trackEvent } = useMatomo();
-  const { basicQuestionnaire, translatedQuestionnaire, translatedErrors } = useApp();
+  const { questionnaires } = useApp();
   const { language } = i18n || {};
   const [count, setCount] = useState({ currentPage: 1, total: 1 });
   const [pageTitle, setPageTitle] = useState('');
@@ -45,7 +45,10 @@ const Questionnaire = ({ i18n, t }) => {
         } else {
           trackEvent({ category: 'vragenlijst', action: 'submit' });
           window.scrollTo(0, 0);
-          Router.push(`/thankyou?token=${respondent_uuid}`, '/bedankt');
+          Router.push(
+            `/thankyou?token=${respondent_uuid}`,
+            language === 'nl' ? '/bedankt' : '/thankyou'
+          );
         }
       }
     });
@@ -64,9 +67,13 @@ const Questionnaire = ({ i18n, t }) => {
           <Flex justifyContent="center">
             <Box width={[1, 10 / 12, 7 / 12]}>
               <Form
-                form={basicQuestionnaire}
-                translations={translatedQuestionnaire}
-                translatedErrors={translatedErrors}
+                form={questionnaires?.['basic']?.questionnaire}
+                translations={
+                  questionnaires?.['basic']?.translation?.[language]?.questionnaireTranslation
+                }
+                translatedErrors={
+                  questionnaires?.['basic']?.translation?.[language]?.translatedErrors
+                }
                 onSubmit={onSubmit}
                 setPercentage={setPercentage}
                 setCount={setCount}

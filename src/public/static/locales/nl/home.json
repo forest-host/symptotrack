@@ -5,7 +5,7 @@
     "label": "Meld symptomen",
     "target": "_self",
     "href": "/questionnaire",
-    "as": "/vragenlijst"
+    "as": "/nl/vragenlijst"
   },
   "counter": {
     "string": "mensen",
@@ -14,7 +14,7 @@
       "label": "Kijk hier hoe de kaart van Nederland eruit ziet",
       "target": "_self",
       "href": "/map",
-      "as": "/kaart"
+      "as": "/nl/kaart"
     }
   },
   "layouts": [

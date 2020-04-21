@@ -21,7 +21,7 @@ const Edit = ({ i18n, t, type, token }) => {
   const [data, setData] = useState(undefined);
   const [recovered, setRecovered] = useState(false);
   const { language } = i18n || {};
-  const { translatedQuestionnaire, translatedErrors, basicQuestionnaireRecurring } = useApp();
+  const { questionnaires } = useApp();
 
   const getData = async (type, token) => {
     await get(`responses/${type}/${token}`).then((resp) => {
@@ -91,9 +91,13 @@ const Edit = ({ i18n, t, type, token }) => {
           <Box width={[1, 7 / 12]}>
             {data && !recovered && (
               <Form
-                form={basicQuestionnaireRecurring}
-                translations={translatedQuestionnaire}
-                translatedErrors={translatedErrors}
+                form={questionnaires?.['basic']?.questionnaireRecurring}
+                translations={
+                  questionnaires?.['basic']?.translation?.[language]?.questionnaireTranslation
+                }
+                translatedErrors={
+                  questionnaires?.['basic']?.translation?.[language]?.translatedErrors
+                }
                 onSubmit={onSubmit}
                 prefill={prefillFormData}
               />

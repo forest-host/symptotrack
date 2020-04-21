@@ -36,7 +36,7 @@ app.prepare().then(() => {
   });
 
   // Map
-  server.get('/nl/kaart', (req, res) => {
+  server.get(['/nl/kaart', '/kaart'], (req, res) => {
     const queryParams = {
       z: req.query.z,
       top: req.query.top,
@@ -49,30 +49,30 @@ app.prepare().then(() => {
   });
 
   // About
-  server.get('/nl/over-symptotrack', (req, res) => {
+  server.get(['/nl/over-symptotrack', '/over-symptotrack'], (req, res) => {
     const queryParams = { lang: 'nl' };
     app.render(req, res, '/about', queryParams);
   });
 
   // Faq
-  server.get('/nl/veelgestelde-vragen', (req, res) => {
+  server.get(['/nl/veelgestelde-vragen', '/veelgestelde-vragen'], (req, res) => {
     const queryParams = { lang: 'nl' };
     app.render(req, res, '/faq', queryParams);
   });
 
   // Contact
-  server.get('/nl/contact', (req, res) => {
+  server.get(['/nl/contact', '/contact'], (req, res) => {
     const queryParams = { lang: 'nl' };
     app.render(req, res, '/contact', queryParams);
   });
 
   // Questionnaire
-  server.get('/nl/vragenlijst', (req, res) => {
+  server.get(['/nl/vragenlijst', '/vragenlijst'], (req, res) => {
     const queryParams = { lang: 'nl' };
     app.render(req, res, '/questionnaire', queryParams);
   });
 
-  server.get('/nl/vragenlijst/:name', (req, res) => {
+  server.get(['/nl/vragenlijst/:name', '/vragenlijst/:name'], (req, res) => {
     const queryParams = {
       name: req.query.name,
       lang: 'nl',
@@ -82,31 +82,16 @@ app.prepare().then(() => {
   });
 
   // Thank you page
-  server.get('/nl/bedankt', (req, res) => {
+  server.get(['/nl/bedankt', '/bedankt'], (req, res) => {
     const queryParams = { lang: 'nl' };
     app.render(req, res, '/thankyou', queryParams);
   });
 
   // Privacy
-  server.get('/nl/privacyvoorwaarden', (req, res) => {
+  server.get(['/nl/privacyvoorwaarden', '/privacyvoorwaarden'], (req, res) => {
     const queryParams = { lang: 'nl' };
     app.render(req, res, '/privacy', queryParams);
   });
-
-  // Redirects
-  server.get(
-    [
-      '/kaart',
-      '/over-symptotrack',
-      '/veelgestelde-vragen',
-      '/vragenlijst',
-      '/bedankt',
-      '/privacyvoorwaarden',
-    ],
-    (req, res) => {
-      res.redirect('/nl' + req.originalUrl);
-    }
-  );
 
   // ServiceWorker
   server.get('/service-worker.js', (req, res) => {

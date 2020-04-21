@@ -121,7 +121,6 @@ const Form = ({
             key={group}
             register={register}
             errors={errors}
-            translations={translations}
             translatedQuestions={translations?.questions}
             translatedGroup={translations?.[group]}
             translatedErrors={translatedErrors}
